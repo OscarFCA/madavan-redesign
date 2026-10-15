@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Grúa izando una pieza sobredimensionada">
+<rect width="800" height="600" fill="#E8F3FC"/>
+<circle cx="468" cy="266" r="208" fill="#D7EAF9"/>
+<path d="M40 500 H760" stroke="#062E57" stroke-width="8" stroke-linecap="round"/>
+<path d="M112 500 V150 M188 500 V164" stroke="#1594E5" stroke-width="10" stroke-linecap="round"/>
+<path d="M112 164 L188 206" stroke="#1594E5" stroke-width="6" stroke-linecap="round" opacity=".6"/>
+<path d="M112 206 H188" stroke="#1594E5" stroke-width="6" stroke-linecap="round" opacity=".45"/>
+<path d="M188 206 L112 248" stroke="#1594E5" stroke-width="6" stroke-linecap="round" opacity=".6"/>
+<path d="M112 248 H188" stroke="#1594E5" stroke-width="6" stroke-linecap="round" opacity=".45"/>
+<path d="M112 248 L188 290" stroke="#1594E5" stroke-width="6" stroke-linecap="round" opacity=".6"/>
+<path d="M112 290 H188" stroke="#1594E5" stroke-width="6" stroke-linecap="round" opacity=".45"/>
+<path d="M188 290 L112 332" stroke="#1594E5" stroke-width="6" stroke-linecap="round" opacity=".6"/>
+<path d="M112 332 H188" stroke="#1594E5" stroke-width="6" stroke-linecap="round" opacity=".45"/>
+<path d="M112 332 L188 374" stroke="#1594E5" stroke-width="6" stroke-linecap="round" opacity=".6"/>
+<path d="M112 374 H188" stroke="#1594E5" stroke-width="6" stroke-linecap="round" opacity=".45"/>
+<path d="M188 374 L112 416" stroke="#1594E5" stroke-width="6" stroke-linecap="round" opacity=".6"/>
+<path d="M112 416 H188" stroke="#1594E5" stroke-width="6" stroke-linecap="round" opacity=".45"/>
+<path d="M112 416 L188 458" stroke="#1594E5" stroke-width="6" stroke-linecap="round" opacity=".6"/>
+<path d="M112 458 H188" stroke="#1594E5" stroke-width="6" stroke-linecap="round" opacity=".45"/>
+<path d="M188 458 L112 500" stroke="#1594E5" stroke-width="6" stroke-linecap="round" opacity=".6"/>
+<path d="M112 500 H188" stroke="#1594E5" stroke-width="6" stroke-linecap="round" opacity=".45"/>
+<path d="M120 150 L616 214" stroke="#1594E5" stroke-width="10" stroke-linecap="round"/>
+<path d="M120 150 L560 100" stroke="#1594E5" stroke-width="5" stroke-linecap="round" opacity=".5"/>
+<path d="M560 100 L616 214" stroke="#1594E5" stroke-width="5" stroke-linecap="round" opacity=".5"/>
+<path d="M560 210 V300" stroke="#062E57" stroke-width="5"/>
+<path d="M484 300 H636" stroke="#062E57" stroke-width="12" stroke-linecap="round"/>
+<path d="M500 300 V326 M620 300 V326" stroke="#062E57" stroke-width="6"/>
+<rect x="454" y="326" width="212" height="116" rx="8" fill="#062E57"/>
+<rect x="482" y="356" width="156" height="14" rx="7" fill="#1594E5" opacity=".4"/>
+<rect x="482" y="396" width="104" height="14" rx="7" fill="#1594E5" opacity=".4"/>
+<circle cx="640" cy="403" r="14" fill="#45B649"/>
+<path d="M500 326 L540 300 M620 326 L580 300" stroke="#8BCF4A" stroke-width="5" opacity=".7"/>
+<rect x="416" y="466" width="300" height="20" rx="6" fill="#1594E5" opacity=".9"/>
+<circle cx="448" cy="492" r="18" fill="#062E57"/>
+<circle cx="500" cy="492" r="18" fill="#062E57"/>
+<circle cx="640" cy="492" r="18" fill="#062E57"/>
+<circle cx="692" cy="492" r="18" fill="#062E57"/>
+</svg>

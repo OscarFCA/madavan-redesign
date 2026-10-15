@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Operador de MADAVAN en patio de contenedores">
+<rect width="800" height="600" fill="#E8F3FC"/>
+<circle cx="400" cy="300" r="236" fill="#D7EAF9"/>
+<rect x="96" y="300" width="104" height="62" rx="4" fill="#1594E5" opacity=".55"/>
+<rect x="208" y="300" width="104" height="62" rx="4" fill="#062E57" opacity=".55"/>
+<rect x="320" y="300" width="104" height="62" rx="4" fill="#45B649" opacity=".55"/>
+<rect x="96" y="372" width="104" height="62" rx="4" fill="#062E57" opacity=".55"/>
+<rect x="208" y="372" width="104" height="62" rx="4" fill="#1594E5" opacity=".55"/>
+<rect x="320" y="372" width="104" height="62" rx="4" fill="#8BCF4A" opacity=".55"/>
+<rect x="96" y="444" width="104" height="62" rx="4" fill="#1594E5" opacity=".55"/>
+<rect x="208" y="444" width="104" height="62" rx="4" fill="#062E57" opacity=".55"/>
+<rect x="320" y="444" width="104" height="62" rx="4" fill="#45B649" opacity=".55"/>
+<rect x="430" y="372" width="104" height="62" rx="4" fill="#062E57" opacity=".55"/>
+<rect x="542" y="372" width="104" height="62" rx="4" fill="#1594E5" opacity=".55"/>
+<rect x="654" y="372" width="104" height="62" rx="4" fill="#8BCF4A" opacity=".55"/>
+<rect x="430" y="444" width="104" height="62" rx="4" fill="#1594E5" opacity=".55"/>
+<rect x="542" y="444" width="104" height="62" rx="4" fill="#062E57" opacity=".55"/>
+<rect x="654" y="444" width="104" height="62" rx="4" fill="#45B649" opacity=".55"/>
+<g transform="translate(400 0)">
+<path d="M-118 560 V452 C-118 392 -66 348 0 348 C66 348 118 392 118 452 V560 Z" fill="#1594E5"/>
+<path d="M-46 352 L0 448 L46 352 C28 344 -28 344 -46 352 Z" fill="#E8F3FC"/>
+<path d="M-88 430 H-56 M56 430 H88" stroke="#8BCF4A" stroke-width="14" stroke-linecap="round" opacity=".9"/>
+<path d="M-104 476 H104" stroke="#8BCF4A" stroke-width="18" stroke-linecap="round"/>
+<rect x="-62" y="252" width="124" height="112" rx="48" fill="#062E57"/>
+<path d="M-82 252 C-82 190 -42 158 0 158 C42 158 82 190 82 252 Z" fill="#45B649"/>
+<path d="M-98 252 H98" stroke="#45B649" stroke-width="16" stroke-linecap="round"/>
+<path d="M0 158 V252" stroke="#E8F3FC" stroke-width="6" opacity=".45"/>
+</g>
+</svg>

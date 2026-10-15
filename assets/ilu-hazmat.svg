@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Rombo de mercancía peligrosa y embalaje certificado">
+<rect width="800" height="600" fill="#E8F3FC"/>
+<circle cx="416" cy="300" r="232" fill="#D7EAF9"/>
+<rect x="152" y="140" width="148" height="148" rx="6" fill="#1594E5" transform="rotate(45 226 214)"/>
+<rect x="172" y="160" width="108" height="108" rx="6" fill="#E8F3FC" transform="rotate(45 226 214)"/>
+<path d="M226 184 V222" stroke="#1594E5" stroke-width="11" stroke-linecap="round"/>
+<circle cx="226" cy="242" r="7" fill="#1594E5"/>
+<rect x="542" y="144" width="136" height="136" rx="6" fill="#45B649" transform="rotate(45 610 212)"/>
+<rect x="561" y="163" width="98" height="98" rx="6" fill="#E8F3FC" transform="rotate(45 610 212)"/>
+<path d="M588 212 L603 229 L634 196" fill="none" stroke="#45B649" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="268" y="168" width="296" height="296" rx="12" fill="#062E57" transform="rotate(45 416 316)"/>
+<rect x="294" y="194" width="244" height="244" rx="10" fill="none" stroke="#1594E5" stroke-width="5" transform="rotate(45 416 316)"/>
+<path d="M416 232 C450 278 472 300 472 336 C472 374 447 400 416 400 C385 400 360 374 360 336 C360 312 376 294 396 272 C398 300 410 306 416 300 C424 292 420 266 416 232 Z" fill="#45B649"/>
+<path d="M416 330 C428 346 434 356 434 366 C434 378 426 386 416 386 C406 386 398 378 398 366 C398 354 408 344 416 330 Z" fill="#E8F3FC"/>
+<path d="M382 452 H450" stroke="#E8F3FC" stroke-width="10" stroke-linecap="round"/>
+<rect x="146" y="408" width="74" height="104" rx="12" fill="#1594E5"/>
+<rect x="146" y="436" width="74" height="9" fill="#E8F3FC" opacity=".55"/>
+<rect x="146" y="472" width="74" height="9" fill="#E8F3FC" opacity=".55"/>
+<rect x="228" y="408" width="74" height="104" rx="12" fill="#062E57"/>
+<rect x="228" y="436" width="74" height="9" fill="#E8F3FC" opacity=".55"/>
+<rect x="228" y="472" width="74" height="9" fill="#E8F3FC" opacity=".55"/>
+<path d="M140 512 H700" stroke="#062E57" stroke-width="8" stroke-linecap="round"/>
+<rect x="548" y="420" width="132" height="76" rx="10" fill="#E8F3FC"/>
+<rect x="548" y="420" width="132" height="76" rx="10" fill="none" stroke="#062E57" stroke-width="5"/>
+<path d="M572 448 H656 M572 470 H628" stroke="#1594E5" stroke-width="9" stroke-linecap="round"/>
+</svg>

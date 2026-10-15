@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Tractocamión en carretera">
+<rect width="800" height="600" fill="#E8F3FC"/>
+<circle cx="380" cy="268" r="220" fill="#D7EAF9"/>
+<path d="M40 486 H760" stroke="#062E57" stroke-width="8" stroke-linecap="round"/>
+<path d="M60 522 H740" stroke="#1594E5" stroke-width="7" stroke-dasharray="46 34" stroke-linecap="round" opacity=".55"/>
+<rect x="146" y="252" width="356" height="196" rx="6" fill="#062E57"/>
+<rect x="174" y="282" width="300" height="10" rx="5" fill="#1594E5" opacity=".35"/>
+<rect x="174" y="394" width="300" height="10" rx="5" fill="#1594E5" opacity=".35"/>
+<rect x="286" y="312" width="80" height="62" rx="4" fill="#45B649"/>
+<path d="M510 448 V324 C510 310 520 300 534 300 H596 L648 366 V448 Z" fill="#1594E5"/>
+<path d="M546 320 H592 L628 364 H546 Z" fill="#E8F3FC"/>
+<rect x="502" y="430" width="156" height="18" rx="5" fill="#062E57"/>
+<rect x="516" y="268" width="14" height="36" rx="6" fill="#062E57"/>
+<circle cx="640" cy="372" r="8" fill="#8BCF4A"/>
+<circle cx="222" cy="458" r="40" fill="#062E57"/>
+<circle cx="222" cy="458" r="17" fill="#E8F3FC"/>
+<circle cx="304" cy="458" r="40" fill="#062E57"/>
+<circle cx="304" cy="458" r="17" fill="#E8F3FC"/>
+<circle cx="556" cy="458" r="40" fill="#062E57"/>
+<circle cx="556" cy="458" r="17" fill="#E8F3FC"/>
+<circle cx="622" cy="458" r="40" fill="#062E57"/>
+<circle cx="622" cy="458" r="17" fill="#E8F3FC"/>
+<path d="M36 300 H128" stroke="#B9D9F2" stroke-width="7" stroke-linecap="round" opacity=".7"/>
+<path d="M54 344 H128" stroke="#B9D9F2" stroke-width="7" stroke-linecap="round" opacity=".7"/>
+<path d="M30 388 H128" stroke="#B9D9F2" stroke-width="7" stroke-linecap="round" opacity=".7"/>
+</svg>

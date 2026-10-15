@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Buque portacontenedores">
+<rect width="800" height="600" fill="#E8F3FC"/>
+<circle cx="500" cy="268" r="212" fill="#D7EAF9"/>
+<path d="M40 452 Q100 445 160 452 Q220 459 280 452 Q340 445 400 452 Q460 459 520 452 Q580 445 640 452 Q700 459 760 452" fill="none" stroke="#B9D9F2" stroke-width="5" stroke-linecap="round" opacity="0.90"/>
+<path d="M138 372 H650 L612 452 H206 C168 452 146 416 138 372 Z" fill="#062E57"/>
+<path d="M150 418 H628" stroke="#1594E5" stroke-width="7" stroke-linecap="round" opacity=".55"/>
+<rect x="196" y="338" width="38" height="30" rx="3" fill="#1594E5" opacity=".92"/>
+<rect x="240" y="338" width="38" height="30" rx="3" fill="#8BCF4A" opacity=".92"/>
+<rect x="284" y="338" width="38" height="30" rx="3" fill="#062E57" opacity=".92"/>
+<rect x="328" y="338" width="38" height="30" rx="3" fill="#1594E5" opacity=".92"/>
+<rect x="372" y="338" width="38" height="30" rx="3" fill="#1594E5" opacity=".92"/>
+<rect x="416" y="338" width="38" height="30" rx="3" fill="#062E57" opacity=".92"/>
+<rect x="460" y="338" width="38" height="30" rx="3" fill="#45B649" opacity=".92"/>
+<rect x="504" y="338" width="38" height="30" rx="3" fill="#1594E5" opacity=".92"/>
+<rect x="548" y="338" width="38" height="30" rx="3" fill="#062E57" opacity=".92"/>
+<rect x="214" y="304" width="38" height="30" rx="3" fill="#062E57" opacity=".92"/>
+<rect x="258" y="304" width="38" height="30" rx="3" fill="#1594E5" opacity=".92"/>
+<rect x="302" y="304" width="38" height="30" rx="3" fill="#1594E5" opacity=".92"/>
+<rect x="346" y="304" width="38" height="30" rx="3" fill="#062E57" opacity=".92"/>
+<rect x="390" y="304" width="38" height="30" rx="3" fill="#45B649" opacity=".92"/>
+<rect x="434" y="304" width="38" height="30" rx="3" fill="#1594E5" opacity=".92"/>
+<rect x="478" y="304" width="38" height="30" rx="3" fill="#062E57" opacity=".92"/>
+<rect x="522" y="304" width="38" height="30" rx="3" fill="#1594E5" opacity=".92"/>
+<rect x="232" y="270" width="38" height="30" rx="3" fill="#1594E5" opacity=".92"/>
+<rect x="276" y="270" width="38" height="30" rx="3" fill="#062E57" opacity=".92"/>
+<rect x="320" y="270" width="38" height="30" rx="3" fill="#45B649" opacity=".92"/>
+<rect x="364" y="270" width="38" height="30" rx="3" fill="#1594E5" opacity=".92"/>
+<rect x="408" y="270" width="38" height="30" rx="3" fill="#062E57" opacity=".92"/>
+<rect x="452" y="270" width="38" height="30" rx="3" fill="#1594E5" opacity=".92"/>
+<rect x="556" y="246" width="74" height="126" rx="5" fill="#062E57"/>
+<rect x="570" y="262" width="46" height="12" rx="2" fill="#E8F3FC"/>
+<rect x="570" y="286" width="46" height="12" rx="2" fill="#E8F3FC"/>
+<rect x="570" y="310" width="46" height="12" rx="2" fill="#E8F3FC"/>
+<rect x="586" y="196" width="12" height="52" rx="4" fill="#062E57"/>
+<circle cx="592" cy="190" r="9" fill="#45B649"/>
+<path d="M118 372 V214 H300" fill="none" stroke="#1594E5" stroke-width="7" stroke-linejoin="round" opacity=".5"/>
+<path d="M300 214 V252" stroke="#1594E5" stroke-width="5" opacity=".5"/>
+<rect x="284" y="252" width="34" height="26" rx="3" fill="#1594E5" opacity=".5"/>
+<path d="M70 492 Q125 482 180 492 Q235 502 290 492 Q345 482 400 492 Q455 502 510 492 Q565 482 620 492 Q675 502 730 492" fill="none" stroke="#1594E5" stroke-width="5" stroke-linecap="round" opacity="0.90"/>
+<path d="M84 516 Q139 506 194 516 Q249 526 304 516 Q359 506 414 516 Q469 526 524 516 Q579 506 634 516 Q675 526 716 516" fill="none" stroke="#1594E5" stroke-width="5" stroke-linecap="round" opacity="0.68"/>
+<path d="M98 540 Q153 530 208 540 Q263 550 318 540 Q373 530 428 540 Q483 550 538 540 Q593 530 648 540 Q675 550 702 540" fill="none" stroke="#1594E5" stroke-width="5" stroke-linecap="round" opacity="0.46"/>
+</svg>

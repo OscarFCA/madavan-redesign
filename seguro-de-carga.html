@@ -46,9 +46,18 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 @media (max-width:420px){[data-r=logo]{height:36px!important}}
 /* hero */
 @media (max-width:900px){
+  /* la foto del hero ocupa todo el ancho, con velo para que el texto se lea */
   [data-r=heroimg]{width:100%!important}
   [data-r=heroscrim]{background:linear-gradient(180deg,#FFFFFF 0%,rgba(255,255,255,.96) 40%,rgba(255,255,255,.84) 70%,rgba(255,255,255,.60) 100%)!important}
   [data-r=heronote]{display:none!important}
+  /* la ilustración baja a su propia banda, debajo del texto */
+  [data-r=heroilu]{top:auto!important;width:100%!important;height:250px!important;background-size:contain!important;background-position:center bottom!important}
+  [data-r=heroscrimilu]{background:linear-gradient(180deg,#FFFFFF 0%,#FFFFFF 58%,rgba(255,255,255,0) 86%)!important}
+  [data-r=herobody]{padding-bottom:266px!important}
+}
+@media (max-width:560px){
+  [data-r=heroilu]{height:188px!important}
+  [data-r=herobody]{padding-bottom:202px!important}
 }
 /* cifras */
 @media (max-width:1023px){[data-r=stat]{border-right:0!important}
@@ -110,9 +119,9 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 </header>
 
 <section data-screen-label="Hero Seguro" style="position:relative;overflow:hidden;background:#fff">
-  <div data-r="heroimg" style="position:absolute;top:0;right:0;bottom:0;width:58%;background:repeating-linear-gradient(135deg,#E8F3FC 0 12px,#F5F7FA 12px 24px)"><div data-r="heronote" style="position:absolute;right:24px;bottom:20px;font:500 12px/1.4 ui-monospace,Menlo,monospace;color:#6B7A8C">foto · operador revisando carga en patio de contenedores</div></div>
-  <div data-r="heroscrim" style="position:absolute;inset:0;background:linear-gradient(90deg,#FFFFFF 0%,#FFFFFF 40%,rgba(255,255,255,0) 64%)"></div>
-  <div style="position:relative;max-width:1312px;margin:0 auto;padding:clamp(24px,4vw,40px) var(--gx) clamp(48px,8vw,88px)">
+  <div data-r="heroilu" style="position:absolute;top:0;right:0;bottom:0;width:58%;background:#E8F3FC url('assets/ilu-seguro.svg') center/cover no-repeat"></div>
+  <div data-r="heroscrimilu" style="position:absolute;inset:0;background:linear-gradient(90deg,#FFFFFF 0%,#FFFFFF 40%,rgba(255,255,255,0) 64%)"></div>
+  <div data-r="herobody" style="position:relative;max-width:1312px;margin:0 auto;padding:clamp(24px,4vw,40px) var(--gx) clamp(48px,8vw,88px)">
     <div style="display:flex;gap:8px;align-items:center;font:400 13px/1 Lato,sans-serif;color:#6B7A8C;margin-bottom:56px"><a href="./" style="color:#6B7A8C" style-hover="color:#1594E5">Inicio</a><span>/</span><a href="./#servicios" style="color:#6B7A8C" style-hover="color:#1594E5">Logística</a><span>/</span><span style="color:#062E57;font-weight:700">Seguro de Mercancías y Carga</span></div>
     <div style="max-width:640px;display:flex;flex-direction:column;gap:24px">
       <div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#062E57"><span style="width:24px;height:3px;background:#45B649;border-radius:2px"></span>Seguro de Transporte</div>
@@ -204,9 +213,8 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
         </div>
       </form>
     </div>
-    <div style="position:relative;min-height:360px;background:repeating-linear-gradient(135deg,#d6e9f8 0 12px,#E8F3FC 12px 24px)">
+    <div style="position:relative;min-height:360px;background:#E8F3FC url('assets/ilu-contacto.svg') center/cover no-repeat">
       <div style="position:absolute;inset:0;background:linear-gradient(90deg,#E8F3FC 0%,rgba(232,243,252,0) 30%)"></div>
-      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:500 12px/1.4 ui-monospace,Menlo,monospace;color:#6B7A8C;text-align:center;padding:24px">foto · operador con casco y chaleco MADAVAN<br>contenedores al fondo</div>
     </div>
   </div>
 </section>
