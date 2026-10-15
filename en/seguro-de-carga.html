@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cargo and Goods Insurance | MADAVAN International Multilogistics</title>
+<meta name="description" content="Domestic and international policies covering the risks of moving merchandise, goods and cargo.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#062E57">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Cargo and Goods Insurance | MADAVAN International Multilogistics">
+<meta property="og:description" content="Domestic and international policies covering the risks of moving merchandise, goods and cargo.">
+<meta property="og:image" content="../assets/madavan-logo.png">
+<link rel="icon" type="image/png" href="../assets/madavan-logo.png">
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.453.0/dist/umd/lucide.min.js"></script>
+<style>
+body{margin:0;background:#fff;color:#062E57;font-family:'Lato','Segoe UI',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#1594E5;text-decoration:none}
+a:hover{color:#0F7CC4}
+svg.lucide{stroke-width:1.75}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+/* ---- Responsive (móvil · tablet · escritorio) ---- */
+:root{--gx:56px}
+@media (max-width:1180px){:root{--gx:44px}}
+@media (max-width:1023px){:root{--gx:32px}}
+@media (max-width:560px){:root{--gx:20px}}
+@media (max-width:360px){:root{--gx:16px}}
+body{overflow-x:clip}
+img,svg,video{max-width:100%}
+input,select,textarea,button{font-family:inherit;max-width:100%}
+/* cabecera */
+@media (max-width:1023px){
+  [data-r=navdesk],[data-r=navact]{display:none!important}
+  [data-r=burger]{display:inline-flex!important}
+  [data-r=logo]{height:42px!important}
+}
+@media (min-width:1024px){[data-r=mobnav]{display:none!important}}
+@media (max-width:420px){[data-r=logo]{height:36px!important}}
+/* hero */
+@media (max-width:900px){
+  /* la foto del hero ocupa todo el ancho, con velo para que el texto se lea */
+  [data-r=heroimg]{width:100%!important}
+  [data-r=heroscrim]{background:linear-gradient(180deg,#FFFFFF 0%,rgba(255,255,255,.96) 40%,rgba(255,255,255,.84) 70%,rgba(255,255,255,.60) 100%)!important}
+  [data-r=heronote]{display:none!important}
+  /* la ilustración baja a su propia banda, debajo del texto */
+  [data-r=heroilu]{top:auto!important;width:100%!important;height:250px!important;background-size:contain!important;background-position:center bottom!important}
+  [data-r=heroscrimilu]{background:linear-gradient(180deg,#FFFFFF 0%,#FFFFFF 58%,rgba(255,255,255,0) 86%)!important}
+  [data-r=herobody]{padding-bottom:266px!important}
+}
+@media (max-width:560px){
+  [data-r=heroilu]{height:188px!important}
+  [data-r=herobody]{padding-bottom:202px!important}
+}
+/* cifras */
+@media (max-width:1023px){[data-r=stat]{border-right:0!important}
+  [data-r=stats]{grid-template-columns:repeat(2,1fr)!important;gap:28px 24px!important}}
+@media (max-width:480px){[data-r=stats]{grid-template-columns:1fr!important}}
+@media (max-width:760px){[data-r=stat]{padding:0!important}}
+/* WhatsApp */
+[data-r=waflot]{transition:transform .18s ease}
+[data-r=waflot]:hover{transform:scale(1.06)}
+@media (max-width:560px){[data-r=waflot]{width:56px!important;height:56px!important;right:14px!important;bottom:14px!important}}
+/* utilidades */
+@media (max-width:760px){[data-r=nowrap]{white-space:normal!important}
+  [data-r=fdiv]{display:none!important}}
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#fff">
+
+<header style="position:sticky;top:0;z-index:40;background:#fff;border-bottom:1px solid #E3E8EF">
+  <div style="max-width:1312px;margin:0 auto;padding:12px var(--gx);min-height:72px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px">
+    <a href="./" style="display:flex;align-items:center;flex-shrink:0"><img src="../assets/madavan-logo.png" alt="MADAVAN Multilogística Internacional" data-r="logo" style="height:48px;width:auto;display:block"></a>
+    <nav data-r="navdesk" style="display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;font:500 15px/1 Montserrat,sans-serif;white-space:nowrap">
+      <a href="./" style="color:#062E57;padding:8px 0;border-bottom:2px solid transparent" style-hover="border-bottom-color:#1594E5">Home</a>
+      <div onMouseEnter="{{ openDd }}" onMouseLeave="{{ closeDd }}" style="position:relative">
+        <a href="./#servicios" onClick="{{ toggleDd }}" style="color:#062E57;font-weight:600;padding:8px 0;border-bottom:2px solid #062E57;display:inline-flex;align-items:center;gap:6px">Logistics <span style="font-size:10px;color:#1594E5">▼</span></a>
+        <sc-if value="{{ ddOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;top:100%;left:-20px;padding-top:12px;z-index:30">
+            <div style="min-width:310px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 12px 32px rgba(6,46,87,.12);padding:8px;display:flex;flex-direction:column;gap:2px">
+              <sc-for list="{{ svcMenu }}" as="it" hint-placeholder-count="7">
+                <a href="{{ it.href }}" style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:8px;color:#062E57;font:500 14px/1.3 Montserrat,sans-serif;white-space:nowrap" style-hover="background:#E8F3FC;color:#062E57"><span style="width:32px;height:32px;border-radius:50%;background:#E8F3FC;color:#1594E5;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="{{ it.icon }}" style="width:16px;height:16px"></i></span>{{ it.title }}</a>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+      <a href="./#cobertura" style="color:#062E57;padding:8px 0;border-bottom:2px solid transparent" style-hover="border-bottom-color:#1594E5">Coverage</a>
+      <a href="./#blog" style="display:none;color:#062E57;padding:8px 0;border-bottom:2px solid transparent" style-hover="border-bottom-color:#1594E5">Blog</a>
+      <a href="https://madavan.com.mx/cursos-supply-chain-cadena-suministro/" style="color:#062E57;padding:8px 0;border-bottom:2px solid transparent" style-hover="border-bottom-color:#1594E5">Courses</a>
+      <a href="#contacto" style="color:#062E57;padding:8px 0;border-bottom:2px solid transparent" style-hover="border-bottom-color:#1594E5">Contact</a>
+    </nav>
+    <div data-r="navact" style="display:flex;align-items:center;gap:12px">
+      <div style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #E3E8EF;border-radius:9999px;padding:3px"><i data-lucide="globe" style="width:16px;height:16px;color:#1594E5;margin-left:6px"></i><a data-r="lang-es" href="../seguro-de-carga.html" style="padding:7px 13px;border-radius:9999px;color:#062E57;font:600 13px/1 Montserrat,sans-serif">ES</a><a data-r="lang-en" href="seguro-de-carga.html" style="padding:7px 13px;border-radius:9999px;background:#062E57;color:#fff;font:600 13px/1 Montserrat,sans-serif">EN</a></div>
+      <a href="#contacto" style="display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:9999px;background:#1594E5;color:#fff;font:600 15px/1 Montserrat,sans-serif;white-space:nowrap" style-hover="background:#0F7CC4;color:#fff">Request a quote <span>→</span></a>
+    </div>
+    <button data-r="burger" type="button" aria-label="Open menu" aria-expanded="{{ menuOpen }}" onClick="{{ toggleMenu }}" style="display:none;align-items:center;justify-content:center;width:46px;height:46px;flex-shrink:0;border:1px solid #E3E8EF;border-radius:12px;background:#fff;color:#062E57;cursor:pointer"><sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:block"><path d="M6 6 L18 18 M18 6 L6 18"></path></svg></sc-if><sc-if value="{{ menuClosed }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:block"><path d="M3 6h18 M3 12h18 M3 18h18"></path></svg></sc-if></button>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div data-r="mobnav" style="position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid #E3E8EF;box-shadow:0 18px 32px rgba(6,46,87,.14);max-height:calc(100vh - 72px);overflow-y:auto;padding:8px var(--gx) 24px;display:flex;flex-direction:column">
+      <a href="./" onClick="{{ closeMenu }}" style="padding:14px 2px;border-bottom:1px solid #EEF2F6;font:600 16px/1.3 Montserrat,sans-serif;color:#062E57;display:block">Home</a>
+      <div style="padding:18px 2px 8px;font:600 11px/1 Montserrat,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#6B7A8C">Logistics</div>
+      <sc-for list="{{ svcMenu }}" as="it" hint-placeholder-count="6">
+        <a href="{{ it.href }}" onClick="{{ closeMenu }}" style="display:flex;align-items:center;gap:12px;padding:11px 2px;border-bottom:1px solid #EEF2F6;font:500 15px/1.35 Montserrat,sans-serif;color:#062E57"><span style="width:34px;height:34px;border-radius:50%;background:#E8F3FC;color:#1594E5;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="{{ it.icon }}" style="width:17px;height:17px"></i></span>{{ it.title }}</a>
+      </sc-for>
+      <a href="./#cobertura" onClick="{{ closeMenu }}" style="padding:14px 2px;border-bottom:1px solid #EEF2F6;font:600 16px/1.3 Montserrat,sans-serif;color:#062E57;display:block;margin-top:6px">Coverage</a>
+      <a href="https://madavan.com.mx/cursos-supply-chain-cadena-suministro/" onClick="{{ closeMenu }}" style="padding:14px 2px;border-bottom:1px solid #EEF2F6;font:600 16px/1.3 Montserrat,sans-serif;color:#062E57;display:block">Courses</a>
+      <a href="#contacto" onClick="{{ closeMenu }}" style="padding:14px 2px;border-bottom:1px solid #EEF2F6;font:600 16px/1.3 Montserrat,sans-serif;color:#062E57;display:block;border-bottom:0">Contact</a>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px">
+        <div style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #E3E8EF;border-radius:9999px;padding:3px"><i data-lucide="globe" style="width:16px;height:16px;color:#1594E5;margin-left:6px"></i><a data-r="lang-es" href="../seguro-de-carga.html" style="padding:7px 13px;border-radius:9999px;color:#062E57;font:600 13px/1 Montserrat,sans-serif">ES</a><a data-r="lang-en" href="seguro-de-carga.html" style="padding:7px 13px;border-radius:9999px;background:#062E57;color:#fff;font:600 13px/1 Montserrat,sans-serif">EN</a></div>
+        <a href="#contacto" onClick="{{ closeMenu }}" style="flex:1 1 200px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border-radius:9999px;background:#1594E5;color:#fff;font:600 15px/1 Montserrat,sans-serif" style-hover="background:#0F7CC4;color:#fff">Request a quote <span>→</span></a>
+      </div>
+    </div>
+  </sc-if>
+</header>
+
+<section data-screen-label="Hero Seguro" style="position:relative;overflow:hidden;background:#fff">
+  <div data-r="heroilu" style="position:absolute;top:0;right:0;bottom:0;width:58%;background:#E8F3FC url('../assets/ilu-seguro.svg') center/cover no-repeat"></div>
+  <div data-r="heroscrimilu" style="position:absolute;inset:0;background:linear-gradient(90deg,#FFFFFF 0%,#FFFFFF 40%,rgba(255,255,255,0) 64%)"></div>
+  <div data-r="herobody" style="position:relative;max-width:1312px;margin:0 auto;padding:clamp(24px,4vw,40px) var(--gx) clamp(48px,8vw,88px)">
+    <div style="display:flex;gap:8px;align-items:center;font:400 13px/1 Lato,sans-serif;color:#6B7A8C;margin-bottom:56px"><a href="./" style="color:#6B7A8C" style-hover="color:#1594E5">Home</a><span>/</span><a href="./#servicios" style="color:#6B7A8C" style-hover="color:#1594E5">Logistics</a><span>/</span><span style="color:#062E57;font-weight:700">Cargo and Goods Insurance</span></div>
+    <div style="max-width:640px;display:flex;flex-direction:column;gap:24px">
+      <div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#062E57"><span style="width:24px;height:3px;background:#45B649;border-radius:2px"></span>Cargo Insurance</div>
+      <h1 style="margin:0;font:800 clamp(32px,7vw,60px)/1.06 Montserrat,sans-serif;letter-spacing:-.02em;color:#062E57;text-wrap:balance">Your goods, <span style="display:block;color:#1594E5">protected on every journey.</span></h1>
+      <p style="margin:0;font:400 clamp(16px,2.3vw,18px)/1.55 Lato,sans-serif;color:#4A5A6E;max-width:540px;text-wrap:pretty">We draw up domestic and international insurance policies to your requests and requirements, to cover the risks of moving your merchandise, goods and cargo.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="#contacto" style="display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:9999px;background:#1594E5;color:#fff;font:600 15px/1 Montserrat,sans-serif" style-hover="background:#0F7CC4;color:#fff">Quote your policy <span>→</span></a>
+        <a href="#proceso" style="display:inline-flex;align-items:center;gap:10px;padding:12.5px 24px;border-radius:9999px;background:#fff;border:1.5px solid #1594E5;color:#1594E5;font:600 15px/1 Montserrat,sans-serif" style-hover="background:#E8F3FC">How it works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Cifras" style="background:#F5F7FA">
+  <div style="max-width:1312px;margin:0 auto;padding:clamp(28px,5vw,40px) var(--gx);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:24px 0" data-r="stats">
+    <div data-r="stat" style="display:flex;align-items:center;gap:16px;padding:0 24px;border-right:1px solid #D9DEE5"><i data-lucide="globe" style="width:40px;height:40px;color:#1594E5;flex-shrink:0"></i><div><div style="font:700 clamp(20px,3.4vw,24px)/1.1 Montserrat,sans-serif;color:#062E57">Domestic and international</div><div style="margin-top:6px;font:600 10.5px/1.35 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B7A8C">Policies for<br>any destination</div></div></div>
+    <div data-r="stat" style="display:flex;align-items:center;gap:16px;padding:0 24px;border-right:1px solid #D9DEE5"><i data-lucide="layers" style="width:40px;height:40px;color:#1594E5;flex-shrink:0"></i><div><div style="font:700 clamp(20px,3.4vw,24px)/1.1 Montserrat,sans-serif;color:#062E57">Sea · air · land</div><div style="margin-top:6px;font:600 10.5px/1.35 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B7A8C">Coverage across<br>every mode</div></div></div>
+    <div data-r="stat" style="display:flex;align-items:center;gap:16px;padding:0 24px;border-right:1px solid #D9DEE5"><i data-lucide="building-2" style="width:40px;height:40px;color:#1594E5;flex-shrink:0"></i><div><div style="font:700 clamp(20px,3.4vw,24px)/1.1 Montserrat,sans-serif;color:#062E57">Insurers</div><div style="margin-top:6px;font:600 10.5px/1.35 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B7A8C">The best companies<br>worldwide</div></div></div>
+    <div data-r="stat" style="display:flex;align-items:center;gap:16px;padding:0 24px;"><i data-lucide="settings" style="width:40px;height:40px;color:#1594E5;flex-shrink:0"></i><div><div style="font:700 clamp(20px,3.4vw,24px)/1.1 Montserrat,sans-serif;color:#062E57">Made to measure</div><div style="margin-top:6px;font:600 10.5px/1.35 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B7A8C">To match your cargo<br>and your operation</div></div></div>
+  </div>
+</section>
+
+<section data-screen-label="Tipos de póliza" style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx) clamp(36px,6vw,64px)">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:32px clamp(26px,5vw,64px);align-items:end;margin-bottom:40px"><div style="display:flex;flex-direction:column;gap:16px"><div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#062E57"><span style="width:24px;height:3px;background:#45B649;border-radius:2px"></span>Policy types</div><h2 style="margin:0;font:700 clamp(25px,4.6vw,36px)/1.18 Montserrat,sans-serif;color:#062E57">A policy for <span style="display:block;color:#1594E5">every way of operating.</span></h2></div><p style="margin:0;font:400 16px/1.6 Lato,sans-serif;color:#4A5A6E;text-wrap:pretty">Together we define the scheme that best fits how often you ship and the value of what you move.</p></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:24px">
+    <div style="display:flex;flex-direction:column;gap:14px;background:#fff;border:1px solid #E3E8EF;border-radius:8px;padding:28px;box-shadow:0 4px 16px rgba(6,46,87,.06)"><div style="display:flex;align-items:center;justify-content:space-between"><div style="width:44px;height:44px;border-radius:50%;background:#1594E5;color:#fff;display:flex;align-items:center;justify-content:center"><i data-lucide="file-text" style="width:22px;height:22px"></i></div><span style="padding:6px 12px;border-radius:9999px;background:#E8F3FC;color:#062E57;font:600 11px/1 Montserrat,sans-serif;letter-spacing:.12em">PER SHIPMENT</span></div><h3 style="margin:0;font:600 18px/1.3 Montserrat,sans-serif;color:#062E57">Specific policy</h3><p style="margin:0;font:400 14px/1.55 Lato,sans-serif;color:#4A5A6E">Covers one particular shipment, from origin to the agreed destination. Ideal for occasional operations or high-value cargo.</p></div>
+    <div style="display:flex;flex-direction:column;gap:14px;background:#fff;border:1px solid #E3E8EF;border-radius:8px;padding:28px;box-shadow:0 4px 16px rgba(6,46,87,.06)"><div style="display:flex;align-items:center;justify-content:space-between"><div style="width:44px;height:44px;border-radius:50%;background:#1594E5;color:#fff;display:flex;align-items:center;justify-content:center"><i data-lucide="calendar-range" style="width:22px;height:22px"></i></div><span style="padding:6px 12px;border-radius:9999px;background:#E8F3FC;color:#062E57;font:600 11px/1 Montserrat,sans-serif;letter-spacing:.12em">ANNUAL</span></div><h3 style="margin:0;font:600 18px/1.3 Montserrat,sans-serif;color:#062E57">Open policy</h3><p style="margin:0;font:400 14px/1.55 Lato,sans-serif;color:#4A5A6E">Covers all your shipments during its term, declaring them as they happen. Ideal for frequent importers and exporters.</p></div>
+    <div style="display:flex;flex-direction:column;gap:14px;background:#fff;border:1px solid #E3E8EF;border-radius:8px;padding:28px;box-shadow:0 4px 16px rgba(6,46,87,.06)"><div style="display:flex;align-items:center;justify-content:space-between"><div style="width:44px;height:44px;border-radius:50%;background:#1594E5;color:#fff;display:flex;align-items:center;justify-content:center"><i data-lucide="settings" style="width:22px;height:22px"></i></div><span style="padding:6px 12px;border-radius:9999px;background:#E8F3FC;color:#062E57;font:600 11px/1 Montserrat,sans-serif;letter-spacing:.12em">SPECIAL</span></div><h3 style="margin:0;font:600 18px/1.3 Montserrat,sans-serif;color:#062E57">Tailored coverage</h3><p style="margin:0;font:400 14px/1.55 Lato,sans-serif;color:#4A5A6E">For project cargo, oversized cargo or dangerous goods, with terms adapted to the risk.</p></div>
+  </div>
+</section>
+
+<section data-screen-label="Por modo" style="max-width:1312px;margin:0 auto;padding:0 var(--gx) clamp(48px,8vw,88px)">
+  <div style="border:1px solid #E3E8EF;border-radius:12px;padding:clamp(24px,4vw,36px) clamp(22px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px clamp(24px,4vw,48px);align-items:center">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="font:600 11px/1.3 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#062E57">Insure any service</div>
+      <p style="margin:0;font:400 15px/1.5 Lato,sans-serif;color:#4A5A6E">Add the policy to your shipment and we coordinate everything in a single operation.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px">
+      <a href="transporte-maritimo.html" style="display:flex;align-items:center;gap:12px;padding:16px 18px;background:#fff;border:1px solid #E3E8EF;border-radius:8px;color:#062E57;font:600 15px/1.3 Montserrat,sans-serif" style-hover="color:#062E57;border-color:#1594E5"><i data-lucide="ship" style="width:24px;height:24px;color:#1594E5;flex-shrink:0"></i>Ocean</a>
+      <a href="transporte-aereo.html" style="display:flex;align-items:center;gap:12px;padding:16px 18px;background:#fff;border:1px solid #E3E8EF;border-radius:8px;color:#062E57;font:600 15px/1.3 Montserrat,sans-serif" style-hover="color:#062E57;border-color:#1594E5"><i data-lucide="plane" style="width:24px;height:24px;color:#1594E5;flex-shrink:0"></i>Air</a>
+      <a href="transporte-terrestre.html" style="display:flex;align-items:center;gap:12px;padding:16px 18px;background:#fff;border:1px solid #E3E8EF;border-radius:8px;color:#062E57;font:600 15px/1.3 Montserrat,sans-serif" style-hover="color:#062E57;border-color:#1594E5"><i data-lucide="truck" style="width:24px;height:24px;color:#1594E5;flex-shrink:0"></i>Ground</a>
+      <a href="carga-sobredimensionada.html" style="display:flex;align-items:center;gap:12px;padding:16px 18px;background:#fff;border:1px solid #E3E8EF;border-radius:8px;color:#062E57;font:600 15px/1.3 Montserrat,sans-serif" style-hover="color:#062E57;border-color:#1594E5"><i data-lucide="container" style="width:24px;height:24px;color:#1594E5;flex-shrink:0"></i>Oversized</a>
+      <a href="mercancia-peligrosa-hazmat.html" style="display:flex;align-items:center;gap:12px;padding:16px 18px;background:#fff;border:1px solid #E3E8EF;border-radius:8px;color:#062E57;font:600 15px/1.3 Montserrat,sans-serif" style-hover="color:#062E57;border-color:#1594E5"><i data-lucide="triangle-alert" style="width:24px;height:24px;color:#1594E5;flex-shrink:0"></i>HAZMAT</a>
+    </div>
+  </div>
+</section>
+
+<section id="proceso" data-screen-label="Proceso" style="background:#F5F7FA">
+  <div style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:32px clamp(26px,5vw,64px);align-items:end;margin-bottom:40px"><div style="display:flex;flex-direction:column;gap:16px"><div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#062E57"><span style="width:24px;height:3px;background:#45B649;border-radius:2px"></span>How it works</div><h2 style="margin:0;font:700 clamp(25px,4.6vw,36px)/1.18 Montserrat,sans-serif;color:#062E57">From the request <span style="display:block;color:#1594E5">to the policy.</span></h2></div><p style="margin:0;font:400 16px/1.6 Lato,sans-serif;color:#4A5A6E;text-wrap:pretty">We stay with you from the quote to the close of the shipment, and also if a claim arises.</p></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:16px">
+      <div style="display:flex;flex-direction:column;gap:12px;padding:24px;background:#fff;border-radius:8px;border:1px solid #E3E8EF"><span style="font:800 clamp(24px,5vw,32px)/1 Montserrat,sans-serif;color:#1594E5">01</span><h3 style="margin:0;font:600 17px/1.3 Montserrat,sans-serif;color:#062E57">Request</h3><p style="margin:0;font:400 14px/1.55 Lato,sans-serif;color:#4A5A6E">You share the goods, the value, the transport mode and the route.</p></div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding:24px;background:#fff;border-radius:8px;border:1px solid #E3E8EF"><span style="font:800 clamp(24px,5vw,32px)/1 Montserrat,sans-serif;color:#1594E5">02</span><h3 style="margin:0;font:600 17px/1.3 Montserrat,sans-serif;color:#062E57">Risk analysis</h3><p style="margin:0;font:400 14px/1.55 Lato,sans-serif;color:#4A5A6E">We assess the cargo type, the packaging and the journey to define the coverage.</p></div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding:24px;background:#fff;border-radius:8px;border:1px solid #E3E8EF"><span style="font:800 clamp(24px,5vw,32px)/1 Montserrat,sans-serif;color:#1594E5">03</span><h3 style="margin:0;font:600 17px/1.3 Montserrat,sans-serif;color:#062E57">Policy issue</h3><p style="margin:0;font:400 14px/1.55 Lato,sans-serif;color:#4A5A6E">We draw up the contract with the insurer to your requirements.</p></div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding:24px;background:#fff;border-radius:8px;border:1px solid #E3E8EF"><span style="font:800 clamp(24px,5vw,32px)/1 Montserrat,sans-serif;color:#1594E5">04</span><h3 style="margin:0;font:600 17px/1.3 Montserrat,sans-serif;color:#062E57">Ongoing support</h3><p style="margin:0;font:400 14px/1.55 Lato,sans-serif;color:#4A5A6E">We track the shipment and advise you in the event of a claim.</p></div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Otros servicios" style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx) 0">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:28px">
+    <div style="display:flex;flex-direction:column;gap:16px"><div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#062E57"><span style="width:24px;height:3px;background:#45B649;border-radius:2px"></span>Other services</div><h2 style="margin:0;font:700 clamp(23px,3.9vw,32px)/1.2 Montserrat,sans-serif;color:#062E57">Complete your operation.</h2></div>
+    <a href="./#servicios" style="font:600 14px/1 Montserrat,sans-serif;color:#1594E5;padding-bottom:6px;border-bottom:2px solid #45B649">See all services →</a>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px">
+    <sc-for list="{{ related }}" as="r" hint-placeholder-count="4">
+      <a href="{{ r.href }}" style="display:flex;align-items:center;gap:14px;padding:18px 20px;background:#fff;border:1px solid #E3E8EF;border-radius:8px;color:#062E57;transition:transform .2s ease" style-hover="transform:translateY(-2px);color:#062E57">
+        <span style="width:44px;height:44px;border-radius:50%;background:#1594E5;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="{{ r.icon }}" style="width:22px;height:22px"></i></span>
+        <span style="flex:1;min-width:0;font:600 15px/1.3 Montserrat,sans-serif">{{ r.title }}</span>
+        <span style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:#E8F3FC;color:#1594E5;display:flex;align-items:center;justify-content:center;font:600 15px/1 Montserrat,sans-serif">→</span>
+      </a>
+    </sc-for>
+  </div>
+</section>
+
+<section id="contacto" data-screen-label="CTA y contacto" style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx)">
+  <div style="border-radius:12px;overflow:hidden;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));background:#E8F3FC">
+    <div style="padding:clamp(26px,5vw,48px);display:flex;flex-direction:column;gap:20px">
+      <h2 style="margin:0;font:700 clamp(23px,3.9vw,32px)/1.22 Montserrat,sans-serif;color:#062E57;text-wrap:balance">Want to insure your next shipment?</h2>
+      <p style="margin:0;font:400 16px/1.6 Lato,sans-serif;color:#4A5A6E">We advise you professionally to find the logistics solution that best fits your particular needs.</p>
+      <div style="display:flex;flex-direction:column;gap:18px;align-items:flex-start">
+        <div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="message-square-text" style="width:22px;height:22px;color:#1594E5;flex-shrink:0;margin-top:2px"></i><p style="margin:0;font:400 15px/1.6 Lato,sans-serif;color:#4A5A6E">Message us on WhatsApp with <strong style="color:#062E57">the goods, the declared value, the transport mode, origin and destination</strong> and we'll put your quote together.</p></div>
+        <a href="https://wa.me/525525631691?text=Hi%20MADAVAN%2C%20I%27d%20like%20a%20quote%20for%20cargo%20insurance.%20" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 28px;border-radius:9999px;background:#25D366;color:#fff;font:600 16px/1 Montserrat,sans-serif;box-shadow:0 8px 20px rgba(37,211,102,.28)" style-hover="background:#1DB556;color:#fff"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true" style="display:block;flex-shrink:0"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.08-.12-.27-.2-.57-.35M12.05 21.78h-.01c-1.77 0-3.5-.48-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.43 9.89-9.88 9.89m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42Z"/></svg>Quote on WhatsApp</a>
+        <div style="display:flex;flex-wrap:wrap;gap:8px 18px;font:400 14px/1.5 Lato,sans-serif;color:#4A5A6E"><span style="display:flex;align-items:center;gap:8px"><i data-lucide="phone" style="width:16px;height:16px;color:#1594E5"></i>+52 55 2563 1691</span><span style="display:flex;align-items:center;gap:8px"><i data-lucide="clock" style="width:16px;height:16px;color:#1594E5"></i>Monday to Friday, 8:00 to 18:00</span></div>
+      </div>
+    </div>
+    <div style="position:relative;min-height:360px;background:#E8F3FC url('../assets/ilu-contacto.svg') center/cover no-repeat">
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,#E8F3FC 0%,rgba(232,243,252,0) 30%)"></div>
+    </div>
+  </div>
+</section>
+
+<footer style="background:#062E57;color:#fff">
+  <div style="max-width:1312px;margin:0 auto;padding:clamp(40px,6vw,64px) var(--gx) clamp(28px,5vw,48px);display:flex;flex-direction:column;gap:clamp(30px,5vw,48px)">
+    <div style="display:flex;align-items:center;gap:32px;flex-wrap:wrap">
+      <div style="display:flex;flex-direction:column;gap:2px">
+        <span style="font:800 clamp(23px,5.4vw,30px)/1 Montserrat,sans-serif;letter-spacing:.01em;color:#fff">MADAVAN</span>
+        <span style="font:600 9.5px/1 Montserrat,sans-serif;letter-spacing:.3em;color:#1594E5">INTERNATIONAL MULTILOGISTICS</span>
+      </div>
+      <span data-r="fdiv" style="width:1px;height:44px;background:rgba(255,255,255,.2)"></span>
+      <span style="font:600 18px/1.3 Montserrat,sans-serif;color:#fff">Connecting business with the world.</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:32px">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="font:600 13px/1 Montserrat,sans-serif;color:#fff;margin-bottom:4px">Quick links</div>
+        <a href="./" style="font:400 13px/1.4 Lato,sans-serif;color:rgba(255,255,255,.8)" style-hover="color:#fff">Home</a>
+        <a href="./#blog" style="display:none;font:400 13px/1.4 Lato,sans-serif;color:rgba(255,255,255,.8)" style-hover="color:#fff">Blog – Logistics</a>
+        <a href="https://madavan.com.mx/cursos-supply-chain-cadena-suministro/" style="font:400 13px/1.4 Lato,sans-serif;color:rgba(255,255,255,.8)" style-hover="color:#fff">Courses</a>
+        <a href="#contacto" style="font:400 13px/1.4 Lato,sans-serif;color:rgba(255,255,255,.8)" style-hover="color:#fff">Contact</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="font:600 13px/1 Montserrat,sans-serif;color:#fff;margin-bottom:4px">Services</div>
+        <sc-for list="{{ footerServices }}" as="f" hint-placeholder-count="6">
+          <a href="{{ f.href }}" style="font:400 13px/1.4 Lato,sans-serif;color:rgba(255,255,255,.8)" style-hover="color:#fff">{{ f.title }}</a>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="font:600 13px/1 Montserrat,sans-serif;color:#fff;margin-bottom:4px">Contact</div>
+        <div style="display:flex;gap:10px;font:400 13px/1.5 Lato,sans-serif;color:rgba(255,255,255,.8)"><i data-lucide="map-pin" style="width:16px;height:16px;flex-shrink:0;margin-top:2px"></i><span>Corporativo Santa Fe, Av Sta Fe 505, Floor 1 Mezzanine 2B, Santa Fe, Cuajimalpa, Mexico City 05348</span></div>
+        <div style="display:flex;gap:10px;font:400 13px/1.5 Lato,sans-serif;color:rgba(255,255,255,.8)"><i data-lucide="phone" style="width:16px;height:16px;flex-shrink:0;margin-top:2px"></i><span>52 55 6549-8475 / 6835-1511<br>7098-3126 / 7160-1244</span></div>
+        <div style="display:flex;gap:10px;font:400 13px/1.5 Lato,sans-serif;color:rgba(255,255,255,.8)"><i data-lucide="mail" style="width:16px;height:16px;flex-shrink:0;margin-top:2px"></i><a href="mailto:contacto@madavan.com.mx" style="color:rgba(255,255,255,.8)" style-hover="color:#fff">contacto@madavan.com.mx</a></div>
+        <div style="display:flex;gap:10px;font:400 13px/1.5 Lato,sans-serif;color:rgba(255,255,255,.8)"><i data-lucide="clock" style="width:16px;height:16px;flex-shrink:0;margin-top:2px"></i><span>Monday to Friday: 8:00 to 18:00</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="font:600 13px/1 Montserrat,sans-serif;color:#fff;margin-bottom:4px">Follow us</div>
+        <div style="display:flex;gap:12px">
+          <a href="https://www.linkedin.com/in/juan-marcos-aguirre-leyva-0399401a/" aria-label="LinkedIn" style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;color:#fff" style-hover="background:rgba(255,255,255,.1);color:#fff"><i data-lucide="linkedin" style="width:16px;height:16px"></i></a>
+          <a href="https://www.facebook.com/MADAVANMultilogistica/" aria-label="Facebook" style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;color:#fff" style-hover="background:rgba(255,255,255,.1);color:#fff"><i data-lucide="facebook" style="width:16px;height:16px"></i></a>
+          <a href="https://www.instagram.com/juanmarcos5283/" aria-label="Instagram" style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;color:#fff" style-hover="background:rgba(255,255,255,.1);color:#fff"><i data-lucide="instagram" style="width:16px;height:16px"></i></a>
+          <a href="https://twitter.com/JuanMarcos9416" aria-label="X / Twitter" style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;color:#fff" style-hover="background:rgba(255,255,255,.1);color:#fff"><i data-lucide="twitter" style="width:16px;height:16px"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="background:#fff">
+    <div style="max-width:1312px;margin:0 auto;padding:18px var(--gx);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:400 12px/1.4 Lato,sans-serif;color:#6B7A8C">
+      <span>© MADAVAN Multilogística Internacional SA de CV. All rights reserved.</span>
+      <span style="display:flex;gap:10px"><a href="https://madavan.com.mx/politica-de-privacidad/" style="color:#6B7A8C">Privacy notice</a>|<a href="https://madavan.com.mx/terminos-y-condiciones/" style="color:#6B7A8C">Terms and conditions</a></span>
+    </div>
+  </div>
+</footer>
+
+<a data-r="waflot" href="https://wa.me/525525631691?text=Hi%20MADAVAN%2C%20I%27d%20like%20a%20quote%20for%20cargo%20insurance.%20" target="_blank" rel="noopener" aria-label="Message us on WhatsApp" style="position:fixed;right:22px;bottom:22px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 28px rgba(6,46,87,.28)" style-hover="background:#1DB556;color:#fff"><svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor" aria-hidden="true" style="display:block;flex-shrink:0"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.08-.12-.27-.2-.57-.35M12.05 21.78h-.01c-1.77 0-3.5-.48-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.43 9.89-9.88 9.89m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42Z"/></svg></a>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { dd: false, w: window.innerWidth, menuOpen: false };
+  componentDidMount() {
+    this.icons();
+    this.onResize = () => this.setState({ w: window.innerWidth, menuOpen: window.innerWidth >= 1024 ? false : this.state.menuOpen });
+    window.addEventListener('resize', this.onResize);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); }
+  componentDidUpdate() { this.icons(); }
+  icons() {
+    let n = 0;
+    const run = () => { if (window.lucide) window.lucide.createIcons(); else if (n++ < 50) setTimeout(run, 100); };
+    run();
+  }
+  renderVals() {
+    const S = 'https://madavan.com.mx/';
+    return {
+      ddOpen: this.state.dd,
+      openDd: () => this.setState({ dd: true }),
+      closeDd: () => this.setState({ dd: false }),
+      toggleDd: (e) => { if (!this.state.dd) { e.preventDefault(); this.setState({ dd: true }); } },
+      svcMenu: [
+        { title: 'Ocean Freight', icon: 'ship', href: 'transporte-maritimo.html' },
+        { title: 'Air Freight', icon: 'plane', href: 'transporte-aereo.html' },
+        { title: 'Ground Freight', icon: 'truck', href: 'transporte-terrestre.html' },
+        { title: 'Oversized Cargo', icon: 'container', href: 'carga-sobredimensionada.html' },
+        { title: 'Dangerous Goods HAZMAT', icon: 'triangle-alert', href: 'mercancia-peligrosa-hazmat.html' },
+        { title: 'Cargo and Goods Insurance', icon: 'shield-check', href: 'seguro-de-carga.html' }
+      ],
+      menuOpen: this.state.menuOpen,
+      menuClosed: !this.state.menuOpen,
+      toggleMenu: () => this.setState({ menuOpen: !this.state.menuOpen, dd: false }),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      related: [
+        { title: 'Ocean Freight', icon: 'ship', href: 'transporte-maritimo.html' },
+        { title: 'Air Freight', icon: 'plane', href: 'transporte-aereo.html' },
+        { title: 'Ground Freight', icon: 'truck', href: 'transporte-terrestre.html' },
+        { title: 'Dangerous Goods HAZMAT', icon: 'triangle-alert', href: 'mercancia-peligrosa-hazmat.html' }
+      ],
+      footerServices: [
+        { title: 'Ocean Freight', href: 'transporte-maritimo.html' },
+        { title: 'Air Freight', href: 'transporte-aereo.html' },
+        { title: 'Ground Freight', href: 'transporte-terrestre.html' },
+        { title: 'Oversized Cargo', href: 'carga-sobredimensionada.html' },
+        { title: 'Dangerous Goods HAZMAT', href: 'mercancia-peligrosa-hazmat.html' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
