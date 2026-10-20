@@ -15,7 +15,7 @@ Rediseño del sitio de **MADAVAN Multilogística Internacional** (madavan.com.mx
 | Mercancía Peligrosa HAZMAT | `/mercancia-peligrosa-hazmat.html` | `/en/mercancia-peligrosa-hazmat.html` |
 | Seguro de Mercancías y Carga | `/seguro-de-carga.html` | `/en/seguro-de-carga.html` |
 
-Contacto por WhatsApp al **+52 55 2563 1691**, con botón flotante en todas las páginas.
+Contacto por WhatsApp al **+52 55 5293 9407**, con botón flotante en todas las páginas.
 
 ## Cómo está hecho
 
