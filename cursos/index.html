@@ -53,7 +53,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
   [data-r=heroscrim]{background:linear-gradient(180deg,#FFFFFF 0%,rgba(255,255,255,.96) 40%,rgba(255,255,255,.84) 70%,rgba(255,255,255,.60) 100%)!important}
   [data-r=heronote]{display:none!important}
   /* la ilustración baja a su propia banda, debajo del texto */
-  [data-r=heroilu]{top:auto!important;width:100%!important;height:250px!important;background-size:contain!important;background-position:center bottom!important}
+  [data-r=heroilu]{top:auto!important;bottom:0!important;width:100%!important;height:250px!important;background-size:contain!important;background-position:center bottom!important}
   [data-r=heroscrimilu]{background:linear-gradient(180deg,#FFFFFF 0%,#FFFFFF 58%,rgba(255,255,255,0) 86%)!important}
   [data-r=herobody]{padding-bottom:266px!important}
 }
@@ -74,6 +74,8 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 @media (max-width:760px){[data-r=nowrap]{white-space:normal!important}
   [data-r=fdiv]{display:none!important}}
 </style>
+<script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+
 </helmet>
 
 <div style="min-height:100vh;background:#fff">
@@ -125,19 +127,26 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 </header>
 
 <section data-screen-label="Hero" style="position:relative;overflow:hidden;background:#fff">
-<div data-r="heroilu" style="position:absolute;top:0;right:0;bottom:0;width:54%;background:#E8F3FC url('../assets/ilu-cursos.svg') center/cover no-repeat"></div>
-<div data-r="heroscrimilu" style="position:absolute;inset:0;background:linear-gradient(90deg,#FFFFFF 0%,#FFFFFF 42%,rgba(255,255,255,0) 66%)"></div>
-<div data-r="herobody" style="position:relative;max-width:1312px;margin:0 auto;padding:clamp(24px,4vw,40px) var(--gx) clamp(48px,8vw,88px)">
+<div data-r="heroilu" style="position:absolute;top:0;right:0;bottom:38%;width:48%;background:#E8F3FC url('../assets/ilu-cursos.svg') center/contain no-repeat"></div>
+<div data-r="heroscrimilu" style="position:absolute;inset:0;background:linear-gradient(90deg,#FFFFFF 0%,#FFFFFF 44%,rgba(255,255,255,0) 70%)"></div>
+<div data-r="herobody" style="position:relative;max-width:1312px;margin:0 auto;padding:clamp(24px,4vw,40px) var(--gx) clamp(40px,6vw,64px)">
 <div style="display:flex;gap:8px;align-items:center;font:400 13px/1 Lato,sans-serif;color:#6B7A8C;margin-bottom:40px"><a href=".././" style="color:#6B7A8C" style-hover="color:#1594E5">Inicio</a><span>/</span><span style="color:#062E57;font-weight:700">Cursos</span></div>
 <div style="max-width:640px;display:flex;flex-direction:column;gap:22px">
 <div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#062E57"><span style="width:24px;height:3px;background:#45B649;border-radius:2px"></span>Academia MADAVAN</div>
 <h1 style="margin:0;font:800 clamp(32px,7vw,60px)/1.06 Montserrat,sans-serif;letter-spacing:-.02em;color:#062E57;text-wrap:balance">Treinta años de operación, <span style="display:block;color:#1594E5">convertidos en curso.</span></h1>
 <p style="margin:0;font:400 16px/1.7 Lato,sans-serif;color:#4A5A6E;text-wrap:pretty">Cada curso nace de operaciones reales: embarques marítimos, aéreos, terrestres, ferroviarios e intermodales, cargas sobredimensionadas y proyectos especiales que hemos manejado en México y Latinoamérica.</p>
 <div style="display:flex;gap:12px;flex-wrap:wrap"><a href="#catalogo" style="display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:9999px;background:#1594E5;color:#fff;font:600 15px/1 Montserrat,sans-serif" style-hover="background:#0F7CC4;color:#fff">Ver los cursos <span>→</span></a></div>
-</div></div></section>
+</div>
+<div style="margin-top:clamp(32px,5vw,48px);background:#062E57;border-radius:14px;padding:clamp(22px,3.6vw,32px);display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap"><div style="display:inline-flex;align-items:center;gap:11px"><span style="padding:5px 11px;border-radius:9999px;background:#45B649;color:#fff;font:700 10.5px/1 Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase">Nuevo</span><span style="font:600 clamp(16px,2.4vw,19px)/1.35 Montserrat,sans-serif;color:#fff">Manifestación de Valor Electrónica en el VUCEM</span></div><span style="display:inline-flex;align-items:center;gap:8px;font:400 13px/1.4 Lato,sans-serif;color:rgba(255,255,255,.72)"><i data-lucide="stamp" style="width:16px;height:16px;color:#8BCF4A"></i>Reconocimiento registrado ante la STPS</span></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:14px">
+<a href="manifestacion-de-valor-vucem-empresas.html" style="display:flex;align-items:center;gap:15px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.17);border-radius:11px;padding:17px 19px;color:inherit;transition:background .18s ease" style-hover="background:rgba(255,255,255,.14);color:inherit"><span style="width:42px;height:42px;border-radius:9999px;background:#1594E5;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="building-2" style="width:21px;height:21px"></i></span><span style="display:flex;flex-direction:column;gap:3px;min-width:0"><span style="font:600 15px/1.3 Montserrat,sans-serif;color:#fff">Empresas</span><span style="font:400 12.5px/1.4 Lato,sans-serif;color:rgba(255,255,255,.7)">$15,000 MXN</span></span><span style="margin-left:auto;color:#8BCF4A;font:600 17px/1 Montserrat,sans-serif">&#8594;</span></a>
+<a href="manifestacion-de-valor-vucem-persona-fisica.html" style="display:flex;align-items:center;gap:15px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.17);border-radius:11px;padding:17px 19px;color:inherit;transition:background .18s ease" style-hover="background:rgba(255,255,255,.14);color:inherit"><span style="width:42px;height:42px;border-radius:9999px;background:#1594E5;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="user-round" style="width:21px;height:21px"></i></span><span style="display:flex;flex-direction:column;gap:3px;min-width:0"><span style="font:600 15px/1.3 Montserrat,sans-serif;color:#fff">Persona Física</span><span style="font:400 12.5px/1.4 Lato,sans-serif;color:rgba(255,255,255,.7)">Consulta el precio</span></span><span style="margin-left:auto;color:#8BCF4A;font:600 17px/1 Montserrat,sans-serif">&#8594;</span></a>
+</div></div>
+</div></section>
 <section data-screen-label="Cifras" style="background:#F5F7FA">
 <div style="max-width:1312px;margin:0 auto;padding:clamp(28px,5vw,40px) var(--gx);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:24px 0" data-r="stats">
-<div data-r="stat" style="display:flex;align-items:center;gap:16px;padding:0 24px;border-right:1px solid #D9DEE5"><i data-lucide="graduation-cap" style="width:40px;height:40px;color:#1594E5;flex-shrink:0"></i><div><div style="font:700 clamp(20px,3.2vw,26px)/1 Montserrat,sans-serif;color:#062E57">7</div><div style="margin-top:6px;font:600 10.5px/1.35 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B7A8C">Cursos<br>especializados</div></div></div>
+<div data-r="stat" style="display:flex;align-items:center;gap:16px;padding:0 24px;border-right:1px solid #D9DEE5"><i data-lucide="graduation-cap" style="width:40px;height:40px;color:#1594E5;flex-shrink:0"></i><div><div style="font:700 clamp(20px,3.2vw,26px)/1 Montserrat,sans-serif;color:#062E57">9</div><div style="margin-top:6px;font:600 10.5px/1.35 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B7A8C">Cursos<br>especializados</div></div></div>
 <div data-r="stat" style="display:flex;align-items:center;gap:16px;padding:0 24px;border-right:1px solid #D9DEE5"><i data-lucide="clock" style="width:40px;height:40px;color:#1594E5;flex-shrink:0"></i><div><div style="font:700 clamp(20px,3.2vw,26px)/1 Montserrat,sans-serif;color:#062E57">4 – 5 h</div><div style="margin-top:6px;font:600 10.5px/1.35 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B7A8C">Formato<br>intensivo</div></div></div>
 <div data-r="stat" style="display:flex;align-items:center;gap:16px;padding:0 24px;border-right:1px solid #D9DEE5"><i data-lucide="monitor-play" style="width:40px;height:40px;color:#1594E5;flex-shrink:0"></i><div><div style="font:700 clamp(20px,3.2vw,26px)/1 Montserrat,sans-serif;color:#062E57">100%</div><div style="margin-top:6px;font:600 10.5px/1.35 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B7A8C">Online<br>a tu ritmo</div></div></div>
 <div data-r="stat" style="display:flex;align-items:center;gap:16px;padding:0 24px"><i data-lucide="badge-check" style="width:40px;height:40px;color:#1594E5;flex-shrink:0"></i><div><div style="font:700 clamp(20px,3.2vw,26px)/1 Montserrat,sans-serif;color:#062E57">Certificado</div><div style="margin-top:6px;font:600 10.5px/1.35 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B7A8C">Digital<br>descargable</div></div></div>
@@ -282,11 +291,35 @@ class Component extends DCLogic {
   state = { dd: false, w: window.innerWidth, menuOpen: false };
   componentDidMount() {
     this.icons();
+    this.hotmart();
     this.onResize = () => this.setState({ w: window.innerWidth, menuOpen: window.innerWidth >= 1024 ? false : this.state.menuOpen });
     window.addEventListener('resize', this.onResize);
   }
-  componentWillUnmount() { window.removeEventListener('resize', this.onResize); }
-  componentDidUpdate() { this.icons(); }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); if (this._hmEspera) clearInterval(this._hmEspera); }
+  componentDidUpdate() { this.icons(); this.hotmart(); }
+  /* Checkout Elements de Hotmart: el modal se abre sobre esta misma página.
+     Hay que enganchar DESPUÉS del render porque los botones los pinta React,
+     y sólo una vez por botón (de ahí el data-hm-listo). */
+  hotmart() {
+    const botones = document.querySelectorAll('[data-hm-offer]:not([data-hm-listo])');
+    if (!botones.length) return;
+    if (!window.checkoutElements) {
+      if (this._hmEspera) return;
+      this._hmEspera = setInterval(() => {
+        if (window.checkoutElements) { clearInterval(this._hmEspera); this._hmEspera = null; this.hotmart(); }
+      }, 150);
+      setTimeout(() => { if (this._hmEspera) { clearInterval(this._hmEspera); this._hmEspera = null; } }, 15000);
+      return;
+    }
+    botones.forEach((b) => {
+      try {
+        window.checkoutElements
+          .init('overlayCheckout', { offer: b.dataset.hmOffer, countryIsoCode: 'MX', locale: 'es' })
+          .attach('#' + b.id);
+        b.setAttribute('data-hm-listo', '1');
+      } catch (e) { /* si Hotmart no responde, el botón queda inerte, no roto */ }
+    });
+  }
   icons() {
     let n = 0;
     const run = () => { if (window.lucide) window.lucide.createIcons(); else if (n++ < 50) setTimeout(run, 100); };
