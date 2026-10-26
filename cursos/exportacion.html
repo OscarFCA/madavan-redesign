@@ -70,6 +70,12 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 [data-r=waflot]{transition:transform .18s ease}
 [data-r=waflot]:hover{transform:scale(1.06)}
 @media (max-width:560px){[data-r=waflot]{width:56px!important;height:56px!important;right:14px!important;bottom:14px!important}}
+/* página de pago */
+[data-r=pagogrid]{min-width:0}
+@media (max-width:1023px){
+  [data-r=pagogrid]{grid-template-columns:1fr!important}
+  [data-r=pagoaside]{position:static!important}
+}
 /* utilidades */
 @media (max-width:760px){[data-r=nowrap]{white-space:normal!important}
   [data-r=fdiv]{display:none!important}}
