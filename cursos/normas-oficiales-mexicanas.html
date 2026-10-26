@@ -248,9 +248,15 @@ class Component extends DCLogic {
   }
   componentWillUnmount() { window.removeEventListener('resize', this.onResize); if (this._hmEspera) clearInterval(this._hmEspera); }
   componentDidUpdate() { this.icons(); this.hotmart(); }
-  /* Checkout Elements de Hotmart: el modal se abre sobre esta misma página.
-     Hay que enganchar DESPUÉS del render porque los botones los pinta React,
-     y sólo una vez por botón (de ahí el data-hm-listo). */
+  icons() {
+    let n = 0;
+    const run = () => { if (window.lucide) window.lucide.createIcons(); else if (n++ < 50) setTimeout(run, 100); };
+    run();
+  }
+  /* Checkout Elements: el modal abre sobre esta misma página. Hay que enganchar
+     DESPUÉS del render, porque los botones los pinta React, y sólo una vez por
+     botón (de ahí data-hm-listo). Si Hotmart no responde, el botón queda inerte
+     pero la página no se rompe. */
   hotmart() {
     const botones = document.querySelectorAll('[data-hm-offer]:not([data-hm-listo])');
     if (!botones.length) return;
@@ -270,11 +276,6 @@ class Component extends DCLogic {
         b.setAttribute('data-hm-listo', '1');
       } catch (e) { /* si Hotmart no responde, el botón queda inerte, no roto */ }
     });
-  }
-  icons() {
-    let n = 0;
-    const run = () => { if (window.lucide) window.lucide.createIcons(); else if (n++ < 50) setTimeout(run, 100); };
-    run();
   }
   renderVals() {
     const svc = [

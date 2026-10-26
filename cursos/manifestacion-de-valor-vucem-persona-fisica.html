@@ -139,6 +139,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 <div style="display:flex;flex-wrap:wrap;gap:8px">
 <span style="padding:7px 14px;border-radius:9999px;background:#E8F3FC;color:#062E57;font:600 13px/1 Montserrat,sans-serif">100% online</span>
 <span style="padding:7px 14px;border-radius:9999px;background:#E8F3FC;color:#062E57;font:600 13px/1 Montserrat,sans-serif">Reconocimiento STPS</span>
+<span style="padding:7px 14px;border-radius:9999px;background:#E8F3FC;color:#062E57;font:600 13px/1 Montserrat,sans-serif">IVA incluido</span>
 </div>
 <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
 <a href="https://wa.me/525610980231?text=Hola%20MADAVAN%2C%20me%20interesa%20el%20Manifestaci%C3%B3n%20de%20Valor%20Electr%C3%B3nica%20en%20el%20VUCEM%20%E2%80%94%20Persona%20F%C3%ADsica%20%28%244%2C950%20MXN%29.%20" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:17px 32px;border-radius:9999px;background:#25D366;color:#fff;font:600 17px/1 Montserrat,sans-serif;box-shadow:0 8px 20px rgba(37,211,102,.28)" style-hover="background:#1DB556;color:#fff">Quiero este curso <span>&#8594;</span></a>
@@ -242,6 +243,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 <div style="display:flex;flex-direction:column;gap:16px">
 <div style="font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#8BCF4A">Inversión</div>
 <div style="font:800 clamp(30px,5.4vw,44px)/1 Montserrat,sans-serif">$4,950 MXN</div>
+<div style="font:600 13px/1 Montserrat,sans-serif;color:#8BCF4A">IVA incluido</div>
 <div style="font:400 14px/1.6 Lato,sans-serif;color:rgba(255,255,255,.8)">Pago único · Sin mensualidades · Métodos de pago seguros</div>
 <div style="margin-top:6px"><a href="https://wa.me/525610980231?text=Hola%20MADAVAN%2C%20me%20interesa%20el%20Manifestaci%C3%B3n%20de%20Valor%20Electr%C3%B3nica%20en%20el%20VUCEM%20%E2%80%94%20Persona%20F%C3%ADsica%20%28%244%2C950%20MXN%29.%20" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:17px 32px;border-radius:9999px;background:#25D366;color:#fff;font:600 17px/1 Montserrat,sans-serif;box-shadow:0 8px 20px rgba(37,211,102,.28)" style-hover="background:#1DB556;color:#fff">Quiero este curso <span>&#8594;</span></a></div>
 </div>
@@ -333,9 +335,15 @@ class Component extends DCLogic {
   }
   componentWillUnmount() { window.removeEventListener('resize', this.onResize); if (this._hmEspera) clearInterval(this._hmEspera); }
   componentDidUpdate() { this.icons(); this.hotmart(); }
-  /* Checkout Elements de Hotmart: el modal se abre sobre esta misma página.
-     Hay que enganchar DESPUÉS del render porque los botones los pinta React,
-     y sólo una vez por botón (de ahí el data-hm-listo). */
+  icons() {
+    let n = 0;
+    const run = () => { if (window.lucide) window.lucide.createIcons(); else if (n++ < 50) setTimeout(run, 100); };
+    run();
+  }
+  /* Checkout Elements: el modal abre sobre esta misma página. Hay que enganchar
+     DESPUÉS del render, porque los botones los pinta React, y sólo una vez por
+     botón (de ahí data-hm-listo). Si Hotmart no responde, el botón queda inerte
+     pero la página no se rompe. */
   hotmart() {
     const botones = document.querySelectorAll('[data-hm-offer]:not([data-hm-listo])');
     if (!botones.length) return;
@@ -355,11 +363,6 @@ class Component extends DCLogic {
         b.setAttribute('data-hm-listo', '1');
       } catch (e) { /* si Hotmart no responde, el botón queda inerte, no roto */ }
     });
-  }
-  icons() {
-    let n = 0;
-    const run = () => { if (window.lucide) window.lucide.createIcons(); else if (n++ < 50) setTimeout(run, 100); };
-    run();
   }
   renderVals() {
     const svc = [
