@@ -15,6 +15,21 @@ Rediseño del sitio de **MADAVAN Multilogística Internacional** (madavan.com.mx
 | Mercancía Peligrosa HAZMAT | `/mercancia-peligrosa-hazmat.html` | `/en/mercancia-peligrosa-hazmat.html` |
 | Seguro de Mercancías y Carga | `/seguro-de-carga.html` | `/en/seguro-de-carga.html` |
 
+### Academia MADAVAN
+
+Los 7 cursos viven en el mismo sitio, bajo `/cursos/`:
+
+| Curso | URL | Duración |
+|---|---|---|
+| Índice | `/cursos/` | — |
+| Incoterms 2020 | `/cursos/incoterms-2020.html` | 5 h |
+| Break Bulk Cargo | `/cursos/break-bulk-cargo.html` | 5 h |
+| HAZMAT | `/cursos/hazmat.html` | 4 h |
+| Importación | `/cursos/importacion.html` | 4 h |
+| Exportación | `/cursos/exportacion.html` | 4 h |
+| SNIC | `/cursos/snic.html` | — |
+| Normas Oficiales Mexicanas | `/cursos/normas-oficiales-mexicanas.html` | próximamente |
+
 Contacto por WhatsApp al **+52 55 5293 9407**, con botón flotante en todas las páginas.
 
 ## Cómo está hecho
@@ -45,8 +60,13 @@ Este repo es la salida del build. La fuente editable está en
 
 ```bash
 python3 ilustraciones.py   # sólo si cambian los dibujos
-python3 build.py           # escribe deploy/ y deploy/en/
+python3 cursos_gen.py      # sólo si cambia el catálogo de cursos
+python3 build.py           # escribe deploy/, deploy/en/ y deploy/cursos/
 cd deploy && git add -A && git commit -m "..." && git push
 ```
+
+El catálogo de Academia vive en `cursos.py` y es la única fuente: los
+`MADAVAN Curso *.dc.html` **están generados y no se editan a mano**. Al terminar,
+`build.py` reporta qué datos faltan del cliente (enlaces de Hotmart, precios).
 
 El sitio está marcado `noindex` por ser una propuesta.
