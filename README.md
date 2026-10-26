@@ -30,7 +30,8 @@ Los 7 cursos viven en el mismo sitio, bajo `/cursos/`:
 | SNIC | `/cursos/snic.html` | — |
 | Normas Oficiales Mexicanas | `/cursos/normas-oficiales-mexicanas.html` | próximamente |
 
-Contacto por WhatsApp al **+52 55 5293 9407**, con botón flotante en todas las páginas.
+Contacto por WhatsApp al **+52 56 1098 0231**, con botón flotante en todas las páginas.
+Correo: aduana@madavan.com.mx.
 
 ## Cómo está hecho
 
