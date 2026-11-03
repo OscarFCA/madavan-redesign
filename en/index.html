@@ -445,22 +445,23 @@ class Component extends DCLogic {
   renderVals() {
     const ph = '#E8F3FC';
     // Ilustraciones animadas recortadas a 2:1 (ilustraciones.py). El SVG anima
-    // solo, aunque entre como background-image.
-    const ilu = n => `${ph} url('../assets/ilu-${n}-card.svg') center/cover no-repeat`;
+    // solo, aunque entre como background-image. Cada ruta va escrita entera
+    // porque build.py la reescribe para /en/ y le añade el ?v= de caché.
+    const tapiz = `center/cover no-repeat, ${ph}`;
     const services = [
-      { title: 'Ocean Freight', icon: 'ship', href: 'transporte-maritimo.html', bg: ilu('maritimo'),
+      { title: 'Ocean Freight', icon: 'ship', href: 'transporte-maritimo.html', bg: `url('../assets/ilu-maritimo-card.svg?v=a72286a3') ${tapiz}`,
         desc: 'Contracts with the world\'s leading shipping lines and service in every commercial port: containers, consolidated and bulk cargo.' },
-      { title: 'Air Freight', icon: 'plane', href: 'transporte-aereo.html', bg: ilu('aereo'),
+      { title: 'Air Freight', icon: 'plane', href: 'transporte-aereo.html', bg: `url('../assets/ilu-aereo-card.svg?v=00cdf2a0') ${tapiz}`,
         desc: 'Consolidated and door-to-door shipments, to and from Mexico, with highly competitive rates and charter flights.' },
-      { title: 'Ground Freight', icon: 'truck', href: 'transporte-terrestre.html', bg: ilu('terrestre'),
+      { title: 'Ground Freight', icon: 'truck', href: 'transporte-terrestre.html', bg: `url('../assets/ilu-terrestre-card.svg?v=96e1f2c1') ${tapiz}`,
         desc: '48 and 53 ft FTL and LTL trailers between Canada, the United States, Mexico and Central America, plus rail intermodal.' },
-      { title: 'Oversized Cargo', icon: 'container', href: 'carga-sobredimensionada.html', bg: ilu('cargo'),
+      { title: 'Oversized Cargo', icon: 'container', href: 'carga-sobredimensionada.html', bg: `url('../assets/ilu-sobredimensionada-card.svg?v=1cee8010') ${tapiz}`,
         desc: 'Specialized moves on lowboy, flat rack and low-bed trailers, plus chartering of multipurpose vessels.' },
-      { title: 'Dangerous Goods HAZMAT', icon: 'triangle-alert', href: 'mercancia-peligrosa-hazmat.html', bg: ilu('hazmat'),
+      { title: 'Dangerous Goods HAZMAT', icon: 'triangle-alert', href: 'mercancia-peligrosa-hazmat.html', bg: `url('../assets/ilu-hazmat-card.svg?v=61455498') ${tapiz}`,
         desc: 'Certified for handling and assessing hazardous materials: DGD, IMDG Code and IMO.' },
-      { title: 'Cargo and Goods Insurance', icon: 'shield-check', href: 'seguro-de-carga.html', bg: ilu('seguro'),
+      { title: 'Cargo and Goods Insurance', icon: 'shield-check', href: 'seguro-de-carga.html', bg: `url('../assets/ilu-seguro-card.svg?v=424f04de') ${tapiz}`,
         desc: 'Domestic and international insurance policies covering the risks of moving merchandise, goods and cargo.' },
-      { title: 'Supply Chain Courses', icon: 'graduation-cap', href: 'cursos/', bg: ilu('cursos'),
+      { title: 'Supply Chain Courses', icon: 'graduation-cap', href: 'cursos/', bg: `url('../assets/ilu-cursos-card.svg?v=6bafc3a4') ${tapiz}`,
         desc: 'Consulting, courses and events on transport, logistics, supply chain, HAZMAT and customs.' }
     ];
     return {

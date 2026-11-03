@@ -445,22 +445,23 @@ class Component extends DCLogic {
   renderVals() {
     const ph = '#E8F3FC';
     // Ilustraciones animadas recortadas a 2:1 (ilustraciones.py). El SVG anima
-    // solo, aunque entre como background-image.
-    const ilu = n => `${ph} url('assets/ilu-${n}-card.svg') center/cover no-repeat`;
+    // solo, aunque entre como background-image. Cada ruta va escrita entera
+    // porque build.py la reescribe para /en/ y le añade el ?v= de caché.
+    const tapiz = `center/cover no-repeat, ${ph}`;
     const services = [
-      { title: 'Transporte Marítimo', icon: 'ship', href: 'transporte-maritimo.html', bg: ilu('maritimo'),
+      { title: 'Transporte Marítimo', icon: 'ship', href: 'transporte-maritimo.html', bg: `url('assets/ilu-maritimo-card.svg?v=a72286a3') ${tapiz}`,
         desc: 'Contratos con las principales navieras del mundo y servicio en todos los puertos mercantes: contenedores, consolidada y carga a granel.' },
-      { title: 'Transporte Aéreo', icon: 'plane', href: 'transporte-aereo.html', bg: ilu('aereo'),
+      { title: 'Transporte Aéreo', icon: 'plane', href: 'transporte-aereo.html', bg: `url('assets/ilu-aereo-card.svg?v=00cdf2a0') ${tapiz}`,
         desc: 'Embarques consolidados y puerta a puerta, desde y hacia México, con tarifas altamente competitivas y vuelos de fletamento.' },
-      { title: 'Transporte Terrestre', icon: 'truck', href: 'transporte-terrestre.html', bg: ilu('terrestre'),
+      { title: 'Transporte Terrestre', icon: 'truck', href: 'transporte-terrestre.html', bg: `url('assets/ilu-terrestre-card.svg?v=96e1f2c1') ${tapiz}`,
         desc: 'Cajas de 48 y 53 pies FTL y LTL entre Canadá, Estados Unidos, México y Centroamérica, más intermodal ferroviario.' },
-      { title: 'Carga Sobredimensionada', icon: 'container', href: 'carga-sobredimensionada.html', bg: ilu('sobredimensionada'),
+      { title: 'Carga Sobredimensionada', icon: 'container', href: 'carga-sobredimensionada.html', bg: `url('assets/ilu-sobredimensionada-card.svg?v=1cee8010') ${tapiz}`,
         desc: 'Movimiento especializado en lowboy, flat rack y camas bajas, así como fletamento de buques multipropósitos.' },
-      { title: 'Mercancía Peligrosa HAZMAT', icon: 'triangle-alert', href: 'mercancia-peligrosa-hazmat.html', bg: ilu('hazmat'),
+      { title: 'Mercancía Peligrosa HAZMAT', icon: 'triangle-alert', href: 'mercancia-peligrosa-hazmat.html', bg: `url('assets/ilu-hazmat-card.svg?v=61455498') ${tapiz}`,
         desc: 'Certificados para el manejo y dictamen de Hazardous Materials: DGD, Código IMDG e IMO.' },
-      { title: 'Seguro de Mercancías y Carga', icon: 'shield-check', href: 'seguro-de-carga.html', bg: ilu('seguro'),
+      { title: 'Seguro de Mercancías y Carga', icon: 'shield-check', href: 'seguro-de-carga.html', bg: `url('assets/ilu-seguro-card.svg?v=424f04de') ${tapiz}`,
         desc: 'Pólizas de seguro nacionales e internacionales para cubrir los riesgos del traslado de mercancías, bienes y cargas.' },
-      { title: 'Cursos Supply Chain', icon: 'graduation-cap', href: 'cursos/', bg: ilu('cursos'),
+      { title: 'Cursos Supply Chain', icon: 'graduation-cap', href: 'cursos/', bg: `url('assets/ilu-cursos-card.svg?v=6bafc3a4') ${tapiz}`,
         desc: 'Asesorías, cursos y eventos sobre transporte, logística, cadena de suministro, HAZMAT y aduana.' }
     ];
     return {
