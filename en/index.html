@@ -168,7 +168,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 </header>
 
 <section data-vfx="1" id="inicio" data-screen-label="Hero" style="position:relative;overflow:hidden;background:#fff">
-  <div data-r="heroimg" style="position:absolute;top:0;right:0;bottom:0;width:62%;background:url('https://madavan.com.mx/wp-content/uploads/2018/06/cropped-transporte-marítimo-aéreo-terrestre-madavan-1.jpg') center/cover no-repeat, #E8F3FC"></div>
+  <div data-r="heroimg" style="position:absolute;top:0;right:0;bottom:0;width:62%;background:#E8F3FC url('../assets/hero-buque.webp') center/cover no-repeat;overflow:hidden"><sc-if value="{{ heroVideo }}" hint-placeholder-val="{{ false }}"><video autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="metadata" poster="../assets/hero-buque.webp" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;display:block"><source data-src="../assets/hero-buque.mp4" type="video/mp4"></video></sc-if></div>
   <div data-r="heroscrim" style="position:absolute;inset:0;background:linear-gradient(90deg,#FFFFFF 0%,#FFFFFF 38%,rgba(255,255,255,0) 62%)"></div>
   <div style="position:relative;max-width:1312px;margin:0 auto;padding:clamp(44px,7vw,96px) var(--gx) clamp(40px,6vw,72px)">
     <div style="max-width:600px;display:flex;flex-direction:column;gap:24px">
@@ -389,11 +389,25 @@ class Component extends DCLogic {
   componentDidMount() {
     this.icons();
     this.vfx();
+    this.video();
     this.onResize = () => this.setState({ w: window.innerWidth, menuOpen: window.innerWidth >= 1024 ? false : this.state.menuOpen });
     window.addEventListener('resize', this.onResize);
   }
   componentWillUnmount() { if (this._obs) this._obs.disconnect(); if (this._rescate) clearTimeout(this._rescate); window.removeEventListener('resize', this.onResize); }
-  componentDidUpdate() { this.icons(); this.vfx(); }
+  componentDidUpdate() { this.icons(); this.vfx(); this.video(); }
+  /* React no aplica `muted` como atributo y sin él ningún navegador reproduce
+     solo. Se fija por propiedad, que es la única forma fiable. */
+  video() {
+    const v = document.querySelector('video[poster]');
+    if (!v || v.dataset.listo) return;
+    v.muted = true; v.loop = true; v.playsInline = true; v.defaultMuted = true;
+    v.dataset.listo = '1';
+    const src = v.querySelector('source[data-src]');
+    if (src) { src.src = src.dataset.src; src.removeAttribute('data-src'); v.load(); }
+    const intento = v.play();
+    if (intento && intento.catch) intento.catch(() => { /* queda el póster */ });
+  }
+
   /* Entrada al aparecer en pantalla. Se marca el elemento una sola vez y no se
      vuelve a tocar: si React re-renderiza, lo ya revelado se queda revelado. */
   vfx() {
@@ -477,6 +491,7 @@ class Component extends DCLogic {
         { title: 'Dangerous Goods HAZMAT', icon: 'triangle-alert', href: 'mercancia-peligrosa-hazmat.html' },
         { title: 'Cargo and Goods Insurance', icon: 'shield-check', href: 'seguro-de-carga.html' }
       ],
+      heroVideo: this.state.w >= 900 && !window.matchMedia('(prefers-reduced-motion:reduce)').matches,
       menuOpen: this.state.menuOpen,
       menuClosed: !this.state.menuOpen,
       toggleMenu: () => this.setState({ menuOpen: !this.state.menuOpen, dd: false }),
