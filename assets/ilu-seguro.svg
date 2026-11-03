@@ -1,4 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Escudo protegiendo la carga">
+<style>
+@keyframes late{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+@keyframes traza{to{stroke-dashoffset:0}}
+@keyframes flota{0%,100%{transform:translateY(0);opacity:.8}50%{transform:translateY(-7px);opacity:.35}}
+#sello{animation:late 3.4s ease-in-out infinite}
+#palomita{animation:traza .85s cubic-bezier(.65,0,.35,1) .35s forwards}
+.chispa{animation:flota 5.5s ease-in-out infinite}
+.c1{animation-delay:-1.4s}.c2{animation-delay:-2.8s}.c3{animation-delay:-4.1s}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
 <rect width="800" height="600" fill="#E8F3FC"/>
 <circle cx="400" cy="300" r="232" fill="#D7EAF9"/>
 <path d="M400 128 L616 206 V352 C616 452 528 516 400 556 C272 516 184 452 184 352 V206 Z" fill="#062E57"/>
@@ -10,10 +19,10 @@
 <path d="M-92 -44 L0 -4 L92 -44" fill="none" stroke="#062E57" stroke-width="5" stroke-linejoin="round"/>
 <path d="M0 -4 V102" stroke="#062E57" stroke-width="5"/>
 </g>
-<circle cx="546" cy="432" r="52" fill="#45B649"/>
-<path d="M522 432 L540 452 L574 412" fill="none" stroke="#E8F3FC" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="176" cy="160" r="9" fill="#1594E5" opacity=".8"/>
-<circle cx="646" cy="152" r="7" fill="#1594E5" opacity=".8"/>
-<circle cx="132" cy="420" r="7" fill="#1594E5" opacity=".8"/>
-<circle cx="684" cy="486" r="9" fill="#1594E5" opacity=".8"/>
+<circle id="sello" cx="546" cy="432" r="52" fill="#45B649" style="transform-origin:546px 432px"/>
+<path id="palomita" d="M522 432 L540 452 L574 412" fill="none" stroke="#E8F3FC" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="78" stroke-dashoffset="78"/>
+<circle class="chispa c0" cx="176" cy="160" r="9" fill="#1594E5" opacity=".8"/>
+<circle class="chispa c1" cx="646" cy="152" r="7" fill="#1594E5" opacity=".8"/>
+<circle class="chispa c2" cx="132" cy="420" r="7" fill="#1594E5" opacity=".8"/>
+<circle class="chispa c3" cx="684" cy="486" r="9" fill="#1594E5" opacity=".8"/>
 </svg>

@@ -76,6 +76,44 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
   [data-r=pagogrid]{grid-template-columns:1fr!important}
   [data-r=pagoaside]{position:static!important}
 }
+/* ── VFX ───────────────────────────────────────────────────────────────── */
+/* Entrada al aparecer en pantalla. Discreto a propósito: el sitio vende
+   logística, no efectos. Sin JS el contenido se ve igual, nunca se oculta. */
+[data-vfx]{opacity:0;transform:translateY(18px);
+  transition:opacity .62s cubic-bezier(.22,.61,.36,1),transform .62s cubic-bezier(.22,.61,.36,1)}
+[data-vfx][data-visto]{opacity:1;transform:none}
+[data-vfx="2"]{transition-delay:.09s}
+[data-vfx="3"]{transition-delay:.18s}
+[data-vfx="4"]{transition-delay:.27s}
+
+/* Tarjetas: se levantan y su foto respira al pasar el cursor */
+[data-vfx-card]{transition:transform .26s cubic-bezier(.22,.61,.36,1),box-shadow .26s ease}
+[data-vfx-card]:hover{transform:translateY(-5px)}
+[data-vfx-card] [data-vfx-img]{transition:transform .55s cubic-bezier(.22,.61,.36,1)}
+[data-vfx-card]:hover [data-vfx-img]{transform:scale(1.045)}
+[data-vfx-card] [data-vfx-arrow]{transition:transform .26s cubic-bezier(.22,.61,.36,1)}
+[data-vfx-card]:hover [data-vfx-arrow]{transform:translateX(4px)}
+
+/* Botón primario: un destello cruza una sola vez al pasar el cursor */
+[data-vfx-btn]{position:relative;overflow:hidden;isolation:isolate}
+[data-vfx-btn]::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(110deg,transparent 28%,rgba(255,255,255,.28) 50%,transparent 72%);
+  transform:translateX(-120%);transition:transform .62s cubic-bezier(.3,.7,.4,1)}
+[data-vfx-btn]:hover::after{transform:translateX(120%)}
+
+/* Las ilustraciones del hero se animan por dentro del propio SVG:
+   mover además el contenedor sería movimiento encimado. */
+
+/* Las cifras entran con su icono */
+@keyframes madPulso{0%{transform:scale(.82);opacity:0}60%{transform:scale(1.06)}100%{transform:scale(1);opacity:1}}
+[data-visto] [data-vfx-stat] svg{animation:madPulso .55s cubic-bezier(.22,.61,.36,1) both}
+
+/* Nada de esto se mueve si el visitante pidió menos movimiento */
+@media (prefers-reduced-motion:reduce){
+  [data-vfx]{opacity:1!important;transform:none!important;transition:none!important}
+  [data-r=heroilu],[data-visto] [data-vfx-stat] svg{animation:none!important}
+  [data-vfx-card],[data-vfx-btn]::after{transition:none!important}
+}
 /* utilidades */
 @media (max-width:760px){[data-r=nowrap]{white-space:normal!important}
   [data-r=fdiv]{display:none!important}}
@@ -110,7 +148,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
     </nav>
     <div data-r="navact" style="display:flex;align-items:center;gap:12px">
       <div style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #E3E8EF;border-radius:9999px;padding:3px"><i data-lucide="globe" style="width:16px;height:16px;color:#1594E5;margin-left:6px"></i><a data-r="lang-es" href="./" style="padding:7px 13px;border-radius:9999px;background:#062E57;color:#fff;font:600 13px/1 Montserrat,sans-serif">ES</a><a data-r="lang-en" href="../en/" style="padding:7px 13px;border-radius:9999px;color:#062E57;font:600 13px/1 Montserrat,sans-serif">EN</a></div>
-      <a href="../#contacto" style="display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:9999px;background:#1594E5;color:#fff;font:600 15px/1 Montserrat,sans-serif;white-space:nowrap" style-hover="background:#0F7CC4;color:#fff">Solicita una cotización <span>→</span></a>
+      <a href="../#contacto" data-vfx-btn="1" style="display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:9999px;background:#1594E5;color:#fff;font:600 15px/1 Montserrat,sans-serif;white-space:nowrap" style-hover="background:#0F7CC4;color:#fff">Solicita una cotización <span>→</span></a>
     </div>
     <button data-r="burger" type="button" aria-label="Abrir menú" aria-expanded="{{ menuOpen }}" onClick="{{ toggleMenu }}" style="display:none;align-items:center;justify-content:center;width:46px;height:46px;flex-shrink:0;border:1px solid #E3E8EF;border-radius:12px;background:#fff;color:#062E57;cursor:pointer"><sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:block"><path d="M6 6 L18 18 M18 6 L6 18"></path></svg></sc-if><sc-if value="{{ menuClosed }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:block"><path d="M3 6h18 M3 12h18 M3 18h18"></path></svg></sc-if></button>
   </div>
@@ -132,7 +170,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
   </sc-if>
 </header>
 
-<section data-screen-label="Hero" style="position:relative;overflow:hidden;background:#fff">
+<section data-vfx="1" data-screen-label="Hero" style="position:relative;overflow:hidden;background:#fff">
 <div data-r="heroilu" style="position:absolute;top:0;right:0;bottom:0;width:52%;background:#E8F3FC url('../assets/ilu-cursos.svg') center/cover no-repeat"></div>
 <div data-r="heroscrimilu" style="position:absolute;inset:0;background:linear-gradient(90deg,#FFFFFF 0%,#FFFFFF 44%,rgba(255,255,255,0) 68%)"></div>
 <div data-r="herobody" style="position:relative;max-width:1312px;margin:0 auto;padding:clamp(24px,4vw,40px) var(--gx) clamp(48px,8vw,88px)">
@@ -151,31 +189,31 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 <a href="https://wa.me/525610980231?text=Hola%20MADAVAN%2C%20me%20interesa%20el%20Curso%20de%20HAZMAT%20%28%245%2C500%20MXN%20%2B%20IVA%29.%20" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:17px 32px;border-radius:9999px;background:#25D366;color:#fff;font:600 17px/1 Montserrat,sans-serif;box-shadow:0 8px 20px rgba(37,211,102,.28)" style-hover="background:#1DB556;color:#fff">Quiero este curso <span>&#8594;</span></a>
 <span style="font:700 clamp(19px,2.6vw,22px)/1 Montserrat,sans-serif;color:#062E57">$5,500 MXN + IVA</span>
 </div></div></div></section>
-<section data-screen-label="Problema" style="background:#F5F7FA"><div style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx)">
+<section data-vfx="1" data-screen-label="Problema" style="background:#F5F7FA"><div style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx)">
 <div style="display:flex;flex-direction:column;gap:20px;max-width:900px">
 <h2 style="margin:0;font:700 clamp(25px,4.6vw,36px)/1.18 Montserrat,sans-serif;color:#062E57;text-wrap:balance">El problema que nadie dice en voz alta</h2>
 <p style="margin:0;font:400 16px/1.7 Lato,sans-serif;color:#4A5A6E;text-wrap:pretty">Una clasificación incorrecta de HAZMAT no es un error administrativo. Es una multa, un embarque retenido en aduana, una naviera o aerolínea que rechaza tu carga en el último momento, o un incidente que pudo evitarse.</p>
 <p style="margin:0;font:400 16px/1.7 Lato,sans-serif;color:#4A5A6E;text-wrap:pretty">No saber manejar materiales peligrosos no te exime de la responsabilidad: te expone a ella. Y mientras resuelves el problema después de que ocurrió, tu competencia ya tiene el certificado que le permite cerrar los embarques que tú tuviste que rechazar.</p>
 </div></div></section>
-<section data-screen-label="Solución" style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx)">
+<section data-vfx="1" data-screen-label="Solución" style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx)">
 <div style="display:flex;flex-direction:column;gap:20px;max-width:900px">
 <h2 style="margin:0;font:700 clamp(25px,4.6vw,36px)/1.18 Montserrat,sans-serif;color:#062E57;text-wrap:balance">Capacitación que sí aplica a tu operación</h2>
 <p style="margin:0;font:400 16px/1.7 Lato,sans-serif;color:#4A5A6E;text-wrap:pretty">No es una lectura genérica de normativa. Está diseñado para quienes mueven carga en México y Latinoamérica: freight forwarders, agentes aduanales, coordinadores de logística y responsables de comercio exterior que necesitan clasificar, documentar y transportar HAZMAT sin poner en riesgo la operación.</p>
 <p style="margin:0;font:400 16px/1.7 Lato,sans-serif;color:#4A5A6E;text-wrap:pretty">En 4 horas obtienes el criterio que normalmente toma meses de experiencia —y errores costosos— desarrollar en el terreno.</p>
 </div></section>
-<section data-screen-label="Beneficios" style="background:#F5F7FA"><div style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx)">
+<section data-vfx="1" data-screen-label="Beneficios" style="background:#F5F7FA"><div style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx)">
 <div style="display:flex;flex-direction:column;gap:24px">
 <div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#062E57"><span style="width:24px;height:3px;background:#45B649;border-radius:2px"></span>Lo que obtienes</div>
 <h2 style="margin:0;font:700 clamp(25px,4.6vw,36px)/1.18 Montserrat,sans-serif;color:#062E57;text-wrap:balance">Lo que te llevas<span style="display:block;color:#1594E5">del curso.</span></h2>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:14px 32px"><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#1594E5;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#4A5A6E">Certificación en materiales peligrosos reconocida dentro del sector.</span></div><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#1594E5;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#4A5A6E">Formato intensivo de 4 horas, sin sacrificar días de trabajo.</span></div><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#1594E5;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#4A5A6E">Clasificación correcta según transporte marítimo, aéreo y terrestre.</span></div><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#1594E5;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#4A5A6E">Documentación y cumplimiento aduanero aplicado a embarques HAZMAT.</span></div><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#1594E5;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#4A5A6E">Criterio para prevenir multas, siniestros y pérdida de carga por manejo indebido.</span></div></div>
 </div></div></section>
-<section data-screen-label="Para quién" style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx)">
+<section data-vfx="1" data-screen-label="Para quién" style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx)">
 <div style="display:flex;flex-direction:column;gap:24px">
 <div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#062E57"><span style="width:24px;height:3px;background:#45B649;border-radius:2px"></span>Para quién es</div>
 <h2 style="margin:0;font:700 clamp(25px,4.6vw,36px)/1.18 Montserrat,sans-serif;color:#062E57;text-wrap:balance">A quién le sirve<span style="display:block;color:#1594E5">este curso.</span></h2>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:14px 32px"><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#1594E5;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#4A5A6E">Agentes de freight forwarding que cotizan y coordinan carga peligrosa.</span></div><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#1594E5;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#4A5A6E">Agentes aduanales que necesitan dominar la clasificación de HAZMAT.</span></div><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#1594E5;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#4A5A6E">Coordinadores y gerentes de logística responsables de la operación diaria.</span></div><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#1594E5;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#4A5A6E">Empresas que buscan capacitar a todo su equipo, no sólo a una persona.</span></div></div>
 </div></section>
-<section data-screen-label="Instructor" style="background:#F5F7FA"><div style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx)">
+<section data-vfx="1" data-screen-label="Instructor" style="background:#F5F7FA"><div style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx)">
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:36px clamp(26px,5vw,64px);align-items:start">
 <div style="display:flex;flex-direction:column;gap:18px">
 <div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#062E57"><span style="width:24px;height:3px;background:#45B649;border-radius:2px"></span>Tu instructor</div>
@@ -187,7 +225,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 <p style="margin:0;font:400 16px/1.7 Lato,sans-serif;color:#4A5A6E;text-wrap:pretty">Más de 20 años como consultor, asesor, capacitador y conferencista en transporte marítimo, aéreo, terrestre y multimodal, comercio exterior, aduanas, freight forwarding y supply chain. Ha capacitado a empresas en México y Latinoamérica en operaciones que van de carga general a carga de proyecto, sobredimensionada y materiales peligrosos.</p>
 <div style="display:flex;gap:12px;align-items:flex-start;padding-top:16px;border-top:1px solid #D9DEE5"><i data-lucide="award" style="width:22px;height:22px;color:#1594E5;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#062E57">Experto en logística certificado por la ONU, ICAO y FIATA para el manejo de mercancías peligrosas HAZMAT.</span></div>
 </div></div></div></section>
-<section data-screen-label="Inversión" style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx)">
+<section data-vfx="1" data-screen-label="Inversión" style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx)">
 <div style="border-radius:14px;background:#062E57;color:#fff;padding:clamp(28px,5vw,52px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:32px clamp(26px,5vw,56px);align-items:center">
 <div style="display:flex;flex-direction:column;gap:16px">
 <div style="font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#8BCF4A">Inversión</div>
@@ -196,18 +234,18 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 <div style="margin-top:6px"><a href="https://wa.me/525610980231?text=Hola%20MADAVAN%2C%20me%20interesa%20el%20Curso%20de%20HAZMAT%20%28%245%2C500%20MXN%20%2B%20IVA%29.%20" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:17px 32px;border-radius:9999px;background:#25D366;color:#fff;font:600 17px/1 Montserrat,sans-serif;box-shadow:0 8px 20px rgba(37,211,102,.28)" style-hover="background:#1DB556;color:#fff">Quiero este curso <span>&#8594;</span></a></div>
 </div>
 </div></section>
-<section data-screen-label="Academia" style="max-width:1312px;margin:0 auto;padding:0 var(--gx) clamp(48px,8vw,88px)">
+<section data-vfx="1" data-screen-label="Academia" style="max-width:1312px;margin:0 auto;padding:0 var(--gx) clamp(48px,8vw,88px)">
 <div style="display:flex;flex-direction:column;gap:18px;max-width:860px">
 <div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#062E57"><span style="width:24px;height:3px;background:#45B649;border-radius:2px"></span>Por qué Academia MADAVAN</div>
 <p style="margin:0;font:400 16px/1.7 Lato,sans-serif;color:#4A5A6E;text-wrap:pretty">Academia MADAVAN es la plataforma de capacitación de MADAVAN Multilogística Internacional. Más de dos décadas operando comercio exterior, aduanas y logística internacional en México y Latinoamérica. No enseñamos teoría de manual: enseñamos el criterio que usamos todos los días para mover carga.</p>
 </div></section>
-<section data-screen-label="Cierre" style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx)">
+<section data-vfx="1" data-screen-label="Cierre" style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx)">
 <div style="border-radius:12px;background:#E8F3FC;padding:clamp(28px,5vw,52px);display:flex;flex-direction:column;gap:18px;align-items:flex-start">
 <h2 style="margin:0;font:700 clamp(25px,4.6vw,36px)/1.18 Montserrat,sans-serif;color:#062E57;text-wrap:balance">No esperes a que un embarque retenido te lo enseñe</h2>
 <p style="margin:0;font:400 16px/1.7 Lato,sans-serif;color:#4A5A6E;text-wrap:pretty">Si tu operación toca transporte de mercancías peligrosas en algún punto de la cadena, este curso no es opcional: es el mínimo indispensable.</p>
 <div style="margin-top:6px"><a href="https://wa.me/525610980231?text=Hola%20MADAVAN%2C%20me%20interesa%20el%20Curso%20de%20HAZMAT%20%28%245%2C500%20MXN%20%2B%20IVA%29.%20" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:17px 32px;border-radius:9999px;background:#25D366;color:#fff;font:600 17px/1 Montserrat,sans-serif;box-shadow:0 8px 20px rgba(37,211,102,.28)" style-hover="background:#1DB556;color:#fff">Quiero este curso <span>&#8594;</span></a></div>
 </div></section>
-<section data-screen-label="Otros cursos" style="background:#F5F7FA"><div style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx)">
+<section data-vfx="1" data-screen-label="Otros cursos" style="background:#F5F7FA"><div style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx)">
 <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:28px">
 <div style="display:flex;flex-direction:column;gap:14px"><div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#062E57"><span style="width:24px;height:3px;background:#45B649;border-radius:2px"></span>Sigue aprendiendo</div><h2 style="margin:0;font:700 clamp(25px,4.6vw,36px)/1.18 Montserrat,sans-serif;color:#062E57;text-wrap:balance">Otros cursos.</h2></div>
 <a href="./" style="font:600 14px/1 Montserrat,sans-serif;color:#1594E5;padding-bottom:6px;border-bottom:2px solid #45B649">Ver todos los cursos →</a>
@@ -277,12 +315,37 @@ class Component extends DCLogic {
   state = { dd: false, w: window.innerWidth, menuOpen: false };
   componentDidMount() {
     this.icons();
+    this.vfx();
     this.hotmart();
     this.onResize = () => this.setState({ w: window.innerWidth, menuOpen: window.innerWidth >= 1024 ? false : this.state.menuOpen });
     window.addEventListener('resize', this.onResize);
   }
-  componentWillUnmount() { window.removeEventListener('resize', this.onResize); if (this._hmEspera) clearInterval(this._hmEspera); }
-  componentDidUpdate() { this.icons(); this.hotmart(); }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); if (this._hmEspera) clearInterval(this._hmEspera); if (this._obs) this._obs.disconnect(); if (this._rescate) clearTimeout(this._rescate); }
+  componentDidUpdate() { this.icons(); this.vfx(); this.hotmart(); }
+  /* Entrada al aparecer en pantalla, con red de seguridad: pase lo que pase,
+     a los 2.5 s todo queda visible. El contenido nunca se queda en blanco. */
+  vfx() {
+    if (!this._rescate) {
+      this._rescate = setTimeout(() => {
+        document.querySelectorAll('[data-vfx]:not([data-visto])')
+                .forEach((e) => e.setAttribute('data-visto', '1'));
+      }, 2500);
+    }
+    const nuevos = document.querySelectorAll('[data-vfx]:not([data-visto]):not([data-vfx-obs])');
+    if (!nuevos.length) return;
+    if (!('IntersectionObserver' in window)) {
+      nuevos.forEach((e) => e.setAttribute('data-visto', '1'));
+      return;
+    }
+    if (!this._obs) {
+      this._obs = new IntersectionObserver((filas) => {
+        filas.forEach((f) => {
+          if (f.isIntersecting) { f.target.setAttribute('data-visto', '1'); this._obs.unobserve(f.target); }
+        });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+    }
+    nuevos.forEach((e) => { e.setAttribute('data-vfx-obs', '1'); this._obs.observe(e); });
+  }
   icons() {
     let n = 0;
     const run = () => { if (window.lucide) window.lucide.createIcons(); else if (n++ < 50) setTimeout(run, 100); };

@@ -1,4 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Grúa izando una pieza sobredimensionada">
+<style>
+@keyframes pendulo{0%,100%{transform:rotate(-1.6deg)}50%{transform:rotate(1.6deg)}}
+#carga{animation:pendulo 4.2s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
 <rect width="800" height="600" fill="#E8F3FC"/>
 <circle cx="468" cy="266" r="208" fill="#D7EAF9"/>
 <path d="M40 500 H760" stroke="#062E57" stroke-width="8" stroke-linecap="round"/>
@@ -22,6 +26,7 @@
 <path d="M120 150 L616 214" stroke="#1594E5" stroke-width="10" stroke-linecap="round"/>
 <path d="M120 150 L560 100" stroke="#1594E5" stroke-width="5" stroke-linecap="round" opacity=".5"/>
 <path d="M560 100 L616 214" stroke="#1594E5" stroke-width="5" stroke-linecap="round" opacity=".5"/>
+<g id="carga" style="transform-origin:560px 212px">
 <path d="M560 210 V300" stroke="#062E57" stroke-width="5"/>
 <path d="M484 300 H636" stroke="#062E57" stroke-width="12" stroke-linecap="round"/>
 <path d="M500 300 V326 M620 300 V326" stroke="#062E57" stroke-width="6"/>
@@ -30,6 +35,7 @@
 <rect x="482" y="396" width="104" height="14" rx="7" fill="#1594E5" opacity=".4"/>
 <circle cx="640" cy="403" r="14" fill="#45B649"/>
 <path d="M500 326 L540 300 M620 326 L580 300" stroke="#8BCF4A" stroke-width="5" opacity=".7"/>
+</g>
 <rect x="416" y="466" width="300" height="20" rx="6" fill="#1594E5" opacity=".9"/>
 <circle cx="448" cy="492" r="18" fill="#062E57"/>
 <circle cx="500" cy="492" r="18" fill="#062E57"/>

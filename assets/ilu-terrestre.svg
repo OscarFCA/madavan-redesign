@@ -1,8 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Tractocamión en carretera">
+<style>
+@keyframes rueda{to{transform:rotate(360deg)}}
+@keyframes raya{to{stroke-dashoffset:-160}}
+@keyframes brillo{0%,100%{opacity:1}50%{opacity:.45}}
+@keyframes vibra{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.5px)}}
+.rueda{animation:rueda 1.5s linear infinite}
+#raya{animation:raya 1.6s linear infinite}
+#faro{animation:brillo 1.8s ease-in-out infinite}
+#camion{animation:vibra .55s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
 <rect width="800" height="600" fill="#E8F3FC"/>
 <circle cx="380" cy="268" r="220" fill="#D7EAF9"/>
 <path d="M40 486 H760" stroke="#062E57" stroke-width="8" stroke-linecap="round"/>
-<path d="M60 522 H740" stroke="#1594E5" stroke-width="7" stroke-dasharray="46 34" stroke-linecap="round" opacity=".55"/>
+<path id="raya" d="M60 522 H740" stroke="#1594E5" stroke-width="7" stroke-dasharray="46 34" stroke-linecap="round" opacity=".55"/>
 <rect x="146" y="252" width="356" height="196" rx="6" fill="#062E57"/>
 <rect x="174" y="282" width="300" height="10" rx="5" fill="#1594E5" opacity=".35"/>
 <rect x="174" y="394" width="300" height="10" rx="5" fill="#1594E5" opacity=".35"/>
@@ -11,15 +21,15 @@
 <path d="M546 320 H592 L628 364 H546 Z" fill="#E8F3FC"/>
 <rect x="502" y="430" width="156" height="18" rx="5" fill="#062E57"/>
 <rect x="516" y="268" width="14" height="36" rx="6" fill="#062E57"/>
-<circle cx="640" cy="372" r="8" fill="#8BCF4A"/>
+<circle id="faro" cx="640" cy="372" r="8" fill="#8BCF4A"/>
 <circle cx="222" cy="458" r="40" fill="#062E57"/>
-<circle cx="222" cy="458" r="17" fill="#E8F3FC"/>
+<g class="rueda" style="transform-origin:222px 458px"><circle cx="222" cy="458" r="17" fill="#E8F3FC"/><path d="M222 445 V471 M209 458 H235" stroke="#1594E5" stroke-width="4" stroke-linecap="round" opacity=".45"/></g>
 <circle cx="304" cy="458" r="40" fill="#062E57"/>
-<circle cx="304" cy="458" r="17" fill="#E8F3FC"/>
+<g class="rueda" style="transform-origin:304px 458px"><circle cx="304" cy="458" r="17" fill="#E8F3FC"/><path d="M304 445 V471 M291 458 H317" stroke="#1594E5" stroke-width="4" stroke-linecap="round" opacity=".45"/></g>
 <circle cx="556" cy="458" r="40" fill="#062E57"/>
-<circle cx="556" cy="458" r="17" fill="#E8F3FC"/>
+<g class="rueda" style="transform-origin:556px 458px"><circle cx="556" cy="458" r="17" fill="#E8F3FC"/><path d="M556 445 V471 M543 458 H569" stroke="#1594E5" stroke-width="4" stroke-linecap="round" opacity=".45"/></g>
 <circle cx="622" cy="458" r="40" fill="#062E57"/>
-<circle cx="622" cy="458" r="17" fill="#E8F3FC"/>
+<g class="rueda" style="transform-origin:622px 458px"><circle cx="622" cy="458" r="17" fill="#E8F3FC"/><path d="M622 445 V471 M609 458 H635" stroke="#1594E5" stroke-width="4" stroke-linecap="round" opacity=".45"/></g>
 <path d="M36 300 H128" stroke="#B9D9F2" stroke-width="7" stroke-linecap="round" opacity=".7"/>
 <path d="M54 344 H128" stroke="#B9D9F2" stroke-width="7" stroke-linecap="round" opacity=".7"/>
 <path d="M30 388 H128" stroke="#B9D9F2" stroke-width="7" stroke-linecap="round" opacity=".7"/>

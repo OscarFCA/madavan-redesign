@@ -75,6 +75,44 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
   [data-r=pagogrid]{grid-template-columns:1fr!important}
   [data-r=pagoaside]{position:static!important}
 }
+/* ── VFX ───────────────────────────────────────────────────────────────── */
+/* Entrada al aparecer en pantalla. Discreto a propósito: el sitio vende
+   logística, no efectos. Sin JS el contenido se ve igual, nunca se oculta. */
+[data-vfx]{opacity:0;transform:translateY(18px);
+  transition:opacity .62s cubic-bezier(.22,.61,.36,1),transform .62s cubic-bezier(.22,.61,.36,1)}
+[data-vfx][data-visto]{opacity:1;transform:none}
+[data-vfx="2"]{transition-delay:.09s}
+[data-vfx="3"]{transition-delay:.18s}
+[data-vfx="4"]{transition-delay:.27s}
+
+/* Tarjetas: se levantan y su foto respira al pasar el cursor */
+[data-vfx-card]{transition:transform .26s cubic-bezier(.22,.61,.36,1),box-shadow .26s ease}
+[data-vfx-card]:hover{transform:translateY(-5px)}
+[data-vfx-card] [data-vfx-img]{transition:transform .55s cubic-bezier(.22,.61,.36,1)}
+[data-vfx-card]:hover [data-vfx-img]{transform:scale(1.045)}
+[data-vfx-card] [data-vfx-arrow]{transition:transform .26s cubic-bezier(.22,.61,.36,1)}
+[data-vfx-card]:hover [data-vfx-arrow]{transform:translateX(4px)}
+
+/* Botón primario: un destello cruza una sola vez al pasar el cursor */
+[data-vfx-btn]{position:relative;overflow:hidden;isolation:isolate}
+[data-vfx-btn]::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(110deg,transparent 28%,rgba(255,255,255,.28) 50%,transparent 72%);
+  transform:translateX(-120%);transition:transform .62s cubic-bezier(.3,.7,.4,1)}
+[data-vfx-btn]:hover::after{transform:translateX(120%)}
+
+/* Las ilustraciones del hero se animan por dentro del propio SVG:
+   mover además el contenedor sería movimiento encimado. */
+
+/* Las cifras entran con su icono */
+@keyframes madPulso{0%{transform:scale(.82);opacity:0}60%{transform:scale(1.06)}100%{transform:scale(1);opacity:1}}
+[data-visto] [data-vfx-stat] svg{animation:madPulso .55s cubic-bezier(.22,.61,.36,1) both}
+
+/* Nada de esto se mueve si el visitante pidió menos movimiento */
+@media (prefers-reduced-motion:reduce){
+  [data-vfx]{opacity:1!important;transform:none!important;transition:none!important}
+  [data-r=heroilu],[data-visto] [data-vfx-stat] svg{animation:none!important}
+  [data-vfx-card],[data-vfx-btn]::after{transition:none!important}
+}
 /* utilidades */
 @media (max-width:760px){[data-r=nowrap]{white-space:normal!important}
   [data-r=fdiv]{display:none!important}}
@@ -107,7 +145,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
     </nav>
     <div data-r="navact" style="display:flex;align-items:center;gap:12px">
       <div style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #E3E8EF;border-radius:9999px;padding:3px"><i data-lucide="globe" style="width:16px;height:16px;color:#1594E5;margin-left:6px"></i><a data-r="lang-es" href="transporte-terrestre.html" style="padding:7px 13px;border-radius:9999px;background:#062E57;color:#fff;font:600 13px/1 Montserrat,sans-serif">ES</a><a data-r="lang-en" href="en/transporte-terrestre.html" style="padding:7px 13px;border-radius:9999px;color:#062E57;font:600 13px/1 Montserrat,sans-serif">EN</a></div>
-      <a href="#contacto" style="display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:9999px;background:#1594E5;color:#fff;font:600 15px/1 Montserrat,sans-serif;white-space:nowrap" style-hover="background:#0F7CC4;color:#fff">Solicita una cotización <span>→</span></a>
+      <a href="#contacto" data-vfx-btn="1" style="display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:9999px;background:#1594E5;color:#fff;font:600 15px/1 Montserrat,sans-serif;white-space:nowrap" style-hover="background:#0F7CC4;color:#fff">Solicita una cotización <span>→</span></a>
     </div>
     <button data-r="burger" type="button" aria-label="Abrir menú" aria-expanded="{{ menuOpen }}" onClick="{{ toggleMenu }}" style="display:none;align-items:center;justify-content:center;width:46px;height:46px;flex-shrink:0;border:1px solid #E3E8EF;border-radius:12px;background:#fff;color:#062E57;cursor:pointer"><sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:block"><path d="M6 6 L18 18 M18 6 L6 18"></path></svg></sc-if><sc-if value="{{ menuClosed }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:block"><path d="M3 6h18 M3 12h18 M3 18h18"></path></svg></sc-if></button>
   </div>
@@ -129,7 +167,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
   </sc-if>
 </header>
 
-<section data-screen-label="Hero Terrestre" style="position:relative;overflow:hidden;background:#fff">
+<section data-vfx="1" data-screen-label="Hero Terrestre" style="position:relative;overflow:hidden;background:#fff">
   <div data-r="heroilu" style="position:absolute;top:0;right:0;bottom:0;width:58%;background:#E8F3FC url('assets/ilu-terrestre.svg') center/cover no-repeat"></div>
   <div data-r="heroscrimilu" style="position:absolute;inset:0;background:linear-gradient(90deg,#FFFFFF 0%,#FFFFFF 40%,rgba(255,255,255,0) 64%)"></div>
   <div data-r="herobody" style="position:relative;max-width:1312px;margin:0 auto;padding:clamp(24px,4vw,40px) var(--gx) clamp(48px,8vw,88px)">
@@ -139,14 +177,14 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
       <h1 style="margin:0;font:800 clamp(32px,7vw,60px)/1.06 Montserrat,sans-serif;letter-spacing:-.02em;color:#062E57;text-wrap:balance">Tu carga, <span style="display:block;color:#1594E5">de Canadá a Centroamérica.</span></h1>
       <p style="margin:0;font:400 clamp(16px,2.3vw,18px)/1.55 Lato,sans-serif;color:#4A5A6E;max-width:520px;text-wrap:pretty">Cajas de 48 y 53 pies completas o consolidadas, transporte especializado para carga proyecto e intermodal ferroviario en toda América del Norte.</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap">
-        <a href="#contacto" style="display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:9999px;background:#1594E5;color:#fff;font:600 15px/1 Montserrat,sans-serif" style-hover="background:#0F7CC4;color:#fff">Cotiza tu flete <span>→</span></a>
+        <a href="#contacto" data-vfx-btn="1" style="display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:9999px;background:#1594E5;color:#fff;font:600 15px/1 Montserrat,sans-serif" style-hover="background:#0F7CC4;color:#fff">Cotiza tu flete <span>→</span></a>
         <a href="#modalidades" style="display:inline-flex;align-items:center;gap:10px;padding:12.5px 24px;border-radius:9999px;background:#fff;border:1.5px solid #1594E5;color:#1594E5;font:600 15px/1 Montserrat,sans-serif" style-hover="background:#E8F3FC">Ver modalidades</a>
       </div>
     </div>
   </div>
 </section>
 
-<section data-screen-label="Cifras" style="background:#F5F7FA">
+<section data-vfx="1" data-screen-label="Cifras" style="background:#F5F7FA">
   <div style="max-width:1312px;margin:0 auto;padding:clamp(28px,5vw,40px) var(--gx);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:24px 0" data-r="stats">
     <div data-r="stat" style="display:flex;align-items:center;gap:16px;padding:0 24px;border-right:1px solid #D9DEE5"><i data-lucide="truck" style="width:40px;height:40px;color:#1594E5;flex-shrink:0"></i><div><div style="font:700 clamp(22px,3.6vw,28px)/1 Montserrat,sans-serif;color:#062E57">48 / 53 ft</div><div style="margin-top:6px;font:600 10.5px/1.35 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B7A8C">Cajas secas<br>dry van</div></div></div>
     <div data-r="stat" style="display:flex;align-items:center;gap:16px;padding:0 24px;border-right:1px solid #D9DEE5"><i data-lucide="map" style="width:40px;height:40px;color:#1594E5;flex-shrink:0"></i><div><div style="font:700 clamp(22px,3.6vw,28px)/1 Montserrat,sans-serif;color:#062E57">4</div><div style="margin-top:6px;font:600 10.5px/1.35 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B7A8C">Regiones: Canadá, EE.UU.,<br>México y Centroamérica</div></div></div>
@@ -155,7 +193,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
   </div>
 </section>
 
-<section id="modalidades" data-screen-label="Modalidades" style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx) clamp(36px,6vw,64px)">
+<section data-vfx="1" id="modalidades" data-screen-label="Modalidades" style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx) clamp(36px,6vw,64px)">
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:32px clamp(26px,5vw,64px);align-items:end;margin-bottom:40px"><div style="display:flex;flex-direction:column;gap:16px"><div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#062E57"><span style="width:24px;height:3px;background:#45B649;border-radius:2px"></span>Modalidades</div><h2 style="margin:0;font:700 clamp(25px,4.6vw,36px)/1.18 Montserrat,sans-serif;color:#062E57">Un servicio para cada <span style="display:block;color:#1594E5">tamaño de carga.</span></h2></div><p style="margin:0;font:400 16px/1.6 Lato,sans-serif;color:#4A5A6E;text-wrap:pretty">Transporte nacional e internacional por carretera y ferrocarril, desde unos cuantos metros cúbicos hasta piezas con sobredimensión y extrapeso.</p></div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px">
     <div style="display:flex;flex-direction:column;gap:14px;background:#fff;border:1px solid #E3E8EF;border-radius:8px;padding:28px;box-shadow:0 4px 16px rgba(6,46,87,.06)"><div style="display:flex;align-items:center;justify-content:space-between"><div style="width:44px;height:44px;border-radius:50%;background:#1594E5;color:#fff;display:flex;align-items:center;justify-content:center"><i data-lucide="truck" style="width:22px;height:22px"></i></div><span style="padding:6px 12px;border-radius:9999px;background:#E8F3FC;color:#062E57;font:600 11px/1 Montserrat,sans-serif;letter-spacing:.12em">FTL</span></div><h3 style="margin:0;font:600 18px/1.3 Montserrat,sans-serif;color:#062E57">Caja seca completa</h3><p style="margin:0;font:400 14px/1.55 Lato,sans-serif;color:#4A5A6E">Cualquier servicio de transporte en caja seca dry van de 53 pies, nacional e internacional, con la unidad dedicada a tu carga.</p><div style="margin-top:auto;padding-top:12px;border-top:1px solid #E3E8EF;font:600 12px/1.4 Montserrat,sans-serif;color:#062E57">Cajas de 48 y 53 pies</div></div>
@@ -165,7 +203,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
   </div>
 </section>
 
-<section data-screen-label="Corredor" style="max-width:1312px;margin:0 auto;padding:0 var(--gx) clamp(48px,8vw,88px)">
+<section data-vfx="1" data-screen-label="Corredor" style="max-width:1312px;margin:0 auto;padding:0 var(--gx) clamp(48px,8vw,88px)">
   <div style="border:1px solid #E3E8EF;border-radius:12px;padding:clamp(24px,4vw,36px) clamp(22px,4vw,40px);display:flex;flex-direction:column;gap:28px">
     <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-end">
       <div style="display:flex;flex-direction:column;gap:8px">
@@ -179,7 +217,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
   </div>
 </section>
 
-<section data-screen-label="Transportistas" style="background:#F5F7FA">
+<section data-vfx="1" data-screen-label="Transportistas" style="background:#F5F7FA">
   <div style="max-width:1312px;margin:0 auto;padding:clamp(44px,7vw,72px) var(--gx);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:32px clamp(26px,5vw,64px);align-items:center">
     <div style="display:flex;flex-direction:column;gap:16px">
       <div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#062E57"><span style="width:24px;height:3px;background:#45B649;border-radius:2px"></span>Transportistas</div>
@@ -193,7 +231,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
   </div>
 </section>
 
-<section data-screen-label="Otros servicios" style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx) 0">
+<section data-vfx="1" data-screen-label="Otros servicios" style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx) 0">
   <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:28px">
     <div style="display:flex;flex-direction:column;gap:16px"><div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#062E57"><span style="width:24px;height:3px;background:#45B649;border-radius:2px"></span>Otros servicios</div><h2 style="margin:0;font:700 clamp(23px,3.9vw,32px)/1.2 Montserrat,sans-serif;color:#062E57">Completa tu operación.</h2></div>
     <a href="./#servicios" style="font:600 14px/1 Montserrat,sans-serif;color:#1594E5;padding-bottom:6px;border-bottom:2px solid #45B649">Ver todos los servicios →</a>
@@ -209,7 +247,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
   </div>
 </section>
 
-<section id="contacto" data-screen-label="CTA y contacto" style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx)">
+<section data-vfx="1" id="contacto" data-screen-label="CTA y contacto" style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx)">
   <div style="border-radius:12px;overflow:hidden;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));background:#E8F3FC">
     <div style="padding:clamp(26px,5vw,48px);display:flex;flex-direction:column;gap:20px">
       <h2 style="margin:0;font:700 clamp(23px,3.9vw,32px)/1.22 Montserrat,sans-serif;color:#062E57;text-wrap:balance">¿Listo para mover tu carga por tierra?</h2>
@@ -285,11 +323,38 @@ class Component extends DCLogic {
   state = { dd: false, w: window.innerWidth, menuOpen: false };
   componentDidMount() {
     this.icons();
+    this.vfx();
     this.onResize = () => this.setState({ w: window.innerWidth, menuOpen: window.innerWidth >= 1024 ? false : this.state.menuOpen });
     window.addEventListener('resize', this.onResize);
   }
-  componentWillUnmount() { window.removeEventListener('resize', this.onResize); }
-  componentDidUpdate() { this.icons(); }
+  componentWillUnmount() { if (this._obs) this._obs.disconnect(); if (this._rescate) clearTimeout(this._rescate); window.removeEventListener('resize', this.onResize); }
+  componentDidUpdate() { this.icons(); this.vfx(); }
+  /* Entrada al aparecer en pantalla. Se marca el elemento una sola vez y no se
+     vuelve a tocar: si React re-renderiza, lo ya revelado se queda revelado. */
+  vfx() {
+    /* Red de seguridad: pase lo que pase, a los 2.5 s todo queda visible.
+       El contenido nunca puede quedarse en blanco por culpa de un efecto. */
+    if (!this._rescate) {
+      this._rescate = setTimeout(() => {
+        document.querySelectorAll('[data-vfx]:not([data-visto])')
+                .forEach((e) => e.setAttribute('data-visto', '1'));
+      }, 2500);
+    }
+    const nuevos = document.querySelectorAll('[data-vfx]:not([data-visto]):not([data-vfx-obs])');
+    if (!nuevos.length) return;
+    if (!('IntersectionObserver' in window)) {
+      nuevos.forEach((e) => e.setAttribute('data-visto', '1'));
+      return;
+    }
+    if (!this._obs) {
+      this._obs = new IntersectionObserver((filas) => {
+        filas.forEach((f) => {
+          if (f.isIntersecting) { f.target.setAttribute('data-visto', '1'); this._obs.unobserve(f.target); }
+        });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+    }
+    nuevos.forEach((e) => { e.setAttribute('data-vfx-obs', '1'); this._obs.observe(e); });
+  }
   icons() {
     let n = 0;
     const run = () => { if (window.lucide) window.lucide.createIcons(); else if (n++ < 50) setTimeout(run, 100); };
