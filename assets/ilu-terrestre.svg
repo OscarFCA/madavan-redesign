@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Tractocamión en carretera">
 <style>
 @keyframes rueda{to{transform:rotate(360deg)}}
-@keyframes raya{to{stroke-dashoffset:-160}}
+@keyframes raya{to{stroke-dashoffset:160}}
 @keyframes brillo{0%,100%{opacity:1}50%{opacity:.45}}
 @keyframes vibra{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.5px)}}
 .rueda{animation:rueda 1.5s linear infinite}
