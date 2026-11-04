@@ -11,12 +11,12 @@
 <rect x="172" y="160" width="108" height="108" rx="6" fill="#EFEBE2" transform="rotate(45 226 214)"/>
 <path d="M226 184 V222" stroke="#6E6558" stroke-width="11" stroke-linecap="round"/>
 <circle cx="226" cy="242" r="7" fill="#6E6558"/>
-<rect x="542" y="144" width="136" height="136" rx="6" fill="#1F5C3D" transform="rotate(45 610 212)"/>
+<rect x="542" y="144" width="136" height="136" rx="6" fill="#215B94" transform="rotate(45 610 212)"/>
 <rect x="561" y="163" width="98" height="98" rx="6" fill="#EFEBE2" transform="rotate(45 610 212)"/>
-<path d="M588 212 L603 229 L634 196" fill="none" stroke="#1F5C3D" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M588 212 L603 229 L634 196" fill="none" stroke="#215B94" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
 <rect x="268" y="168" width="296" height="296" rx="12" fill="#12212E" transform="rotate(45 416 316)"/>
 <rect x="294" y="194" width="244" height="244" rx="10" fill="none" stroke="#6E6558" stroke-width="5" transform="rotate(45 416 316)"/>
-<path id="flama" d="M416 232 C450 278 472 300 472 336 C472 374 447 400 416 400 C385 400 360 374 360 336 C360 312 376 294 396 272 C398 300 410 306 416 300 C424 292 420 266 416 232 Z" fill="#1F5C3D" style="transform-origin:416px 395px"/>
+<path id="flama" d="M416 232 C450 278 472 300 472 336 C472 374 447 400 416 400 C385 400 360 374 360 336 C360 312 376 294 396 272 C398 300 410 306 416 300 C424 292 420 266 416 232 Z" fill="#215B94" style="transform-origin:416px 395px"/>
 <path d="M416 330 C428 346 434 356 434 366 C434 378 426 386 416 386 C406 386 398 378 398 366 C398 354 408 344 416 330 Z" fill="#EFEBE2"/>
 <path d="M382 452 H450" stroke="#EFEBE2" stroke-width="10" stroke-linecap="round"/>
 <rect x="146" y="408" width="74" height="104" rx="12" fill="#6E6558"/>

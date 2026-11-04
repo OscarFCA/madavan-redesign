@@ -13,15 +13,15 @@
 <rect width="800" height="600" fill="#EFEBE2"/>
 <circle cx="452" cy="250" r="198" fill="#E4DFD3"/>
 <path id="ruta" d="M96 468 Q400 108 716 352" fill="none" stroke="#6E6558" stroke-width="5" stroke-dasharray="2 18" stroke-linecap="round" opacity=".75"/>
-<circle cx="96" cy="468" r="13" fill="#1F5C3D"/>
-<circle cx="716" cy="352" r="13" fill="#1F5C3D"/>
+<circle cx="96" cy="468" r="13" fill="#215B94"/>
+<circle cx="716" cy="352" r="13" fill="#215B94"/>
 <g id="avion" transform="translate(400 288) rotate(-13) translate(-400 -288)">
 <path d="M250 264 L214 172 L256 172 L318 264 Z" fill="#6E6558"/>
 <path d="M226 288 L170 268 L170 284 L226 300 Z" fill="#6E6558" opacity=".85"/>
 <path d="M212 288 C250 262 286 258 322 258 H606 C652 258 686 268 686 284 C686 300 652 310 606 310 H300 C262 310 232 300 212 288 Z" fill="#12212E"/>
 <path d="M402 306 L336 380 L394 380 L462 306 Z" fill="#6E6558"/>
 <path d="M490 262 L400 200 L352 200 L420 262 Z" fill="#6E6558" opacity=".5"/>
-<ellipse cx="438" cy="318" rx="38" ry="16" fill="#1F5C3D"/>
+<ellipse cx="438" cy="318" rx="38" ry="16" fill="#215B94"/>
 <path d="M640 268 C664 270 678 276 678 284" fill="none" stroke="#EFEBE2" stroke-width="5" stroke-linecap="round" opacity=".5"/>
 <circle cx="320" cy="284" r="5" fill="#EFEBE2"/>
 <circle cx="356" cy="284" r="5" fill="#EFEBE2"/>

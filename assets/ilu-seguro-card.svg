@@ -19,7 +19,7 @@
 <path d="M-92 -44 L0 -4 L92 -44" fill="none" stroke="#12212E" stroke-width="5" stroke-linejoin="round"/>
 <path d="M0 -4 V102" stroke="#12212E" stroke-width="5"/>
 </g>
-<circle id="sello" cx="546" cy="432" r="52" fill="#1F5C3D" style="transform-origin:546px 432px"/>
+<circle id="sello" cx="546" cy="432" r="52" fill="#215B94" style="transform-origin:546px 432px"/>
 <path id="palomita" d="M522 432 L540 452 L574 412" fill="none" stroke="#EFEBE2" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="78" stroke-dashoffset="78"/>
 <circle class="chispa c0" cx="176" cy="160" r="9" fill="#6E6558" opacity=".8"/>
 <circle class="chispa c1" cx="646" cy="152" r="7" fill="#6E6558" opacity=".8"/>

@@ -25,13 +25,13 @@
 <path d="M0 -46 L116 -4 L0 38 L-116 -4 Z" fill="#6E6558"/>
 <path d="M-62 10 V52 C-62 72 -28 84 0 84 C28 84 62 72 62 52 V10 L0 38 Z" fill="#12212E"/>
 <path d="M110 -2 V54" stroke="#12212E" stroke-width="7" stroke-linecap="round"/>
-<circle cx="110" cy="62" r="13" fill="#1F5C3D"/>
+<circle cx="110" cy="62" r="13" fill="#215B94"/>
 </g>
 <g transform="translate(624 420)"><g id="sellocur">
-<circle cx="0" cy="0" r="62" fill="#1F5C3D"/>
+<circle cx="0" cy="0" r="62" fill="#215B94"/>
 <circle cx="0" cy="0" r="48" fill="none" stroke="#EFEBE2" stroke-width="4" opacity=".6"/>
 <path d="M-22 2 L-6 20 L24 -16" fill="none" stroke="#EFEBE2" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M-26 56 L-26 104 L0 86 L26 104 L26 56" fill="#2F7A52"/>
+<path d="M-26 56 L-26 104 L0 86 L26 104 L26 56" fill="#3A79BE"/>
 </g></g>
 <circle cx="132" cy="128" r="9" fill="#6E6558" opacity=".75"/>
 <circle cx="690" cy="180" r="7" fill="#6E6558" opacity=".75"/>
