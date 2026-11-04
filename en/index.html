@@ -49,7 +49,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 @media (max-width:900px){
   /* la foto del hero ocupa todo el ancho, con velo para que el texto se lea */
   [data-r=heroimg]{width:100%!important}
-  [data-r=heroscrim]{background:linear-gradient(180deg,#FFFFFF 0%,rgba(255,255,255,.96) 40%,rgba(255,255,255,.84) 70%,rgba(255,255,255,.60) 100%)!important}
+  [data-r=heroscrim]{background:linear-gradient(180deg,rgba(6,46,87,.90) 0%,rgba(6,46,87,.80) 45%,rgba(6,46,87,.62) 100%)!important}
   [data-r=heronote]{display:none!important}
   /* la ilustración baja a su propia banda, debajo del texto */
   [data-r=heroilu]{top:auto!important;bottom:0!important;width:100%!important;height:250px!important;background-size:contain!important;background-position:center bottom!important}
@@ -60,6 +60,9 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
   [data-r=heroilu]{height:188px!important}
   [data-r=herobody]{padding-bottom:202px!important}
 }
+/* banda de atributos del hero */
+@media (max-width:900px){[data-r=heroattr]{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media (max-width:420px){[data-r=heroattr]{grid-template-columns:1fr!important}}
 /* cifras */
 @media (max-width:1023px){[data-r=stat]{border-right:0!important}
   [data-r=stats]{grid-template-columns:repeat(2,1fr)!important;gap:28px 24px!important}}
@@ -132,7 +135,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
           <div style="position:absolute;top:100%;left:-20px;padding-top:12px;z-index:30">
             <div style="min-width:310px;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 12px 32px rgba(6,46,87,.12);padding:8px;display:flex;flex-direction:column;gap:2px">
               <sc-for list="{{ svcMenu }}" as="it" hint-placeholder-count="7">
-                <a href="{{ it.href }}" style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:8px;color:#062E57;font:500 14px/1.3 Montserrat,sans-serif;white-space:nowrap" style-hover="background:#E8F3FC;color:#062E57"><span style="width:32px;height:32px;border-radius:50%;background:#E8F3FC;color:#1594E5;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="{{ it.icon }}" style="width:16px;height:16px"></i></span>{{ it.title }}</a>
+                <a href="{{ it.href }}" style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:3px;color:#062E57;font:500 14px/1.3 Montserrat,sans-serif;white-space:nowrap" style-hover="background:#E8F3FC;color:#062E57"><span style="width:32px;height:32px;border-radius:50%;background:#E8F3FC;color:#1594E5;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="{{ it.icon }}" style="width:16px;height:16px"></i></span>{{ it.title }}</a>
               </sc-for>
             </div>
           </div>
@@ -167,33 +170,33 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
   </sc-if>
 </header>
 
-<section data-vfx="1" id="inicio" data-screen-label="Hero" style="position:relative;overflow:hidden;background:#fff">
-  <div data-r="heroimg" style="position:absolute;top:0;right:0;bottom:0;width:62%;background:#E8F3FC url('../assets/hero-buque.webp?v=ec6f6f00') center/cover no-repeat;overflow:hidden"><sc-if value="{{ heroVideo }}" hint-placeholder-val="{{ false }}"><video autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="metadata" poster="../assets/hero-buque.webp?v=ec6f6f00" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;display:block"><source data-src="../assets/hero-buque.mp4?v=85492ffb" type="video/mp4"></video></sc-if></div>
-  <div data-r="heroscrim" style="position:absolute;inset:0;background:linear-gradient(90deg,#FFFFFF 0%,#FFFFFF 38%,rgba(255,255,255,0) 62%)"></div>
-  <div style="position:relative;max-width:1312px;margin:0 auto;padding:clamp(44px,7vw,96px) var(--gx) clamp(40px,6vw,72px)">
+<section data-vfx="1" id="inicio" data-screen-label="Hero" style="position:relative;overflow:hidden;background:#062E57;display:flex;align-items:center;min-height:clamp(520px,76vh,780px)">
+  <div data-r="heroimg" style="position:absolute;inset:0;background:#062E57 url('../assets/hero-buque.webp?v=ec6f6f00') center/cover no-repeat;overflow:hidden"><sc-if value="{{ heroVideo }}" hint-placeholder-val="{{ false }}"><video autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="metadata" poster="../assets/hero-buque.webp?v=ec6f6f00" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;display:block"><source data-src="../assets/hero-buque.mp4?v=85492ffb" type="video/mp4"></video></sc-if></div>
+  <div data-r="heroscrim" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,46,87,.90) 0%,rgba(6,46,87,.72) 34%,rgba(6,46,87,.34) 62%,rgba(6,46,87,.12) 100%)"></div>
+  <div style="position:relative;max-width:1312px;margin:0 auto;padding:clamp(72px,9vw,128px) var(--gx) clamp(56px,7vw,88px)">
     <div style="max-width:600px;display:flex;flex-direction:column;gap:24px">
-      <div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#062E57"><span style="width:24px;height:3px;background:#45B649;border-radius:2px"></span>International Multilogistics</div>
-      <h1 style="margin:0;font:800 clamp(34px,7.4vw,64px)/1.05 Montserrat,sans-serif;letter-spacing:-.02em;color:#062E57;text-wrap:balance">We connect <span style="display:block;color:#1594E5">your operation to the world.</span></h1>
-      <p style="margin:0;font:400 clamp(16px,2.3vw,18px)/1.55 Lato,sans-serif;color:#4A5A6E;max-width:500px;text-wrap:pretty">Specialized logistics for domestic and international freight: ocean, air, ground, oversized cargo, dangerous goods and customs, door to door.</p>
+      <div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#FFFFFF"><span style="width:24px;height:3px;background:#45B649;border-radius:2px"></span>International Multilogistics</div>
+      <h1 style="margin:0;font:700 clamp(32px,6.6vw,56px)/1.1 Montserrat,sans-serif;letter-spacing:-.015em;color:#FFFFFF;text-wrap:balance">We connect <span style="display:block;color:#FFFFFF">your operation to the world.</span></h1>
+      <p style="margin:0;font:400 clamp(16px,2.3vw,18px)/1.65 Lato,sans-serif;color:rgba(255,255,255,.80);max-width:520px;text-wrap:pretty">Specialized logistics for domestic and international freight: ocean, air, ground, oversized cargo, dangerous goods and customs, door to door.</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap">
-        <a href="#contacto" data-vfx-btn="1" style="display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:9999px;background:#1594E5;color:#fff;font:600 15px/1 Montserrat,sans-serif" style-hover="background:#0F7CC4;color:#fff">Request a quote <span>→</span></a>
-        <a href="#servicios" style="display:inline-flex;align-items:center;gap:10px;padding:12.5px 24px;border-radius:9999px;background:#fff;border:1.5px solid #1594E5;color:#1594E5;font:600 15px/1 Montserrat,sans-serif" style-hover="background:#E8F3FC">See our services</a>
+        <a href="#contacto" data-vfx-btn="1" style="display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:2px;background:#1594E5;color:#fff;font:600 15px/1 Montserrat,sans-serif" style-hover="background:#0F7CC4;color:#fff">Request a quote <span>→</span></a>
+        <a href="#servicios" style="display:inline-flex;align-items:center;gap:10px;padding:12.5px 24px;border-radius:2px;background:transparent;border:1px solid rgba(255,255,255,.55);color:#FFFFFF;font:600 15px/1 Montserrat,sans-serif" style-hover="background:rgba(255,255,255,.12);color:#FFFFFF">See our services</a>
       </div>
     </div>
-    <div style="margin-top:72px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:24px;max-width:960px;background:rgba(255,255,255,.92);border-radius:12px;padding:20px 24px">
-      <div style="display:flex;align-items:center;gap:12px"><i data-lucide="globe" style="width:28px;height:28px;color:#1594E5;flex-shrink:0"></i><div style="font:600 11px/1.35 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#062E57">Global reach<span style="display:block;color:#6B7A8C;font-weight:500">Without borders</span></div></div>
-      <div style="display:flex;align-items:center;gap:12px"><i data-lucide="shield-check" style="width:28px;height:28px;color:#1594E5;flex-shrink:0"></i><div style="font:600 11px/1.35 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#062E57">Trust<span style="display:block;color:#6B7A8C;font-weight:500">In every delivery</span></div></div>
-      <div style="display:flex;align-items:center;gap:12px"><i data-lucide="settings" style="width:28px;height:28px;color:#1594E5;flex-shrink:0"></i><div style="font:600 11px/1.35 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#062E57">Solutions<span style="display:block;color:#6B7A8C;font-weight:500">Made to measure</span></div></div>
-      <div style="display:flex;align-items:center;gap:12px"><i data-lucide="sprout" style="width:28px;height:28px;color:#1594E5;flex-shrink:0"></i><div style="font:600 11px/1.35 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#062E57">A future<span style="display:block;color:#6B7A8C;font-weight:500">In motion</span></div></div>
+    <div data-r="heroattr" style="margin-top:clamp(48px,7vw,88px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 24px;max-width:1060px;border-top:1px solid rgba(255,255,255,.22);padding:28px 0 0">
+      <div style="display:flex;align-items:center;gap:12px"><i data-lucide="globe" style="width:26px;height:26px;color:#45B649;flex-shrink:0"></i><div style="font:600 11px/1.35 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#FFFFFF">Global reach<span style="display:block;color:rgba(255,255,255,.62);font-weight:500">Without borders</span></div></div>
+      <div style="display:flex;align-items:center;gap:12px"><i data-lucide="shield-check" style="width:26px;height:26px;color:#45B649;flex-shrink:0"></i><div style="font:600 11px/1.35 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#FFFFFF">Trust<span style="display:block;color:rgba(255,255,255,.62);font-weight:500">In every delivery</span></div></div>
+      <div style="display:flex;align-items:center;gap:12px"><i data-lucide="settings" style="width:26px;height:26px;color:#45B649;flex-shrink:0"></i><div style="font:600 11px/1.35 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#FFFFFF">Solutions<span style="display:block;color:rgba(255,255,255,.62);font-weight:500">Made to measure</span></div></div>
+      <div style="display:flex;align-items:center;gap:12px"><i data-lucide="sprout" style="width:26px;height:26px;color:#45B649;flex-shrink:0"></i><div style="font:600 11px/1.35 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#FFFFFF">A future<span style="display:block;color:rgba(255,255,255,.62);font-weight:500">In motion</span></div></div>
     </div>
   </div>
 </section>
 
-<section data-vfx="1" id="servicios" data-screen-label="Servicios" style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx) clamp(36px,6vw,64px)">
+<section data-vfx="1" id="servicios" data-screen-label="Servicios" style="max-width:1312px;margin:0 auto;padding:clamp(72px,9vw,128px) var(--gx) clamp(56px,7vw,88px)">
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:32px clamp(26px,5vw,64px);align-items:end;margin-bottom:48px">
     <div style="display:flex;flex-direction:column;gap:16px">
       <div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#062E57"><span style="width:24px;height:3px;background:#45B649;border-radius:2px"></span>Logistics services</div>
-      <h2 style="margin:0;font:700 clamp(25px,4.6vw,36px)/1.18 Montserrat,sans-serif;color:#062E57">Every mode, <span style="display:block;color:#1594E5">one single operation.</span></h2>
+      <h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.01em;color:#062E57">Every mode, <span style="display:block;color:#062E57">one single operation.</span></h2>
     </div>
     <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
       <p style="margin:0;font:400 16px/1.6 Lato,sans-serif;color:#4A5A6E;text-wrap:pretty">We handle every requirement involved in moving your goods: door-to-door service, insurance and all transport modes, plus customs support.</p>
@@ -202,7 +205,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:24px">
     <sc-for list="{{ services }}" as="s" hint-placeholder-count="8">
-      <a href="{{ s.href }}" style="display:flex;flex-direction:column;background:#fff;border:1px solid #E3E8EF;border-radius:8px;overflow:hidden;box-shadow:0 4px 16px rgba(6,46,87,.06);color:inherit;transition:transform .2s ease, box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 10px 24px rgba(6,46,87,.10);color:inherit">
+      <a href="{{ s.href }}" style="display:flex;flex-direction:column;background:#fff;border:1px solid #E3E8EF;border-radius:3px;overflow:hidden;box-shadow:none;color:inherit;transition:transform .2s ease, box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 2px 10px rgba(6,46,87,.07);color:inherit">
         <div style="position:relative;aspect-ratio:2/1;background:{{ s.bg }}">
           <div style="position:absolute;left:20px;bottom:-22px;width:44px;height:44px;border-radius:50%;background:#1594E5;box-shadow:0 0 0 3px #fff;display:flex;align-items:center;justify-content:center;color:#fff"><i data-lucide="{{ s.icon }}" style="width:22px;height:22px"></i></div>
         </div>
@@ -211,7 +214,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
             <h3 style="margin:0;font:600 18px/1.3 Montserrat,sans-serif;color:#062E57">{{ s.title }}</h3>
             <span style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:#E8F3FC;color:#1594E5;display:flex;align-items:center;justify-content:center;font:600 15px/1 Montserrat,sans-serif">→</span>
           </div>
-          <p style="margin:0;font:400 14px/1.5 Lato,sans-serif;color:#4A5A6E;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">{{ s.desc }}</p>
+          <p style="margin:0;font:400 15.5px/1.72 Lato,sans-serif;color:#4A5A6E;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">{{ s.desc }}</p>
         </div>
       </a>
     </sc-for>
@@ -219,7 +222,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 </section>
 
 <section data-vfx="1" data-screen-label="Cifras" style="background:#F5F7FA">
-  <div style="max-width:1312px;margin:0 auto;padding:clamp(28px,5vw,40px) var(--gx);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:24px 0" data-r="stats">
+  <div style="max-width:1312px;margin:0 auto;padding:clamp(48px,6vw,72px) var(--gx);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:24px 0" data-r="stats">
     <div data-r="stat" style="display:flex;align-items:center;gap:16px;padding:0 24px;border-right:1px solid #D9DEE5"><i data-lucide="ship" style="width:40px;height:40px;color:#1594E5;flex-shrink:0"></i><div><div style="font:700 clamp(22px,3.6vw,28px)/1 Montserrat,sans-serif;color:#062E57">+300 t</div><div style="margin-top:6px;font:600 10.5px/1.35 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B7A8C">Lifting capacity<br>on vessels</div></div></div>
     <div data-r="stat" style="display:flex;align-items:center;gap:16px;padding:0 24px;border-right:1px solid #D9DEE5"><i data-lucide="truck" style="width:40px;height:40px;color:#1594E5;flex-shrink:0"></i><div><div style="font:700 clamp(22px,3.6vw,28px)/1 Montserrat,sans-serif;color:#062E57">350 t</div><div style="margin-top:6px;font:600 10.5px/1.35 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B7A8C">Cranes for oversized<br>cargo</div></div></div>
     <div data-r="stat" style="display:flex;align-items:center;gap:16px;padding:0 24px;border-right:1px solid #D9DEE5"><i data-lucide="network" style="width:40px;height:40px;color:#1594E5;flex-shrink:0"></i><div><div style="font:700 clamp(22px,3.6vw,28px)/1 Montserrat,sans-serif;color:#062E57">5</div><div style="margin-top:6px;font:600 10.5px/1.35 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B7A8C">Continents in our<br>agent network</div></div></div>
@@ -227,11 +230,11 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
   </div>
 </section>
 
-<section data-vfx="1" id="cobertura" data-screen-label="Cobertura" style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx)">
+<section data-vfx="1" id="cobertura" data-screen-label="Cobertura" style="max-width:1312px;margin:0 auto;padding:clamp(72px,9vw,128px) var(--gx)">
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(30px,5vw,48px);align-items:start">
     <div style="display:flex;flex-direction:column;gap:20px">
       <div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#062E57"><span style="width:24px;height:3px;background:#45B649;border-radius:2px"></span>Coverage</div>
-      <h2 style="margin:0;font:700 clamp(25px,4.6vw,36px)/1.18 Montserrat,sans-serif;color:#062E57">A logistics network <span style="display:block;color:#1594E5">that takes you further.</span></h2>
+      <h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.01em;color:#062E57">A logistics network <span style="display:block;color:#062E57">that takes you further.</span></h2>
       <p style="margin:0;font:400 16px/1.6 Lato,sans-serif;color:#4A5A6E;text-wrap:pretty">We are part of a worldwide network of international freight agents covering Asia, Oceania, Europe, Africa, North America and South America.</p>
       <a href="#contacto" style="align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:9999px;background:#1594E5;color:#fff;font:600 15px/1 Montserrat,sans-serif" style-hover="background:#0F7CC4;color:#fff">See our coverage <span>→</span></a>
     </div>
@@ -255,27 +258,27 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 
 <section data-vfx="1" id="nosotros" data-screen-label="Valores" style="position:relative;overflow:hidden">
   <div style="position:absolute;inset:0;background:#0A3A66"></div>
-  <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,46,87,.95) 0%,rgba(6,46,87,.78) 45%,rgba(69,182,73,.80) 100%)"></div>
-  <div style="position:relative;max-width:1312px;margin:0 auto;padding:clamp(40px,6vw,64px) var(--gx);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:clamp(28px,5vw,40px) clamp(26px,5vw,64px);align-items:center">
+  <div style="position:absolute;inset:0;background:#062E57"></div>
+  <div style="position:relative;max-width:1312px;margin:0 auto;padding:clamp(64px,8vw,104px) var(--gx);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:clamp(28px,5vw,40px) clamp(26px,5vw,64px);align-items:center">
     <div style="display:flex;flex-direction:column;gap:16px">
       <div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#fff"><span style="width:24px;height:3px;background:#8BCF4A;border-radius:2px"></span>Added value</div>
-      <h2 style="margin:0;font:700 clamp(25px,4.6vw,36px)/1.18 Montserrat,sans-serif;color:#fff">More than logistics — we drive a better future.</h2>
+      <h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.01em;color:#fff">More than logistics — we drive a better future.</h2>
       <p style="margin:0;font:400 16px/1.6 Lato,sans-serif;color:rgba(255,255,255,.88);text-wrap:pretty">Flexibility, personal attention, competitive costs, dynamic solutions, process control, confidentiality and end-to-end solutions.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:28px">
-      <div style="display:flex;flex-direction:column;gap:12px"><div style="width:44px;height:44px;border-radius:50%;background:#fff;color:#1594E5;display:flex;align-items:center;justify-content:center"><i data-lucide="shield-check" style="width:22px;height:22px"></i></div><div style="font:600 13px/1.2 Montserrat,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#fff">Trust</div><div style="font:400 14px/1.5 Lato,sans-serif;color:#fff">Solid, transparent relationships</div></div>
-      <div style="display:flex;flex-direction:column;gap:12px"><div style="width:44px;height:44px;border-radius:50%;background:#fff;color:#1594E5;display:flex;align-items:center;justify-content:center"><i data-lucide="bar-chart-3" style="width:22px;height:22px"></i></div><div style="font:600 13px/1.2 Montserrat,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#fff">Efficiency</div><div style="font:400 14px/1.5 Lato,sans-serif;color:#fff">Agile processes that deliver results</div></div>
-      <div style="display:flex;flex-direction:column;gap:12px"><div style="width:44px;height:44px;border-radius:50%;background:#fff;color:#1594E5;display:flex;align-items:center;justify-content:center"><i data-lucide="sprout" style="width:22px;height:22px"></i></div><div style="font:600 13px/1.2 Montserrat,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#fff">Sustainability</div><div style="font:400 14px/1.5 Lato,sans-serif;color:#fff">Responsible solutions for tomorrow</div></div>
-      <div style="display:flex;flex-direction:column;gap:12px"><div style="width:44px;height:44px;border-radius:50%;background:#fff;color:#1594E5;display:flex;align-items:center;justify-content:center"><i data-lucide="globe" style="width:22px;height:22px"></i></div><div style="font:600 13px/1.2 Montserrat,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#fff">Global reach</div><div style="font:400 14px/1.5 Lato,sans-serif;color:#fff">Opportunities all over the world</div></div>
+      <div style="display:flex;flex-direction:column;gap:12px"><div style="width:44px;height:44px;border-radius:50%;background:#fff;color:#1594E5;display:flex;align-items:center;justify-content:center"><i data-lucide="shield-check" style="width:22px;height:22px"></i></div><div style="font:600 13px/1.2 Montserrat,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#fff">Trust</div><div style="font:400 15.5px/1.72 Lato,sans-serif;color:#fff">Solid, transparent relationships</div></div>
+      <div style="display:flex;flex-direction:column;gap:12px"><div style="width:44px;height:44px;border-radius:50%;background:#fff;color:#1594E5;display:flex;align-items:center;justify-content:center"><i data-lucide="bar-chart-3" style="width:22px;height:22px"></i></div><div style="font:600 13px/1.2 Montserrat,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#fff">Efficiency</div><div style="font:400 15.5px/1.72 Lato,sans-serif;color:#fff">Agile processes that deliver results</div></div>
+      <div style="display:flex;flex-direction:column;gap:12px"><div style="width:44px;height:44px;border-radius:50%;background:#fff;color:#1594E5;display:flex;align-items:center;justify-content:center"><i data-lucide="sprout" style="width:22px;height:22px"></i></div><div style="font:600 13px/1.2 Montserrat,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#fff">Sustainability</div><div style="font:400 15.5px/1.72 Lato,sans-serif;color:#fff">Responsible solutions for tomorrow</div></div>
+      <div style="display:flex;flex-direction:column;gap:12px"><div style="width:44px;height:44px;border-radius:50%;background:#fff;color:#1594E5;display:flex;align-items:center;justify-content:center"><i data-lucide="globe" style="width:22px;height:22px"></i></div><div style="font:600 13px/1.2 Montserrat,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#fff">Global reach</div><div style="font:400 15.5px/1.72 Lato,sans-serif;color:#fff">Opportunities all over the world</div></div>
     </div>
   </div>
 </section>
 
-<section data-vfx="1" data-screen-label="Misión" style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx)">
+<section data-vfx="1" data-screen-label="Misión" style="max-width:1312px;margin:0 auto;padding:clamp(72px,9vw,128px) var(--gx)">
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(32px,5vw,48px) clamp(26px,5vw,64px)">
     <div style="display:flex;flex-direction:column;gap:20px">
       <div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#062E57"><span style="width:24px;height:3px;background:#45B649;border-radius:2px"></span>About us</div>
-      <h2 style="margin:0;font:700 clamp(25px,4.6vw,36px)/1.18 Montserrat,sans-serif;color:#062E57">Your cargo goes further, <span style="display:block;color:#1594E5">and faster.</span></h2>
+      <h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.01em;color:#062E57">Your cargo goes further, <span style="display:block;color:#062E57">and faster.</span></h2>
       <p style="margin:0;font:400 16px/1.6 Lato,sans-serif;color:#4A5A6E;text-wrap:pretty">To offer our clients integrated international transport services with the quality and experience their needs demand, backed by the advice and immediate response of our highly qualified staff.</p>
       <blockquote style="margin:8px 0 0;padding:20px 0 0;border-top:1px solid #E3E8EF;font:600 clamp(16px,2.6vw,18px)/1.45 Montserrat,sans-serif;color:#062E57">“Being the best is not a matter of luck — it comes from experience, consistency and dedication”</blockquote>
     </div>
@@ -289,17 +292,17 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 </section>
 
 <section data-vfx="1" id="blog" data-screen-label="Blog" style="display:none;background:#F5F7FA">
-  <div style="max-width:1312px;margin:0 auto;padding:clamp(44px,7vw,80px) var(--gx)">
+  <div style="max-width:1312px;margin:0 auto;padding:clamp(72px,9vw,120px) var(--gx)">
     <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:40px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#062E57"><span style="width:24px;height:3px;background:#45B649;border-radius:2px"></span>Blog</div>
-        <h2 style="margin:0;font:700 clamp(25px,4.6vw,36px)/1.18 Montserrat,sans-serif;color:#062E57">Logistics, transport <span style="display:block;color:#1594E5">and supply chain.</span></h2>
+        <h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.01em;color:#062E57">Logistics, transport <span style="display:block;color:#062E57">and supply chain.</span></h2>
       </div>
       <a href="https://madavan.com.mx/blog-logistica-transporte-supply-chain-cadena-suministro/" style="font:600 14px/1 Montserrat,sans-serif;color:#1594E5;padding-bottom:6px;border-bottom:2px solid #45B649">See all posts →</a>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:24px">
       <sc-for list="{{ posts }}" as="p" hint-placeholder-count="3">
-        <a href="{{ p.href }}" style="display:flex;flex-direction:column;gap:14px;background:#fff;border:1px solid #E3E8EF;border-radius:8px;padding:28px;color:inherit;transition:transform .2s ease" style-hover="transform:translateY(-2px);color:inherit">
+        <a href="{{ p.href }}" style="display:flex;flex-direction:column;gap:14px;background:#fff;border:1px solid #E3E8EF;border-radius:3px;padding:28px;color:inherit;transition:transform .2s ease" style-hover="transform:translateY(-2px);color:inherit">
           <div style="font:600 11px/1.3 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B7A8C">{{ p.date }}</div>
           <h3 style="margin:0;font:600 18px/1.35 Montserrat,sans-serif;color:#062E57;text-wrap:pretty">{{ p.title }}</h3>
           <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:12px">
@@ -312,7 +315,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
   </div>
 </section>
 
-<section data-vfx="1" id="contacto" data-screen-label="CTA y contacto" style="max-width:1312px;margin:0 auto;padding:clamp(48px,8vw,88px) var(--gx)">
+<section data-vfx="1" id="contacto" data-screen-label="CTA y contacto" style="max-width:1312px;margin:0 auto;padding:clamp(72px,9vw,128px) var(--gx)">
   <div style="border-radius:12px;overflow:hidden;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));background:#E8F3FC">
     <div style="padding:clamp(26px,5vw,48px);display:flex;flex-direction:column;gap:20px">
       <h2 style="margin:0;font:700 clamp(23px,3.9vw,32px)/1.22 Montserrat,sans-serif;color:#062E57;text-wrap:balance">Ready to take your business to the next level?</h2>
@@ -320,7 +323,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
       <div style="display:flex;flex-direction:column;gap:18px;align-items:flex-start">
         <div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="message-square-text" style="width:22px;height:22px;color:#1594E5;flex-shrink:0;margin-top:2px"></i><p style="margin:0;font:400 15px/1.6 Lato,sans-serif;color:#4A5A6E">Message us on WhatsApp with <strong style="color:#062E57">origin, destination and cargo type</strong> and we'll put your quote together.</p></div>
         <a href="https://wa.me/525610980231?text=Hi%20MADAVAN%2C%20I%27d%20like%20a%20quote%20for%20a%20shipment.%20" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 28px;border-radius:9999px;background:#25D366;color:#fff;font:600 16px/1 Montserrat,sans-serif;box-shadow:0 8px 20px rgba(37,211,102,.28)" style-hover="background:#1DB556;color:#fff"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true" style="display:block;flex-shrink:0"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.08-.12-.27-.2-.57-.35M12.05 21.78h-.01c-1.77 0-3.5-.48-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.43 9.89-9.88 9.89m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42Z"/></svg>Quote on WhatsApp</a>
-        <div style="display:flex;flex-wrap:wrap;gap:8px 18px;font:400 14px/1.5 Lato,sans-serif;color:#4A5A6E"><span style="display:flex;align-items:center;gap:8px"><i data-lucide="phone" style="width:16px;height:16px;color:#1594E5"></i>+52 56 1098 0231</span><span style="display:flex;align-items:center;gap:8px"><i data-lucide="clock" style="width:16px;height:16px;color:#1594E5"></i>Monday to Friday, 8:00 to 18:00</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px 18px;font:400 15.5px/1.72 Lato,sans-serif;color:#4A5A6E"><span style="display:flex;align-items:center;gap:8px"><i data-lucide="phone" style="width:16px;height:16px;color:#1594E5"></i>+52 56 1098 0231</span><span style="display:flex;align-items:center;gap:8px"><i data-lucide="clock" style="width:16px;height:16px;color:#1594E5"></i>Monday to Friday, 8:00 to 18:00</span></div>
       </div>
     </div>
     <div style="position:relative;min-height:360px;background:#E8F3FC url('../assets/ilu-contacto.svg?v=bdfdd513') center/cover no-repeat">
@@ -330,10 +333,10 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 </section>
 
 <footer style="background:#062E57;color:#fff">
-  <div style="max-width:1312px;margin:0 auto;padding:clamp(40px,6vw,64px) var(--gx) clamp(28px,5vw,48px);display:flex;flex-direction:column;gap:clamp(30px,5vw,48px)">
+  <div style="max-width:1312px;margin:0 auto;padding:clamp(64px,8vw,104px) var(--gx) clamp(44px,6vw,64px);display:flex;flex-direction:column;gap:clamp(30px,5vw,48px)">
     <div style="display:flex;align-items:center;gap:32px;flex-wrap:wrap">
       <div style="display:flex;flex-direction:column;gap:2px">
-        <span style="font:800 clamp(23px,5.4vw,30px)/1 Montserrat,sans-serif;letter-spacing:.01em;color:#fff">MADAVAN</span>
+        <span style="font:700 clamp(22px,5vw,28px)/1.1 Montserrat,sans-serif;letter-spacing:.01em;color:#fff">MADAVAN</span>
         <span style="font:600 9.5px/1 Montserrat,sans-serif;letter-spacing:.3em;color:#1594E5">INTERNATIONAL MULTILOGISTICS</span>
       </div>
       <span data-r="fdiv" style="width:1px;height:44px;background:rgba(255,255,255,.2)"></span>
@@ -450,19 +453,19 @@ class Component extends DCLogic {
     const tapiz = `center/cover no-repeat, ${ph}`;
     const services = [
       { title: 'Ocean Freight', icon: 'ship', href: 'transporte-maritimo.html', bg: `url('../assets/ilu-maritimo-card.svg?v=a72286a3') ${tapiz}`,
-        desc: 'Contracts with the world\'s leading shipping lines and service in every commercial port: containers, consolidated and bulk cargo.' },
+        desc: 'Containers, consolidated and bulk cargo with the leading shipping lines.' },
       { title: 'Air Freight', icon: 'plane', href: 'transporte-aereo.html', bg: `url('../assets/ilu-aereo-card.svg?v=00cdf2a0') ${tapiz}`,
-        desc: 'Consolidated and door-to-door shipments, to and from Mexico, with highly competitive rates and charter flights.' },
+        desc: 'Consolidated and door-to-door service, with charter flights.' },
       { title: 'Ground Freight', icon: 'truck', href: 'transporte-terrestre.html', bg: `url('../assets/ilu-terrestre-card.svg?v=96e1f2c1') ${tapiz}`,
-        desc: '48 and 53 ft FTL and LTL trailers between Canada, the United States, Mexico and Central America, plus rail intermodal.' },
+        desc: 'FTL and LTL in 48 and 53 ft trailers, plus rail intermodal.' },
       { title: 'Oversized Cargo', icon: 'container', href: 'carga-sobredimensionada.html', bg: `url('../assets/ilu-sobredimensionada-card.svg?v=1cee8010') ${tapiz}`,
-        desc: 'Specialized moves on lowboy, flat rack and low-bed trailers, plus chartering of multipurpose vessels.' },
+        desc: 'Lowboy, flat rack and low beds; multipurpose vessel chartering.' },
       { title: 'Dangerous Goods HAZMAT', icon: 'triangle-alert', href: 'mercancia-peligrosa-hazmat.html', bg: `url('../assets/ilu-hazmat-card.svg?v=61455498') ${tapiz}`,
-        desc: 'Certified for handling and assessing hazardous materials: DGD, IMDG Code and IMO.' },
+        desc: 'Certified handling and assessment: DGD, IMDG Code and IMO.' },
       { title: 'Cargo and Goods Insurance', icon: 'shield-check', href: 'seguro-de-carga.html', bg: `url('../assets/ilu-seguro-card.svg?v=424f04de') ${tapiz}`,
-        desc: 'Domestic and international insurance policies covering the risks of moving merchandise, goods and cargo.' },
+        desc: 'Domestic and international policies for the movement of your cargo.' },
       { title: 'Supply Chain Courses', icon: 'graduation-cap', href: 'cursos/', bg: `url('../assets/ilu-cursos-card.svg?v=6bafc3a4') ${tapiz}`,
-        desc: 'Consulting, courses and events on transport, logistics, supply chain, HAZMAT and customs.' }
+        desc: 'Training in foreign trade, logistics, HAZMAT and customs.' }
     ];
     return {
       services,
