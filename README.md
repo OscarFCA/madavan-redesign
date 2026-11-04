@@ -46,7 +46,20 @@ La responsividad vive en el `<style>` del `<helmet>` de cada página:
   `support.js` reescribe los estilos inline, así que `[style*=...]` no funciona aquí.
 - Debajo de 1024 px la navegación se convierte en menú hamburguesa.
 
-Las ilustraciones (`assets/ilu-*.svg`) las genera `ilustraciones.py`.
+Las ilustraciones (`assets/ilu-*.svg`) las genera `ilustraciones.py`. Su paleta
+son siete constantes al principio del archivo: cambiarlas re-tematiza las nueve.
+
+## Orden del flujo
+
+    python3 cursos_gen.py     # regenera las 12 páginas de Academia
+    python3 sistema.py        # design system Editorial (tipografía y color)
+    python3 estilo.py         # retícula, formas y revelado escalonado
+    python3 build.py          # deploy/ en ES, EN y /cursos/
+
+`cursos_gen.py` escribe sus .dc.html desde cero, así que **todo lo que venga
+después hay que volver a correrlo** o esas doce páginas se quedan con el
+sistema viejo y sin animaciones. `sistema.py` y `estilo.py` son idempotentes:
+correrlos de más no hace daño.
 
 ## Idiomas
 

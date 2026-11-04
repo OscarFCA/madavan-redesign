@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-62 60 924 462" width="924" height="462" style="background:#E8F3FC" role="img" aria-label="Capacitación en línea con certificado">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-62 60 924 462" width="924" height="462" style="background:#EFEBE2" role="img" aria-label="Capacitación en línea con certificado">
 <style>
 @keyframes latido{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
 @keyframes onda{0%{transform:scale(1);opacity:.5}100%{transform:scale(1.65);opacity:0}}
@@ -8,32 +8,32 @@
 #aro{animation:onda 2.6s ease-out infinite}
 #sellocur{animation:entra .9s cubic-bezier(.34,1.56,.64,1) .3s both}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
-<rect width="800" height="600" fill="#E8F3FC"/>
-<circle cx="400" cy="288" r="238" fill="#D7EAF9"/>
-<rect x="150" y="150" width="500" height="306" rx="16" fill="#062E57"/>
-<rect x="174" y="174" width="452" height="236" rx="8" fill="#E8F3FC"/>
-<path d="M330 500 H470 M400 456 V500" stroke="#062E57" stroke-width="12" stroke-linecap="round"/>
-<path d="M286 512 H514" stroke="#062E57" stroke-width="14" stroke-linecap="round"/>
-<circle id="aro" cx="400" cy="292" r="58" fill="none" stroke="#1594E5" stroke-width="3" opacity=".5" style="transform-origin:400px 292px"/>
-<circle id="play" cx="400" cy="292" r="58" fill="#1594E5" style="transform-origin:400px 292px"/>
-<path d="M384 266 L428 292 L384 318 Z" fill="#E8F3FC"/>
-<rect x="200" y="206" width="120" height="10" rx="5" fill="#B9D9F2" opacity=".5"/>
-<rect x="200" y="230" width="86" height="10" rx="5" fill="#B9D9F2" opacity=".5"/>
-<rect x="200" y="358" width="150" height="10" rx="5" fill="#B9D9F2" opacity=".5"/>
-<rect x="200" y="382" width="104" height="10" rx="5" fill="#B9D9F2" opacity=".5"/>
+<rect width="800" height="600" fill="#EFEBE2"/>
+<circle cx="400" cy="288" r="238" fill="#E4DFD3"/>
+<rect x="150" y="150" width="500" height="306" rx="16" fill="#12212E"/>
+<rect x="174" y="174" width="452" height="236" rx="8" fill="#EFEBE2"/>
+<path d="M330 500 H470 M400 456 V500" stroke="#12212E" stroke-width="12" stroke-linecap="round"/>
+<path d="M286 512 H514" stroke="#12212E" stroke-width="14" stroke-linecap="round"/>
+<circle id="aro" cx="400" cy="292" r="58" fill="none" stroke="#6E6558" stroke-width="3" opacity=".5" style="transform-origin:400px 292px"/>
+<circle id="play" cx="400" cy="292" r="58" fill="#6E6558" style="transform-origin:400px 292px"/>
+<path d="M384 266 L428 292 L384 318 Z" fill="#EFEBE2"/>
+<rect x="200" y="206" width="120" height="10" rx="5" fill="#D3CCBE" opacity=".5"/>
+<rect x="200" y="230" width="86" height="10" rx="5" fill="#D3CCBE" opacity=".5"/>
+<rect x="200" y="358" width="150" height="10" rx="5" fill="#D3CCBE" opacity=".5"/>
+<rect x="200" y="382" width="104" height="10" rx="5" fill="#D3CCBE" opacity=".5"/>
 <g transform="translate(400 116)">
-<path d="M0 -46 L116 -4 L0 38 L-116 -4 Z" fill="#1594E5"/>
-<path d="M-62 10 V52 C-62 72 -28 84 0 84 C28 84 62 72 62 52 V10 L0 38 Z" fill="#062E57"/>
-<path d="M110 -2 V54" stroke="#062E57" stroke-width="7" stroke-linecap="round"/>
-<circle cx="110" cy="62" r="13" fill="#45B649"/>
+<path d="M0 -46 L116 -4 L0 38 L-116 -4 Z" fill="#6E6558"/>
+<path d="M-62 10 V52 C-62 72 -28 84 0 84 C28 84 62 72 62 52 V10 L0 38 Z" fill="#12212E"/>
+<path d="M110 -2 V54" stroke="#12212E" stroke-width="7" stroke-linecap="round"/>
+<circle cx="110" cy="62" r="13" fill="#1F5C3D"/>
 </g>
 <g transform="translate(624 420)"><g id="sellocur">
-<circle cx="0" cy="0" r="62" fill="#45B649"/>
-<circle cx="0" cy="0" r="48" fill="none" stroke="#E8F3FC" stroke-width="4" opacity=".6"/>
-<path d="M-22 2 L-6 20 L24 -16" fill="none" stroke="#E8F3FC" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M-26 56 L-26 104 L0 86 L26 104 L26 56" fill="#8BCF4A"/>
+<circle cx="0" cy="0" r="62" fill="#1F5C3D"/>
+<circle cx="0" cy="0" r="48" fill="none" stroke="#EFEBE2" stroke-width="4" opacity=".6"/>
+<path d="M-22 2 L-6 20 L24 -16" fill="none" stroke="#EFEBE2" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M-26 56 L-26 104 L0 86 L26 104 L26 56" fill="#2F7A52"/>
 </g></g>
-<circle cx="132" cy="128" r="9" fill="#1594E5" opacity=".75"/>
-<circle cx="690" cy="180" r="7" fill="#1594E5" opacity=".75"/>
-<circle cx="112" cy="430" r="7" fill="#1594E5" opacity=".75"/>
+<circle cx="132" cy="128" r="9" fill="#6E6558" opacity=".75"/>
+<circle cx="690" cy="180" r="7" fill="#6E6558" opacity=".75"/>
+<circle cx="112" cy="430" r="7" fill="#6E6558" opacity=".75"/>
 </svg>
