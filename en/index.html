@@ -11,8 +11,8 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:title" content="MADAVAN International Multilogistics | Domestic and international freight transport">
 <meta property="og:description" content="Specialized logistics for domestic and international freight: ocean, air, ground, oversized cargo, dangerous goods and customs, door to door.">
-<meta property="og:image" content="../assets/madavan-logo.png?v=6329367f">
-<link rel="icon" type="image/png" href="../assets/madavan-logo.png?v=6329367f">
+<meta property="og:image" content="../assets/madavan-logo.png?v=3170e800">
+<link rel="icon" type="image/png" href="../assets/madavan-logo.png?v=3170e800">
 <script src="../support.js"></script>
 </head>
 <body>
@@ -74,7 +74,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 @media (max-width:480px){[data-r=stats]{grid-template-columns:1fr!important}}
 @media (max-width:760px){[data-r=stat]{padding:0!important}}
 /* WhatsApp */
-[data-r=waflot]{transition:transform .18s ease}
+[data-r=waflot]{transition:transform .3s cubic-bezier(.22,1,.36,1)}
 [data-r=waflot]:hover{transform:scale(1.06)}
 @media (max-width:560px){[data-r=waflot]{width:56px!important;height:56px!important;right:14px!important;bottom:14px!important}}
 /* página de pago */
@@ -88,9 +88,32 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 /* El lenguaje de componentes viene de ship4wd; el color y la letra son de
    MADAVAN. Radios: pastilla 500 · panel 28 · tarjeta y medio 14 · círculo 50%. */
 
-/* La cabecera es una línea en reposo y sólo levanta sombra al deslizar. */
-[data-r=cab]{transition:box-shadow .25s ease,border-color .25s ease}
-[data-r=cab][data-fijo]{box-shadow:0 4px 20px rgba(1,28,54,.09);border-bottom-color:transparent}
+/* La cabecera vive DENTRO del panel del hero mientras la página está hasta
+   arriba, y al deslizar se vuelve de cristal. Va fija, no pegajosa: el panel
+   llega al borde de la ventana y ella se dibuja encima. */
+[data-r=cab]{position:fixed!important;top:0;left:0;right:0;z-index:50;
+  background:transparent!important;border-bottom:0!important;
+  transition:background .3s ease,box-shadow .3s ease,backdrop-filter .3s ease}
+[data-r=cab][data-fijo]{background:rgba(255,255,255,.82)!important;
+  -webkit-backdrop-filter:saturate(1.6) blur(14px);backdrop-filter:saturate(1.6) blur(14px);
+  box-shadow:0 4px 20px rgba(1,28,54,.09)}
+
+/* Sobre el hero oscuro la cabecera va en blanco; al volverse cristal
+   recupera el color. El logo son dos imágenes apiladas, no un cambio de src:
+   `data-fijo` lo pone el JS fuera de React y un re-render lo pisaría. */
+[data-r=cablogo]{position:relative;display:block}
+[data-r=cablogo] img{display:block;transition:opacity .3s ease}
+[data-r=cablogo] [data-r=logoblanco]{position:absolute;inset:0;opacity:0}
+[data-r=cab][data-oscuro]:not([data-fijo]) [data-r=cablogo] [data-r=logo]{opacity:0}
+[data-r=cab][data-oscuro]:not([data-fijo]) [data-r=cablogo] [data-r=logoblanco]{opacity:1}
+[data-r=cab][data-oscuro]:not([data-fijo]) [data-r=navdesk] a{color:#fff!important}
+[data-r=cab][data-oscuro]:not([data-fijo]) [data-r=navdesk] a[style*="border-bottom:2px solid"]{border-bottom-color:#fff!important}
+[data-r=cab][data-oscuro]:not([data-fijo]) [data-r=navdesk] span{color:#4FAC3F!important}
+[data-r=cab][data-oscuro]:not([data-fijo]) [data-r=navact] > div{background:rgba(255,255,255,.12)!important;border-color:rgba(255,255,255,.42)!important}
+[data-r=cab][data-oscuro]:not([data-fijo]) [data-r=navact] svg{color:#fff!important}
+[data-r=cab][data-oscuro]:not([data-fijo]) [data-r=lang-en]{color:#fff!important}
+[data-r=cab][data-oscuro]:not([data-fijo]) [data-r=navact] > a{background:#fff!important;color:#011C36!important}
+[data-r=cab][data-oscuro]:not([data-fijo]) [data-r=burger]{border-color:rgba(255,255,255,.5)!important;background:transparent!important;color:#fff!important}
 
 /* Marquesina del hero. La pista va duplicada en el marcado, por eso -50%
    cierra el ciclo sin salto. Se detiene si el visitante la señala. */
@@ -108,6 +131,38 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 
 /* Tarjetas: planas en reposo, levantadas y con sombra al pasar el cursor. */
 [data-vfx-card]:hover{box-shadow:0 8px 24px rgba(1,28,54,.08)}
+
+/* La flecha se mueve dentro de cualquier enlace, no sólo dentro de tarjeta:
+   el gancho existía desde hace semanas y no lo usaba ningún nodo. */
+[data-vfx-arrow]{display:inline-block;transition:transform .3s cubic-bezier(.22,1,.36,1)}
+a:hover [data-vfx-arrow],button:hover [data-vfx-arrow]{transform:translateX(4px)}
+
+/* Los iconos de una rejilla escalonada entran con su fila. */
+[data-stagger][data-visto] [data-vfx-icono]{animation:madPulso .55s cubic-bezier(.22,1,.36,1) both}
+
+/* Coreografía del hero, como en la referencia: la imagen entra desde la
+   derecha y el bloque de texto escalona detrás. */
+@keyframes madEntra{from{opacity:0;transform:translate3d(9%,0,0)}to{opacity:1;transform:none}}
+[data-r=heropanel] [data-r=heroimg],[data-r=heropanelilu] [data-r=heroilu]{
+  animation:madEntra 1.6s cubic-bezier(.22,1,.36,1) both}
+[data-r=herobody] [data-stagger] > *{opacity:0;transform:translate3d(0,14px,0);
+  animation:madSube .8s cubic-bezier(.22,1,.36,1) both}
+@keyframes madSube{to{opacity:1;transform:none}}
+[data-r=herobody] [data-stagger] > *:nth-child(1){animation-delay:.18s}
+[data-r=herobody] [data-stagger] > *:nth-child(2){animation-delay:.30s}
+[data-r=herobody] [data-stagger] > *:nth-child(3){animation-delay:.42s}
+[data-r=herobody] [data-stagger] > *:nth-child(4){animation-delay:.54s}
+[data-r=herobody] [data-stagger] > *:nth-child(5){animation-delay:.66s}
+
+/* Con la pestaña en segundo plano no se anima nada: la marquesina giraba
+   gastando batería para nadie. */
+[data-oculto] [data-r=cinta],[data-oculto] [data-vfx-icono]{animation-play-state:paused!important}
+
+@media (prefers-reduced-motion:reduce){
+  [data-r=heroimg],[data-r=heroilu],[data-r=herobody] [data-stagger] > *,
+  [data-stagger][data-visto] [data-vfx-icono]{animation:none!important;opacity:1!important;transform:none!important}
+  [data-vfx-arrow]{transition:none!important}
+}
 
 /* Hero de portada. El bloque responsivo anterior reservaba 266px bajo el
    texto para una ilustración que este hero ya no lleva, y aclaraba el velo a
@@ -193,9 +248,9 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 
 <div style="min-height:100vh;background:#fff">
 
-<header data-r="cab" style="position:sticky;top:0;z-index:40;background:#fff;border-bottom:1px solid #DCE6F0">
+<header data-r="cab" data-oscuro="1" style="position:sticky;top:0;z-index:40;background:#fff;border-bottom:1px solid #DCE6F0">
   <div style="max-width:1200px;margin:0 auto;padding:12px var(--gx);min-height:72px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px">
-    <a href="#inicio" style="display:flex;align-items:center;flex-shrink:0"><img src="../assets/madavan-logo.png?v=6329367f" alt="MADAVAN Multilogística Internacional" data-r="logo" style="height:48px;width:auto;display:block"></a>
+    <a href="#inicio" data-r="cablogo" style="display:flex;align-items:center;flex-shrink:0"><img src="../assets/madavan-logo.png?v=3170e800" alt="MADAVAN Multilogística Internacional" data-r="logo" style="height:48px;width:auto;display:block"><img src="../assets/madavan-logo-blanco.png?v=ec46eb79" alt="" aria-hidden="true" data-r="logoblanco" style="height:48px;width:auto;display:block"></a>
     <nav data-r="navdesk" style="display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;font:700 16px/1 Montserrat,sans-serif;white-space:nowrap">
       <a href="#inicio" style="color:#011C36;font-weight:600;padding:8px 0;border-bottom:2px solid #011C36">Home</a>
       <div onMouseEnter="{{ openDd }}" onMouseLeave="{{ closeDd }}" style="position:relative">
@@ -204,7 +259,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
           <div style="position:absolute;top:100%;left:-20px;padding-top:12px;z-index:30">
             <div style="min-width:310px;background:#fff;border:1px solid #DCE6F0;border-radius:8px;box-shadow:0 16px 32px -12px rgba(1,28,54,.28);padding:8px;display:flex;flex-direction:column;gap:2px">
               <sc-for list="{{ svcMenu }}" as="it" hint-placeholder-count="7">
-                <a href="{{ it.href }}" style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:8px;color:#011C36;font:600 14px/1.3 Montserrat,sans-serif;white-space:nowrap" style-hover="background:#EEF5FB;color:#011C36"><span style="width:32px;height:32px;border-radius:50%;background:#0B72BE;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="{{ it.icon }}" style="width:16px;height:16px"></i></span>{{ it.title }}</a>
+                <a data-vfx-card href="{{ it.href }}" style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:8px;color:#011C36;font:600 14px/1.3 Montserrat,sans-serif;white-space:nowrap" style-hover="background:#EEF5FB;color:#011C36"><span style="width:32px;height:32px;border-radius:50%;background:#0B72BE;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="{{ it.icon }}" style="width:16px;height:16px"></i></span>{{ it.title }}</a>
               </sc-for>
             </div>
           </div>
@@ -216,8 +271,8 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
       <a href="#contacto" style="color:#011C36;padding:8px 0;border-bottom:2px solid transparent" style-hover="border-bottom-color:#0B72BE">Contact</a>
     </nav>
     <div data-r="navact" style="display:flex;align-items:center;gap:12px">
-      <div style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #DCE6F0;border-radius:500px;padding:3px"><i data-lucide="globe" style="width:16px;height:16px;color:#0B72BE;margin-left:6px"></i><a data-r="lang-es" href="#" style="padding:7px 15px;border-radius:500px;background:#011C36;color:#fff;font:600 13px/1 Montserrat,sans-serif">ES</a><a data-r="lang-en" href="#" style="padding:7px 15px;border-radius:500px;color:#011C36;font:600 13px/1 Montserrat,sans-serif">EN</a></div>
-      <a href="#contacto" data-vfx-btn="1" style="display:inline-flex;align-items:center;gap:10px;padding:13px 26px;border-radius:500px;background:#0B72BE;color:#fff;font:700 16px/1 Montserrat,sans-serif;white-space:nowrap" style-hover="background:#09588F;color:#fff">Request a quote <span>→</span></a>
+      <div style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #DCE6F0;border-radius:500px;padding:3px"><i data-lucide="globe" style="width:16px;height:16px;color:#0B72BE;margin-left:6px"></i><a data-vfx-btn="1" data-r="lang-es" href="#" style="padding:7px 15px;border-radius:500px;background:#011C36;color:#fff;font:600 13px/1 Montserrat,sans-serif">ES</a><a data-r="lang-en" href="#" style="padding:7px 15px;border-radius:500px;color:#011C36;font:600 13px/1 Montserrat,sans-serif">EN</a></div>
+      <a href="#contacto" data-vfx-btn="1" style="display:inline-flex;align-items:center;gap:10px;padding:13px 26px;border-radius:500px;background:#0B72BE;color:#fff;font:700 16px/1 Montserrat,sans-serif;white-space:nowrap" style-hover="background:#09588F;color:#fff">Request a quote <span data-vfx-arrow>→</span></a>
     </div>
     <button data-r="burger" type="button" aria-label="Open menu" aria-expanded="{{ menuOpen }}" onClick="{{ toggleMenu }}" style="display:none;align-items:center;justify-content:center;width:46px;height:46px;flex-shrink:0;border:1px solid #DCE6F0;border-radius:8px;background:#fff;color:#011C36;cursor:pointer"><sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:block"><path d="M6 6 L18 18 M18 6 L6 18"></path></svg></sc-if><sc-if value="{{ menuClosed }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:block"><path d="M3 6h18 M3 12h18 M3 18h18"></path></svg></sc-if></button>
   </div>
@@ -232,18 +287,18 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
       <a href="../cursos/" onClick="{{ closeMenu }}" style="padding:14px 2px;border-bottom:1px solid #EEF5FB;font:600 16px/1.3 Montserrat,sans-serif;color:#011C36;display:block">Courses</a>
       <a href="#contacto" onClick="{{ closeMenu }}" style="padding:14px 2px;border-bottom:1px solid #EEF5FB;font:600 16px/1.3 Montserrat,sans-serif;color:#011C36;display:block;border-bottom:0">Contact</a>
       <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px">
-        <div style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #DCE6F0;border-radius:500px;padding:3px"><i data-lucide="globe" style="width:16px;height:16px;color:#0B72BE;margin-left:6px"></i><a data-r="lang-es" href="#" style="padding:7px 15px;border-radius:500px;background:#011C36;color:#fff;font:600 13px/1 Montserrat,sans-serif">ES</a><a data-r="lang-en" href="#" style="padding:7px 15px;border-radius:500px;color:#011C36;font:600 13px/1 Montserrat,sans-serif">EN</a></div>
-        <a href="#contacto" onClick="{{ closeMenu }}" style="flex:1 1 200px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 26px;border-radius:500px;background:#0B72BE;color:#fff;font:700 16px/1 Montserrat,sans-serif" style-hover="background:#09588F;color:#fff">Request a quote <span>→</span></a>
+        <div style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #DCE6F0;border-radius:500px;padding:3px"><i data-lucide="globe" style="width:16px;height:16px;color:#0B72BE;margin-left:6px"></i><a data-vfx-btn="1" data-r="lang-es" href="#" style="padding:7px 15px;border-radius:500px;background:#011C36;color:#fff;font:600 13px/1 Montserrat,sans-serif">ES</a><a data-r="lang-en" href="#" style="padding:7px 15px;border-radius:500px;color:#011C36;font:600 13px/1 Montserrat,sans-serif">EN</a></div>
+        <a data-vfx-btn="1" href="#contacto" onClick="{{ closeMenu }}" style="flex:1 1 200px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 26px;border-radius:500px;background:#0B72BE;color:#fff;font:700 16px/1 Montserrat,sans-serif" style-hover="background:#09588F;color:#fff">Request a quote <span data-vfx-arrow>→</span></a>
       </div>
     </div>
   </sc-if>
 </header>
 
-<section data-vfx="1" id="inicio" data-screen-label="Hero" style="padding:14px 14px 0">
+<section data-vfx="1" id="inicio" data-screen-label="Hero" style="padding:0 14px">
   <div data-r="heropanel" style="position:relative;border-radius:28px;overflow:hidden;background:#09588F;isolation:isolate">
     <div data-r="heroimg" style="position:absolute;inset:0;background:#09588F url('../assets/hero-buque.webp?v=ec6f6f00') 78% center/cover no-repeat"><sc-if value="{{ heroVideo }}" hint-placeholder-val="{{ false }}"><video autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="metadata" poster="../assets/hero-buque.webp?v=ec6f6f00" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;object-position:78% center;display:block"><source data-src="../assets/hero-buque.mp4?v=85492ffb" type="video/mp4"></video></sc-if></div>
-    <div data-r="heroscrim" style="position:absolute;inset:0;background:linear-gradient(96deg,#011C36 0%,rgba(1,28,54,.95) 28%,rgba(18,59,97,.80) 50%,rgba(1,28,54,.44) 76%,rgba(1,28,54,.24) 100%)"></div>
-    <div data-r="herobody" style="position:relative;max-width:1320px;margin:0 auto;padding:clamp(44px,6vw,88px) var(--gx) 0">
+    <div data-r="heroscrim" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(1,28,54,.72) 0%,rgba(1,28,54,.28) 14%,rgba(1,28,54,0) 26%),linear-gradient(96deg,#011C36 0%,rgba(1,28,54,.95) 28%,rgba(18,59,97,.80) 50%,rgba(1,28,54,.44) 76%,rgba(1,28,54,.24) 100%)"></div>
+    <div data-r="herobody" style="position:relative;max-width:1320px;margin:0 auto;padding:clamp(124px,14vw,188px) var(--gx) 0">
       <div style="max-width:640px;display:flex;flex-direction:column;gap:22px">
         <span style="align-self:flex-start;padding:8px 18px;border-radius:500px;border:1px solid rgba(255,255,255,.42);font:600 11px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#fff">International Multilogistics</span>
         <h1 style="margin:0;font:700 clamp(34px,6.4vw,56px)/1.14 Montserrat,sans-serif;letter-spacing:-.022em;color:#fff;text-wrap:balance">We connect your operation <span style="display:block;color:#4FAC3F">to the world.</span></h1>
@@ -381,7 +436,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
     </div>
     <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:24px">
       <sc-for list="{{ posts }}" as="p" hint-placeholder-count="3">
-        <a href="{{ p.href }}" style="display:flex;flex-direction:column;gap:14px;background:#fff;border:1px solid #DCE6F0;border-radius:8px;padding:28px;color:inherit;transition:transform .2s ease" style-hover="transform:translateY(-2px);color:inherit">
+        <a data-vfx-card href="{{ p.href }}" style="display:flex;flex-direction:column;gap:14px;background:#fff;border:1px solid #DCE6F0;border-radius:8px;padding:28px;color:inherit;transition:transform .3s cubic-bezier(.22,1,.36,1)" style-hover="transform:translateY(-4px);color:inherit">
           <div style="font:600 11px/1.3 Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#5A6B7D">{{ p.date }}</div>
           <h3 style="margin:0;font:600 18px/1.35 Montserrat,sans-serif;color:#011C36;text-wrap:pretty">{{ p.title }}</h3>
           <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:12px">
@@ -475,7 +530,7 @@ class Component extends DCLogic {
     this.onResize = () => this.setState({ w: window.innerWidth, menuOpen: window.innerWidth >= 1024 ? false : this.state.menuOpen });
     window.addEventListener('resize', this.onResize);
   }
-  componentWillUnmount() { if (this._sombra) window.removeEventListener('scroll', this._sombra); if (this._obs) this._obs.disconnect(); if (this._rescate) clearTimeout(this._rescate); window.removeEventListener('resize', this.onResize); }
+  componentWillUnmount() { if (this._sombra) window.removeEventListener('scroll', this._sombra); if (this._oculto) document.removeEventListener('visibilitychange', this._oculto); if (this._obs) this._obs.disconnect(); if (this._rescate) clearTimeout(this._rescate); window.removeEventListener('resize', this.onResize); }
   componentDidUpdate() { this.icons(); this.vfx(); this.sombra(); this.video(); }
   /* React no aplica `muted` como atributo y sin él ningún navegador reproduce
      solo. Se fija por propiedad, que es la única forma fiable. */
@@ -504,6 +559,10 @@ class Component extends DCLogic {
     };
     window.addEventListener('scroll', this._sombra, { passive: true });
     this._sombra();
+    /* Con la pestaña escondida no hay a quién animar. */
+    this._oculto = () => document.documentElement.toggleAttribute('data-oculto', document.hidden);
+    document.addEventListener('visibilitychange', this._oculto);
+    this._oculto();
   }
   vfx() {
     /* Red de seguridad: pase lo que pase, a los 2.5 s todo queda visible.
