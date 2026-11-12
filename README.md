@@ -53,13 +53,20 @@ son siete constantes al principio del archivo: cambiarlas re-tematiza las nueve.
 
     python3 cursos_gen.py     # regenera las 12 páginas de Academia
     python3 sistema.py        # design system Editorial (tipografía y color)
-    python3 estilo.py         # retícula, formas y revelado escalonado
+    python3 estilo.py         # retícula, aire y revelado escalonado
+    python3 forma.py          # componentes al estilo de ship4wd (va al final)
     python3 build.py          # deploy/ en ES, EN y /cursos/
 
 `cursos_gen.py` escribe sus .dc.html desde cero, así que **todo lo que venga
 después hay que volver a correrlo** o esas doce páginas se quedan con el
-sistema viejo y sin animaciones. `sistema.py` y `estilo.py` son idempotentes:
-correrlos de más no hace daño.
+sistema viejo y sin animaciones. Los tres son idempotentes: correrlos de más
+no hace daño.
+
+`forma.py` tiene que ir **después** de `estilo.py`, que aplana radios
+(8px→3px, 9999px→2px) y desharía lo que el otro redondea. Además `forma.py`
+es la fuente de verdad de las seis secciones de la portada: las reescribe
+enteras en cada pasada, así que un retoque a mano en `MADAVAN Home.dc.html`
+se pierde — hay que hacerlo allí.
 
 ## Idiomas
 

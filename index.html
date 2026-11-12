@@ -83,6 +83,50 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
   [data-r=pagogrid]{grid-template-columns:1fr!important}
   [data-r=pagoaside]{position:static!important}
 }
+/* ⟦forma⟧ */
+/* ── Formas (referencia: ship4wd.com) ──────────────────────────────────── */
+/* El lenguaje de componentes viene de ship4wd; el color y la letra son de
+   MADAVAN. Radios: pastilla 500 · panel 28 · tarjeta y medio 14 · círculo 50%. */
+
+/* La cabecera es una línea en reposo y sólo levanta sombra al deslizar. */
+[data-r=cab]{transition:box-shadow .25s ease,border-color .25s ease}
+[data-r=cab][data-fijo]{box-shadow:0 4px 20px rgba(18,33,46,.09);border-bottom-color:transparent}
+
+/* Marquesina del hero. La pista va duplicada en el marcado, por eso -50%
+   cierra el ciclo sin salto. Se detiene si el visitante la señala. */
+@keyframes madCinta{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+[data-r=cinta]{animation:madCinta 42s linear infinite}
+[data-r=cintacaja]:hover [data-r=cinta]{animation-play-state:paused}
+[data-r=cintacaja]{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 3%,#000 97%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 3%,#000 97%,transparent 100%)}
+@media (prefers-reduced-motion:reduce){[data-r=cinta]{animation:none}}
+
+/* Pestañas de servicio: la activa se invierte a tinta. */
+[data-tab]{transition:background .2s ease,border-color .2s ease,color .2s ease;cursor:pointer}
+[data-tab]:hover{border-color:#215B94!important;color:#215B94!important}
+[data-tab][data-sel="1"]{background:#12212E!important;border-color:#12212E!important;color:#fff!important}
+[data-tab][data-sel="1"]:hover{color:#fff!important}
+
+/* Tarjetas: planas en reposo, levantadas y con sombra al pasar el cursor. */
+[data-vfx-card]:hover{box-shadow:0 8px 24px rgba(18,33,46,.10)}
+
+/* Hero de portada. El bloque responsivo anterior reservaba 266px bajo el
+   texto para una ilustración que este hero ya no lleva, y aclaraba el velo a
+   crema. Las dos reglas se anulan desde el panel, que gana por especificidad. */
+@media (max-width:900px){
+  [data-r=heropanel] [data-r=herobody]{padding-bottom:0!important}
+  [data-r=heropanel] [data-r=heroimg]{background-position:66% center!important}
+  [data-r=heropanel] [data-r=heroscrim]{background:linear-gradient(180deg,rgba(23,66,107,.88) 0%,rgba(23,66,107,.94) 100%)!important}
+}
+@media (max-width:560px){[data-r=heropanel]{border-radius:20px!important}}
+
+/* Los cuatro valores en 2x2: tres arriba y uno suelto abajo se veía partido. */
+[data-r=valpanel] [data-stagger]{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+@media (max-width:430px){[data-r=valpanel] [data-stagger]{grid-template-columns:1fr!important}}
+
+/* Hero de las páginas interiores: el mismo panel, sin foto. */
+@media (max-width:560px){[data-r=heropanelilu]{border-radius:20px!important}}
+/* ⟦/forma⟧ */
+
 /* ── VFX ───────────────────────────────────────────────────────────────── */
 /* Entrada al aparecer en pantalla. Discreto a propósito: el sitio vende
    logística, no efectos. Sin JS el contenido se ve igual, nunca se oculta. */
@@ -149,8 +193,8 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 
 <div style="min-height:100vh;background:#fff">
 
-<header style="position:sticky;top:0;z-index:40;background:#fff;border-bottom:1px solid #DAD3C6">
-  <div style="max-width:1480px;margin:0 auto;padding:12px var(--gx);min-height:72px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px">
+<header data-r="cab" style="position:sticky;top:0;z-index:40;background:#fff;border-bottom:1px solid #DAD3C6">
+  <div style="max-width:1320px;margin:0 auto;padding:12px var(--gx);min-height:72px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px">
     <a href="#inicio" style="display:flex;align-items:center;flex-shrink:0"><img src="assets/madavan-logo.png?v=6329367f" alt="MADAVAN Multilogística Internacional" data-r="logo" style="height:48px;width:auto;display:block"></a>
     <nav data-r="navdesk" style="display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;font:500 15px/1 Inter,system-ui,sans-serif;white-space:nowrap">
       <a href="#inicio" style="color:#12212E;font-weight:600;padding:8px 0;border-bottom:2px solid #12212E">Inicio</a>
@@ -158,9 +202,9 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
         <a href="#servicios" onClick="{{ toggleDd }}" style="color:#12212E;padding:8px 0;border-bottom:2px solid transparent;display:inline-flex;align-items:center;gap:6px" style-hover="border-bottom-color:#215B94">Logística <span style="font-size:10px;color:#215B94">▼</span></a>
         <sc-if value="{{ ddOpen }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;top:100%;left:-20px;padding-top:12px;z-index:30">
-            <div style="min-width:310px;background:#fff;border:1px solid #DAD3C6;border-radius:3px;box-shadow:0 12px 32px rgba(6,46,87,.12);padding:8px;display:flex;flex-direction:column;gap:2px">
+            <div style="min-width:310px;background:#fff;border:1px solid #DAD3C6;border-radius:14px;box-shadow:0 16px 40px rgba(18,33,46,.14);padding:8px;display:flex;flex-direction:column;gap:2px">
               <sc-for list="{{ svcMenu }}" as="it" hint-placeholder-count="7">
-                <a href="{{ it.href }}" style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:3px;color:#12212E;font:500 14px/1.3 Inter,system-ui,sans-serif;white-space:nowrap" style-hover="background:#EFEBE2;color:#12212E"><span style="width:32px;height:32px;border-radius:50%;background:#EFEBE2;color:#215B94;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="{{ it.icon }}" style="width:16px;height:16px"></i></span>{{ it.title }}</a>
+                <a href="{{ it.href }}" style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;color:#12212E;font:500 14px/1.3 Inter,system-ui,sans-serif;white-space:nowrap" style-hover="background:#EFEBE2;color:#12212E"><span style="width:32px;height:32px;border-radius:50%;background:#EFEBE2;color:#215B94;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="{{ it.icon }}" style="width:16px;height:16px"></i></span>{{ it.title }}</a>
               </sc-for>
             </div>
           </div>
@@ -172,13 +216,13 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
       <a href="#contacto" style="color:#12212E;padding:8px 0;border-bottom:2px solid transparent" style-hover="border-bottom-color:#215B94">Contacto</a>
     </nav>
     <div data-r="navact" style="display:flex;align-items:center;gap:12px">
-      <div style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #DAD3C6;border-radius:2px;padding:3px"><i data-lucide="globe" style="width:16px;height:16px;color:#215B94;margin-left:6px"></i><a data-r="lang-es" href="#" style="padding:7px 13px;border-radius:2px;background:#12212E;color:#fff;font:500 13px/1 Inter,system-ui,sans-serif">ES</a><a data-r="lang-en" href="#" style="padding:7px 13px;border-radius:2px;color:#12212E;font:500 13px/1 Inter,system-ui,sans-serif">EN</a></div>
-      <a href="#contacto" data-vfx-btn="1" style="display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:2px;background:#215B94;color:#fff;font:500 15px/1 Inter,system-ui,sans-serif;white-space:nowrap" style-hover="background:#17426B;color:#fff">Solicita una cotización <span>→</span></a>
+      <div style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #DAD3C6;border-radius:500px;padding:3px"><i data-lucide="globe" style="width:16px;height:16px;color:#215B94;margin-left:6px"></i><a data-r="lang-es" href="#" style="padding:7px 15px;border-radius:500px;background:#12212E;color:#fff;font:500 13px/1 Inter,system-ui,sans-serif">ES</a><a data-r="lang-en" href="#" style="padding:7px 15px;border-radius:500px;color:#12212E;font:500 13px/1 Inter,system-ui,sans-serif">EN</a></div>
+      <a href="#contacto" data-vfx-btn="1" style="display:inline-flex;align-items:center;gap:10px;padding:13px 26px;border-radius:500px;background:#215B94;color:#fff;font:500 15px/1 Inter,system-ui,sans-serif;white-space:nowrap" style-hover="background:#17426B;color:#fff">Solicita una cotización <span>→</span></a>
     </div>
-    <button data-r="burger" type="button" aria-label="Abrir menú" aria-expanded="{{ menuOpen }}" onClick="{{ toggleMenu }}" style="display:none;align-items:center;justify-content:center;width:46px;height:46px;flex-shrink:0;border:1px solid #DAD3C6;border-radius:3px;background:#fff;color:#12212E;cursor:pointer"><sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:block"><path d="M6 6 L18 18 M18 6 L6 18"></path></svg></sc-if><sc-if value="{{ menuClosed }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:block"><path d="M3 6h18 M3 12h18 M3 18h18"></path></svg></sc-if></button>
+    <button data-r="burger" type="button" aria-label="Abrir menú" aria-expanded="{{ menuOpen }}" onClick="{{ toggleMenu }}" style="display:none;align-items:center;justify-content:center;width:46px;height:46px;flex-shrink:0;border:1px solid #DAD3C6;border-radius:14px;background:#fff;color:#12212E;cursor:pointer"><sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:block"><path d="M6 6 L18 18 M18 6 L6 18"></path></svg></sc-if><sc-if value="{{ menuClosed }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:block"><path d="M3 6h18 M3 12h18 M3 18h18"></path></svg></sc-if></button>
   </div>
   <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
-    <div data-r="mobnav" style="position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid #DAD3C6;box-shadow:0 18px 32px rgba(6,46,87,.14);max-height:calc(100vh - 72px);overflow-y:auto;padding:8px var(--gx) 24px;display:flex;flex-direction:column">
+    <div data-r="mobnav" style="position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid #DAD3C6;box-shadow:0 18px 40px rgba(18,33,46,.16);max-height:calc(100vh - 72px);overflow-y:auto;padding:8px var(--gx) 24px;display:flex;flex-direction:column">
       <a href="#inicio" onClick="{{ closeMenu }}" style="padding:14px 2px;border-bottom:1px solid #EFEBE2;font:500 16px/1.3 Inter,system-ui,sans-serif;color:#12212E;display:block">Inicio</a>
       <div style="padding:18px 2px 8px;font:500 11px/1 Inter,system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#6B6456">Logística</div>
       <sc-for list="{{ svcMenu }}" as="it" hint-placeholder-count="6">
@@ -188,146 +232,154 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
       <a href="cursos/" onClick="{{ closeMenu }}" style="padding:14px 2px;border-bottom:1px solid #EFEBE2;font:500 16px/1.3 Inter,system-ui,sans-serif;color:#12212E;display:block">Cursos</a>
       <a href="#contacto" onClick="{{ closeMenu }}" style="padding:14px 2px;border-bottom:1px solid #EFEBE2;font:500 16px/1.3 Inter,system-ui,sans-serif;color:#12212E;display:block;border-bottom:0">Contacto</a>
       <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px">
-        <div style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #DAD3C6;border-radius:2px;padding:3px"><i data-lucide="globe" style="width:16px;height:16px;color:#215B94;margin-left:6px"></i><a data-r="lang-es" href="#" style="padding:7px 13px;border-radius:2px;background:#12212E;color:#fff;font:500 13px/1 Inter,system-ui,sans-serif">ES</a><a data-r="lang-en" href="#" style="padding:7px 13px;border-radius:2px;color:#12212E;font:500 13px/1 Inter,system-ui,sans-serif">EN</a></div>
-        <a href="#contacto" onClick="{{ closeMenu }}" style="flex:1 1 200px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border-radius:2px;background:#215B94;color:#fff;font:500 15px/1 Inter,system-ui,sans-serif" style-hover="background:#17426B;color:#fff">Solicita una cotización <span>→</span></a>
+        <div style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #DAD3C6;border-radius:500px;padding:3px"><i data-lucide="globe" style="width:16px;height:16px;color:#215B94;margin-left:6px"></i><a data-r="lang-es" href="#" style="padding:7px 15px;border-radius:500px;background:#12212E;color:#fff;font:500 13px/1 Inter,system-ui,sans-serif">ES</a><a data-r="lang-en" href="#" style="padding:7px 15px;border-radius:500px;color:#12212E;font:500 13px/1 Inter,system-ui,sans-serif">EN</a></div>
+        <a href="#contacto" onClick="{{ closeMenu }}" style="flex:1 1 200px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 26px;border-radius:500px;background:#215B94;color:#fff;font:500 15px/1 Inter,system-ui,sans-serif" style-hover="background:#17426B;color:#fff">Solicita una cotización <span>→</span></a>
       </div>
     </div>
   </sc-if>
 </header>
 
-<section data-vfx="1" id="inicio" data-screen-label="Hero" style="position:relative;overflow:hidden;background:#fff;display:flex;align-items:center;min-height:clamp(520px,76vh,780px)">
-  <div data-r="heroimg" style="position:absolute;inset:0;background:#EFEBE2 url('assets/hero-buque.webp?v=ec6f6f00') 72% center/cover no-repeat;overflow:hidden;filter:sepia(.24) saturate(.82) contrast(1.04)"><sc-if value="{{ heroVideo }}" hint-placeholder-val="{{ false }}"><video autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="metadata" poster="assets/hero-buque.webp?v=ec6f6f00" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;object-position:72% center;display:block"><source data-src="assets/hero-buque.mp4?v=85492ffb" type="video/mp4"></video></sc-if></div>
-  <div data-r="heroscrim" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,0) 52%,rgba(247,244,238,.64) 76%,rgba(247,244,238,.90) 92%,rgba(247,244,238,.95) 100%),linear-gradient(90deg,rgba(247,244,238,.97) 0%,rgba(247,244,238,.94) 32%,rgba(247,244,238,.58) 52%,rgba(247,244,238,.12) 74%,rgba(255,255,255,0) 100%)"></div>
-  <div style="position:relative;width:100%;max-width:1480px;margin:0 auto;padding:clamp(72px,9vw,128px) var(--gx) clamp(56px,7vw,88px)">
-    <div style="max-width:600px;display:flex;flex-direction:column;gap:24px">
-      <div style="display:inline-flex;align-items:center;gap:10px;font:500 12px/1.2 Inter,system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#12212E"><span style="width:24px;height:3px;background:#215B94;border-radius:2px"></span>Multilogística Internacional</div>
-      <h1 style="margin:0;font:300 clamp(32px,6.6vw,56px)/1.1 Newsreader,Georgia,serif;letter-spacing:-.015em;color:#12212E;text-wrap:balance">Conectamos <span style="display:block;color:#12212E">tu operación con el mundo.</span></h1>
-      <p style="margin:0;font:400 clamp(16px,2.3vw,18px)/1.65 Inter,system-ui,sans-serif;color:#44586E;max-width:520px;text-wrap:pretty">Logística especializada en el transporte de carga nacional e internacional: marítimo, aéreo, terrestre, carga sobredimensionada, mercancía peligrosa y aduana, puerta a puerta.</p>
-      <div style="display:flex;gap:12px;flex-wrap:wrap">
-        <a href="#contacto" data-vfx-btn="1" style="display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:2px;background:#215B94;color:#fff;font:500 15px/1 Inter,system-ui,sans-serif" style-hover="background:#17426B;color:#fff">Solicita una cotización <span>→</span></a>
-        <a href="#servicios" style="display:inline-flex;align-items:center;gap:10px;padding:12.5px 24px;border-radius:2px;background:#fff;border:1px solid #215B94;color:#215B94;font:500 15px/1 Inter,system-ui,sans-serif" style-hover="background:#EFEBE2;color:#17426B">Conoce nuestros servicios</a>
+<section data-vfx="1" id="inicio" data-screen-label="Hero" style="padding:14px 14px 0">
+  <div data-r="heropanel" style="position:relative;border-radius:28px;overflow:hidden;background:#17426B;isolation:isolate">
+    <div data-r="heroimg" style="position:absolute;inset:0;background:#17426B url('assets/hero-buque.webp?v=ec6f6f00') 78% center/cover no-repeat"><sc-if value="{{ heroVideo }}" hint-placeholder-val="{{ false }}"><video autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="metadata" poster="assets/hero-buque.webp?v=ec6f6f00" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;object-position:78% center;display:block"><source data-src="assets/hero-buque.mp4?v=85492ffb" type="video/mp4"></video></sc-if></div>
+    <div data-r="heroscrim" style="position:absolute;inset:0;background:linear-gradient(96deg,#0E2F4E 0%,rgba(14,47,78,.95) 28%,rgba(18,59,97,.80) 50%,rgba(23,66,107,.44) 76%,rgba(23,66,107,.24) 100%)"></div>
+    <div data-r="herobody" style="position:relative;max-width:1320px;margin:0 auto;padding:clamp(44px,6vw,88px) var(--gx) 0">
+      <div style="max-width:640px;display:flex;flex-direction:column;gap:22px">
+        <span style="align-self:flex-start;padding:8px 18px;border-radius:500px;border:1px solid rgba(255,255,255,.42);font:500 11px/1.2 Inter,system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#fff">Multilogística Internacional</span>
+        <h1 style="margin:0;font:300 clamp(34px,6.4vw,58px)/1.08 Newsreader,Georgia,serif;letter-spacing:-.02em;color:#fff;text-wrap:balance">Conectamos tu operación <span style="display:block;color:#9FB8D0">con el mundo.</span></h1>
+        <p style="margin:0;font:400 clamp(16px,2.3vw,18px)/1.6 Inter,system-ui,sans-serif;color:rgba(255,255,255,.88);max-width:540px;text-wrap:pretty">Marítimo, aéreo, terrestre, carga sobredimensionada, mercancía peligrosa y aduana. Una sola operación, puerta a puerta.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="#contacto" data-vfx-btn="1" style="display:inline-flex;align-items:center;gap:10px;padding:15px 30px;border-radius:500px;background:#fff;color:#12212E;font:500 15px/1 Inter,system-ui,sans-serif" style-hover="background:#EFEBE2;color:#12212E">Solicita una cotización <span>→</span></a>
+          <a href="#servicios" style="display:inline-flex;align-items:center;gap:10px;padding:13.5px 28px;border-radius:500px;background:transparent;border:1px solid rgba(255,255,255,.5);color:#fff;font:500 15px/1 Inter,system-ui,sans-serif" style-hover="background:rgba(255,255,255,.12);color:#fff">Conoce nuestros servicios</a>
+        </div>
       </div>
     </div>
-    <div data-r="heroattr" style="margin-top:clamp(48px,7vw,88px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 24px;max-width:1060px;border-top:1px solid #DAD3C6;padding:28px 0 0">
-      <div style="display:flex;align-items:center;gap:12px"><i data-lucide="globe" style="width:26px;height:26px;color:#215B94;flex-shrink:0"></i><div style="font:500 11px/1.35 Inter,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#12212E">Alcance global<span style="display:block;color:#6B6456;font-weight:500">Sin fronteras</span></div></div>
-      <div style="display:flex;align-items:center;gap:12px"><i data-lucide="shield-check" style="width:26px;height:26px;color:#215B94;flex-shrink:0"></i><div style="font:500 11px/1.35 Inter,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#12212E">Confianza<span style="display:block;color:#6B6456;font-weight:500">En cada entrega</span></div></div>
-      <div style="display:flex;align-items:center;gap:12px"><i data-lucide="settings" style="width:26px;height:26px;color:#215B94;flex-shrink:0"></i><div style="font:500 11px/1.35 Inter,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#12212E">Soluciones<span style="display:block;color:#6B6456;font-weight:500">A la medida</span></div></div>
-      <div style="display:flex;align-items:center;gap:12px"><i data-lucide="sprout" style="width:26px;height:26px;color:#215B94;flex-shrink:0"></i><div style="font:500 11px/1.35 Inter,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#12212E">Un futuro<span style="display:block;color:#6B6456;font-weight:500">En movimiento</span></div></div>
+    <div data-r="cintacaja" style="position:relative;margin-top:clamp(40px,6vw,76px);overflow:hidden">
+        <div data-r="cinta" style="display:flex;width:max-content;gap:14px;padding-bottom:clamp(24px,4vw,40px)">
+          <sc-for list="{{ cinta }}" as="c" hint-placeholder-count="16">
+            <div style="width:232px;flex-shrink:0;min-height:158px;border-radius:14px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);padding:18px;display:flex;flex-direction:column;gap:10px">
+              <i data-lucide="{{ c.icon }}" style="width:24px;height:24px;color:#fff"></i>
+              <div style="font:400 clamp(19px,2.3vw,23px)/1.14 Newsreader,Georgia,serif;color:#fff">{{ c.cifra }}</div>
+              <div style="margin-top:auto;font:500 10px/1.45 Inter,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.78)">{{ c.pie }}</div>
+            </div>
+        </sc-for>
+      </div>
     </div>
   </div>
 </section>
 
-<section data-vfx="1" id="servicios" data-screen-label="Servicios" style="max-width:1480px;margin:0 auto;padding:clamp(72px,9vw,128px) var(--gx) clamp(56px,7vw,88px)">
-  <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:32px clamp(26px,5vw,64px);align-items:end;margin-bottom:48px">
-    <div style="display:flex;flex-direction:column;gap:16px">
-      <div style="display:inline-flex;align-items:center;gap:10px;font:500 12px/1.2 Inter,system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#12212E"><span style="width:24px;height:3px;background:#215B94;border-radius:2px"></span>Servicios logísticos</div>
-      <h2 style="margin:0;font:400 clamp(24px,4vw,34px)/1.25 Newsreader,Georgia,serif;letter-spacing:-.01em;color:#12212E">Todas las modalidades, <span style="display:block;color:#12212E">una sola operación.</span></h2>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
-      <p style="margin:0;font:400 16px/1.6 Inter,system-ui,sans-serif;color:#5A5649;text-wrap:pretty">Gestionamos todos los requerimientos vinculados al traslado de sus mercancías: servicio puerta a puerta, seguro y en todas sus modalidades, además de asistencia en materia de aduana.</p>
-      <a href="#servicios" style="font:500 14px/1 Inter,system-ui,sans-serif;color:#215B94;padding-bottom:6px;border-bottom:2px solid #215B94">Ver todos los servicios →</a>
-    </div>
+<section data-vfx="1" id="servicios" data-screen-label="Servicios" style="padding:clamp(72px,9vw,128px) 0 clamp(56px,7vw,88px)">
+  <div style="max-width:1320px;margin:0 auto;padding:0 var(--gx)">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;max-width:780px;margin:0 auto">
+    <span style="padding:8px 18px;border-radius:500px;border:1px solid #215B94;font:500 11px/1.2 Inter,system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#215B94">Servicios logísticos</span>
+    <h2 style="margin:0;font:400 clamp(26px,4.4vw,40px)/1.18 Newsreader,Georgia,serif;letter-spacing:-.015em;color:#12212E;text-wrap:balance">Todas las modalidades, <span style="color:#215B94">una sola operación.</span></h2>
+    <p style="margin:0;font:400 16px/1.65 Inter,system-ui,sans-serif;color:#5A5649;text-wrap:pretty">Gestionamos el traslado completo de tus mercancías: puerta a puerta, asegurado, en todas sus modalidades y con asistencia en aduana.</p>
   </div>
-  <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:24px">
-    <sc-for list="{{ services }}" as="s" hint-placeholder-count="8">
-      <a href="{{ s.href }}" style="display:flex;flex-direction:column;background:#fff;border:1px solid #DAD3C6;border-radius:3px;overflow:hidden;box-shadow:none;color:inherit;transition:transform .2s ease, box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 2px 10px rgba(6,46,87,.07);color:inherit">
-        <div style="position:relative;aspect-ratio:2/1;background:{{ s.bg }}">
-          <div style="position:absolute;left:20px;bottom:-22px;width:44px;height:44px;border-radius:50%;background:#215B94;box-shadow:0 0 0 3px #fff;display:flex;align-items:center;justify-content:center;color:#fff"><i data-lucide="{{ s.icon }}" style="width:22px;height:22px"></i></div>
-        </div>
-        <div style="padding:36px 20px 22px;display:flex;flex-direction:column;gap:10px;flex:1">
-          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
-            <h3 style="margin:0;font:400 18px/1.3 Newsreader,Georgia,serif;color:#12212E">{{ s.title }}</h3>
-            <span style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:#EFEBE2;color:#215B94;display:flex;align-items:center;justify-content:center;font:500 15px/1 Inter,system-ui,sans-serif">→</span>
-          </div>
-          <p style="margin:0;font:400 15.5px/1.72 Inter,system-ui,sans-serif;color:#5A5649;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">{{ s.desc }}</p>
-        </div>
-      </a>
+  <div data-r="tabs" style="margin-top:clamp(30px,4vw,46px);display:flex;flex-wrap:wrap;justify-content:center;gap:10px">
+    <sc-for list="{{ svcTabs }}" as="t" hint-placeholder-count="7">
+      <button type="button" data-tab data-sel="{{ t.on }}" onClick="{{ t.sel }}" style="padding:13px 24px;border-radius:500px;border:1px solid #DAD3C6;background:#fff;color:#12212E;font:500 14px/1 Inter,system-ui,sans-serif">{{ t.corto }}</button>
     </sc-for>
   </div>
-</section>
-
-<section data-vfx="1" data-screen-label="Cifras" style="background:#EFEBE2">
-  <div data-stagger style="max-width:1480px;margin:0 auto;padding:clamp(48px,6vw,72px) var(--gx);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:24px 0" data-r="stats">
-    <div data-r="stat" style="display:flex;align-items:center;gap:16px;padding:0 24px;border-right:1px solid #DAD3C6"><i data-lucide="ship" style="width:40px;height:40px;color:#215B94;flex-shrink:0"></i><div><div style="font:400 clamp(22px,3.6vw,28px)/1 Newsreader,Georgia,serif;color:#12212E">+300 t</div><div style="margin-top:6px;font:500 10.5px/1.35 Inter,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B6456">Capacidad de izamiento<br>en buques</div></div></div>
-    <div data-r="stat" style="display:flex;align-items:center;gap:16px;padding:0 24px;border-right:1px solid #DAD3C6"><i data-lucide="truck" style="width:40px;height:40px;color:#215B94;flex-shrink:0"></i><div><div style="font:400 clamp(22px,3.6vw,28px)/1 Newsreader,Georgia,serif;color:#12212E">350 t</div><div style="margin-top:6px;font:500 10.5px/1.35 Inter,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B6456">Grúas para carga<br>sobredimensionada</div></div></div>
-    <div data-r="stat" style="display:flex;align-items:center;gap:16px;padding:0 24px;border-right:1px solid #DAD3C6"><i data-lucide="network" style="width:40px;height:40px;color:#215B94;flex-shrink:0"></i><div><div style="font:400 clamp(22px,3.6vw,28px)/1 Newsreader,Georgia,serif;color:#12212E">5</div><div style="margin-top:6px;font:500 10.5px/1.35 Inter,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B6456">Continentes en nuestra<br>red de agentes</div></div></div>
-    <div data-r="stat" style="display:flex;align-items:center;gap:16px;padding:0 24px"><i data-lucide="settings" style="width:40px;height:40px;color:#215B94;flex-shrink:0"></i><div><div style="font:600 15px/1.25 Inter,system-ui,sans-serif;letter-spacing:.06em;color:#215B94;text-transform:uppercase">Soluciones a la medida</div><div style="margin-top:6px;font:500 10.5px/1.35 Inter,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B6456">Para cada industria</div></div></div>
+  </div>
+  <div style="padding:clamp(26px,3.5vw,40px) 14px 0">
+  <div data-r="svcpanel" style="border-radius:28px;background:#EFEBE2">
+    <div style="max-width:1320px;margin:0 auto;padding:clamp(24px,3vw,44px) var(--gx);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:clamp(24px,4vw,48px);align-items:center">
+    <div style="border-radius:14px;overflow:hidden;aspect-ratio:2/1;background:{{ svcActivo.bg }}"></div>
+    <div style="display:flex;flex-direction:column;gap:18px;padding:clamp(4px,1.5vw,20px) clamp(4px,1.5vw,24px)">
+      <h3 style="margin:0;font:400 clamp(23px,3.2vw,30px)/1.2 Newsreader,Georgia,serif;color:#12212E">{{ svcActivo.title }}</h3>
+      <p style="margin:0;font:400 16px/1.7 Inter,system-ui,sans-serif;color:#5A5649;text-wrap:pretty">{{ svcActivo.largo }}</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:4px">
+        <a href="{{ svcActivo.href }}" style="display:inline-flex;align-items:center;gap:10px;padding:15px 30px;border-radius:500px;background:#12212E;color:#fff;font:500 15px/1 Inter,system-ui,sans-serif" style-hover="background:#215B94;color:#fff">Ver el servicio <span>→</span></a>
+        <a href="#contacto" style="display:inline-flex;align-items:center;gap:10px;padding:13.5px 28px;border-radius:500px;background:transparent;border:1px solid #12212E;color:#12212E;font:500 15px/1 Inter,system-ui,sans-serif" style-hover="background:#fff;color:#12212E">Cotizar</a>
+      </div>
+    </div>
+    </div>
+  </div>
   </div>
 </section>
 
-<section data-vfx="1" id="cobertura" data-screen-label="Cobertura" style="max-width:1480px;margin:0 auto;padding:clamp(72px,9vw,128px) var(--gx)">
-  <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(30px,5vw,48px);align-items:start">
+
+<section data-vfx="1" id="cobertura" data-screen-label="Cobertura" style="padding:clamp(28px,4vw,48px) 14px">
+  <div data-r="cobpanel" style="border-radius:28px;background:#fff;border:1px solid #E7E1D6">
+    <div style="max-width:1320px;margin:0 auto;padding:clamp(40px,6vw,76px) var(--gx);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(30px,5vw,56px);align-items:center">
     <div style="display:flex;flex-direction:column;gap:20px">
-      <div style="display:inline-flex;align-items:center;gap:10px;font:500 12px/1.2 Inter,system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#12212E"><span style="width:24px;height:3px;background:#215B94;border-radius:2px"></span>Cobertura</div>
-      <h2 style="margin:0;font:400 clamp(24px,4vw,34px)/1.25 Newsreader,Georgia,serif;letter-spacing:-.01em;color:#12212E">Una red logística <span style="display:block;color:#12212E">que te lleva más lejos.</span></h2>
-      <p style="margin:0;font:400 16px/1.6 Inter,system-ui,sans-serif;color:#5A5649;text-wrap:pretty">Formamos parte de una red mundial de agentes internacionales de carga que cubre Asia, Oceanía, Europa, África, América del Norte y del Sur.</p>
-      <a href="#contacto" style="align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:2px;background:#215B94;color:#fff;font:500 15px/1 Inter,system-ui,sans-serif" style-hover="background:#17426B;color:#fff">Conoce nuestra cobertura <span>→</span></a>
+      <span style="align-self:flex-start;padding:8px 18px;border-radius:500px;border:1px solid #215B94;font:500 11px/1.2 Inter,system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#215B94">Cobertura</span>
+      <h2 style="margin:0;font:400 clamp(26px,4.2vw,38px)/1.18 Newsreader,Georgia,serif;letter-spacing:-.015em;color:#12212E">Una red logística <span style="color:#215B94">que te lleva más lejos.</span></h2>
+      <p style="margin:0;font:400 16px/1.65 Inter,system-ui,sans-serif;color:#5A5649;text-wrap:pretty">Formamos parte de una red mundial de agentes internacionales de carga que cubre Asia, Oceanía, Europa, África, América del Norte y del Sur.</p>
+      <div data-stagger style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="anchor" style="width:22px;height:22px;color:#215B94;flex-shrink:0;margin-top:2px"></i><p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#5A5649">Servicio en <strong style="color:#12212E">todos los puertos mercantes</strong> del mundo con las principales navieras.</p></div>
+        <div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="truck" style="width:22px;height:22px;color:#215B94;flex-shrink:0;margin-top:2px"></i><p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#5A5649">Terrestre FTL y LTL entre <strong style="color:#12212E">Canadá, Estados Unidos, México y Centroamérica</strong>.</p></div>
+        <div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="warehouse" style="width:22px;height:22px;color:#215B94;flex-shrink:0;margin-top:2px"></i><p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#5A5649">Depósito fiscal y almacenamiento en <strong style="color:#12212E">bodega nacional y Laredo, Tx</strong>.</p></div>
+      </div>
+      <a href="#contacto" style="align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:15px 30px;border-radius:500px;background:#215B94;color:#fff;font:500 15px/1 Inter,system-ui,sans-serif" style-hover="background:#17426B;color:#fff">Conoce nuestra cobertura <span>→</span></a>
     </div>
-    <div style="aspect-ratio:4/3;border-radius:3px;border:1px solid #DAD3C6;background:#EFEBE2 url('assets/ilu-mapa.svg?v=2d1eb906') center/contain no-repeat"></div>
-    <div style="display:flex;flex-direction:column;gap:18px">
-      <div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="globe" style="width:24px;height:24px;color:#215B94;flex-shrink:0"></i><p style="margin:0;font:400 15px/1.5 Inter,system-ui,sans-serif;color:#5A5649">Cobertura en los <strong style="color:#12212E">5 continentes</strong> con agentes internacionales de carga.</p></div>
-      <div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="anchor" style="width:24px;height:24px;color:#215B94;flex-shrink:0"></i><p style="margin:0;font:400 15px/1.5 Inter,system-ui,sans-serif;color:#5A5649">Servicio en <strong style="color:#12212E">todos los puertos mercantes</strong> del mundo con las principales navieras.</p></div>
-      <div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="truck" style="width:24px;height:24px;color:#215B94;flex-shrink:0"></i><p style="margin:0;font:400 15px/1.5 Inter,system-ui,sans-serif;color:#5A5649">Terrestre FTL y LTL entre <strong style="color:#12212E">Canadá, Estados Unidos, México y Centroamérica</strong>.</p></div>
-      <div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="warehouse" style="width:24px;height:24px;color:#215B94;flex-shrink:0"></i><p style="margin:0;font:400 15px/1.5 Inter,system-ui,sans-serif;color:#5A5649">Depósito fiscal y almacenamiento en <strong style="color:#12212E">bodega nacional y Laredo, Tx</strong>.</p></div>
-      <div style="margin-top:6px;padding-top:18px;border-top:1px solid #DAD3C6">
-        <div style="font:500 11px/1.3 Inter,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#12212E;margin-bottom:12px">Despacho aduanal en</div>
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <div style="aspect-ratio:4/3;border-radius:14px;background:#EFEBE2 url('assets/ilu-mapa.svg?v=2d1eb906') center/contain no-repeat"></div>
+      <div>
+        <div style="font:500 11px/1.3 Inter,system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#6B6456;margin-bottom:12px">Despacho aduanal en</div>
         <div style="display:flex;flex-wrap:wrap;gap:8px">
-          <sc-for list="{{ ports }}" as="p" hint-placeholder-count="12">
-            <span style="padding:6px 12px;border-radius:2px;background:#EFEBE2;color:#12212E;font:400 13px/1 Inter,system-ui,sans-serif">{{ p }}</span>
+          <sc-for list="{{ ports }}" as="p" hint-placeholder-count="13">
+            <span style="padding:7px 14px;border-radius:500px;background:#EFEBE2;color:#12212E;font:400 13px/1 Inter,system-ui,sans-serif">{{ p }}</span>
           </sc-for>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<section data-vfx="1" id="nosotros" data-screen-label="Valores" style="position:relative;overflow:hidden">
-  <div style="position:absolute;inset:0;background:#0A3A66"></div>
-  <div style="position:absolute;inset:0;background:#12212E"></div>
-  <div data-stagger style="position:relative;max-width:1480px;margin:0 auto;padding:clamp(64px,8vw,104px) var(--gx);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:clamp(28px,5vw,40px) clamp(26px,5vw,64px);align-items:center">
-    <div style="display:flex;flex-direction:column;gap:16px">
-      <div style="display:inline-flex;align-items:center;gap:10px;font:500 12px/1.2 Inter,system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#fff"><span style="width:24px;height:3px;background:#3A79BE;border-radius:2px"></span>Valor agregado</div>
-      <h2 style="margin:0;font:400 clamp(24px,4vw,34px)/1.25 Newsreader,Georgia,serif;letter-spacing:-.01em;color:#fff">Más que logística, impulsamos un mejor futuro.</h2>
-      <p style="margin:0;font:400 16px/1.6 Inter,system-ui,sans-serif;color:rgba(247,244,238,.90);text-wrap:pretty">Flexibilidad, trato personal, competitividad en costos, soluciones dinámicas, control en procesos, confidencialidad y solución completa.</p>
-    </div>
-    <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:28px">
-      <div style="display:flex;flex-direction:column;gap:12px"><div style="width:44px;height:44px;border-radius:50%;background:#fff;color:#215B94;display:flex;align-items:center;justify-content:center"><i data-lucide="shield-check" style="width:22px;height:22px"></i></div><div style="font:500 13px/1.2 Inter,system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#fff">Confianza</div><div style="font:400 15.5px/1.72 Inter,system-ui,sans-serif;color:#fff">Relaciones sólidas y transparentes</div></div>
-      <div style="display:flex;flex-direction:column;gap:12px"><div style="width:44px;height:44px;border-radius:50%;background:#fff;color:#215B94;display:flex;align-items:center;justify-content:center"><i data-lucide="bar-chart-3" style="width:22px;height:22px"></i></div><div style="font:500 13px/1.2 Inter,system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#fff">Eficiencia</div><div style="font:400 15.5px/1.72 Inter,system-ui,sans-serif;color:#fff">Procesos ágiles que generan resultados</div></div>
-      <div style="display:flex;flex-direction:column;gap:12px"><div style="width:44px;height:44px;border-radius:50%;background:#fff;color:#215B94;display:flex;align-items:center;justify-content:center"><i data-lucide="sprout" style="width:22px;height:22px"></i></div><div style="font:500 13px/1.2 Inter,system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#fff">Sostenibilidad</div><div style="font:400 15.5px/1.72 Inter,system-ui,sans-serif;color:#fff">Soluciones responsables para el mañana</div></div>
-      <div style="display:flex;flex-direction:column;gap:12px"><div style="width:44px;height:44px;border-radius:50%;background:#fff;color:#215B94;display:flex;align-items:center;justify-content:center"><i data-lucide="globe" style="width:22px;height:22px"></i></div><div style="font:500 13px/1.2 Inter,system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#fff">Alcance global</div><div style="font:400 15.5px/1.72 Inter,system-ui,sans-serif;color:#fff">Oportunidades en todo el mundo</div></div>
     </div>
   </div>
 </section>
 
-<section data-vfx="1" data-screen-label="Misión" style="max-width:1480px;margin:0 auto;padding:clamp(72px,9vw,128px) var(--gx)">
-  <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(32px,5vw,48px) clamp(26px,5vw,64px)">
-    <div style="display:flex;flex-direction:column;gap:20px">
-      <div style="display:inline-flex;align-items:center;gap:10px;font:500 12px/1.2 Inter,system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#12212E"><span style="width:24px;height:3px;background:#215B94;border-radius:2px"></span>Nosotros</div>
-      <h2 style="margin:0;font:400 clamp(24px,4vw,34px)/1.25 Newsreader,Georgia,serif;letter-spacing:-.01em;color:#12212E">Tu carga llega más lejos, <span style="display:block;color:#12212E">más rápido.</span></h2>
-      <p style="margin:0;font:400 16px/1.6 Inter,system-ui,sans-serif;color:#5A5649;text-wrap:pretty">Ofrecer a nuestros clientes servicios integrados de transporte internacional con calidad y experiencia de acuerdo a sus necesidades, con la asesoría y respuesta inmediata de nuestro personal altamente calificado.</p>
-      <blockquote style="margin:8px 0 0;padding:20px 0 0;border-top:1px solid #DAD3C6;font:400 clamp(16px,2.6vw,18px)/1.45 Newsreader,Georgia,serif;color:#12212E">“Ser el mejor, no es producto de la suerte… sino de la experiencia, constancia y dedicación”</blockquote>
+<section data-vfx="1" id="nosotros" data-screen-label="Valores" style="padding:clamp(28px,4vw,48px) 14px">
+  <div data-r="valpanel" style="border-radius:28px;background:#12212E">
+    <div style="max-width:1320px;margin:0 auto;padding:clamp(40px,6vw,80px) var(--gx);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(30px,5vw,56px);align-items:center">
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <span style="align-self:flex-start;padding:8px 18px;border-radius:500px;border:1px solid rgba(255,255,255,.4);font:500 11px/1.2 Inter,system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#fff">Valor agregado</span>
+      <h2 style="margin:0;font:400 clamp(26px,4.2vw,38px)/1.18 Newsreader,Georgia,serif;letter-spacing:-.015em;color:#fff;text-wrap:balance">Más que logística, <span style="color:#9FB8D0">impulsamos un mejor futuro.</span></h2>
+      <p style="margin:0;font:400 16px/1.65 Inter,system-ui,sans-serif;color:rgba(247,244,238,.88);text-wrap:pretty">Flexibilidad, trato personal, competitividad en costos, soluciones dinámicas, control en procesos, confidencialidad y solución completa.</p>
     </div>
-    <div style="display:flex;flex-direction:column;gap:16px">
-      <div style="font:500 11px/1.3 Inter,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#12212E">Misión</div>
-      <sc-for list="{{ mission }}" as="m" hint-placeholder-count="6">
-        <div style="display:flex;gap:12px;align-items:flex-start;padding-bottom:14px;border-bottom:1px solid #DAD3C6"><i data-lucide="check" style="width:22px;height:22px;color:#215B94;flex-shrink:0"></i><span style="font:400 15px/1.5 Inter,system-ui,sans-serif;color:#5A5649">{{ m }}</span></div>
+    <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:14px">
+      <sc-for list="{{ valores }}" as="v" hint-placeholder-count="4">
+        <div style="border-radius:14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);padding:20px;display:flex;flex-direction:column;gap:12px">
+          <div style="width:40px;height:40px;border-radius:50%;background:#fff;color:#215B94;display:flex;align-items:center;justify-content:center"><i data-lucide="{{ v.icon }}" style="width:20px;height:20px"></i></div>
+          <div style="font:500 12px/1.2 Inter,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#fff">{{ v.title }}</div>
+          <div style="font:400 14.5px/1.6 Inter,system-ui,sans-serif;color:rgba(247,244,238,.82)">{{ v.desc }}</div>
+        </div>
       </sc-for>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section data-vfx="1" data-screen-label="Misión" style="max-width:1320px;margin:0 auto;padding:clamp(64px,8vw,104px) var(--gx)">
+  <div data-r="cita" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(32px,5vw,64px);align-items:start">
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <span style="align-self:flex-start;padding:8px 18px;border-radius:500px;border:1px solid #215B94;font:500 11px/1.2 Inter,system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#215B94">Nosotros</span>
+      <span aria-hidden="true" style="font:400 92px/.46 Newsreader,Georgia,serif;color:#9FB8D0;display:block;height:34px">“</span>
+      <blockquote style="margin:0;font:300 clamp(24px,3.6vw,34px)/1.3 Newsreader,Georgia,serif;letter-spacing:-.01em;color:#12212E;text-wrap:balance">Ser el mejor no es producto de la suerte, sino de la experiencia, la constancia y la dedicación.</blockquote>
+      <div style="display:flex;flex-direction:column;gap:3px;padding-top:6px"><span style="font:500 15px/1.3 Inter,system-ui,sans-serif;color:#215B94">Juan Marcos Aguirre Leyva</span><span style="font:400 14px/1.4 Inter,system-ui,sans-serif;color:#6B6456">Dirección, MADAVAN Multilogística Internacional</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="font:500 11px/1.3 Inter,system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#6B6456">Nuestra misión</div>
+      <div data-stagger style="display:flex;flex-direction:column;gap:10px">
+        <sc-for list="{{ mission }}" as="m" hint-placeholder-count="6">
+          <div data-vfx-card style="display:flex;gap:12px;align-items:flex-start;border-radius:14px;background:#fff;border:1px solid #E7E1D6;padding:16px 18px"><i data-lucide="check" style="width:20px;height:20px;color:#215B94;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Inter,system-ui,sans-serif;color:#5A5649">{{ m }}</span></div>
+        </sc-for>
+      </div>
     </div>
   </div>
 </section>
 
 <section data-vfx="1" id="blog" data-screen-label="Blog" style="display:none;background:#EFEBE2">
-  <div style="max-width:1480px;margin:0 auto;padding:clamp(72px,9vw,120px) var(--gx)">
+  <div style="max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,120px) var(--gx)">
     <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:40px">
       <div style="display:flex;flex-direction:column;gap:16px">
-        <div style="display:inline-flex;align-items:center;gap:10px;font:500 12px/1.2 Inter,system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#12212E"><span style="width:24px;height:3px;background:#215B94;border-radius:2px"></span>Blog</div>
+        <div style="display:inline-flex;align-items:center;gap:10px;font:500 12px/1.2 Inter,system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#12212E"><span style="width:24px;height:3px;background:#215B94;border-radius:500px"></span>Blog</div>
         <h2 style="margin:0;font:400 clamp(24px,4vw,34px)/1.25 Newsreader,Georgia,serif;letter-spacing:-.01em;color:#12212E">Logística, transporte <span style="display:block;color:#12212E">y supply chain.</span></h2>
       </div>
       <a href="https://madavan.com.mx/blog-logistica-transporte-supply-chain-cadena-suministro/" style="font:500 14px/1 Inter,system-ui,sans-serif;color:#215B94;padding-bottom:6px;border-bottom:2px solid #215B94">Ver todas las publicaciones →</a>
     </div>
     <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:24px">
       <sc-for list="{{ posts }}" as="p" hint-placeholder-count="3">
-        <a href="{{ p.href }}" style="display:flex;flex-direction:column;gap:14px;background:#fff;border:1px solid #DAD3C6;border-radius:3px;padding:28px;color:inherit;transition:transform .2s ease" style-hover="transform:translateY(-2px);color:inherit">
+        <a href="{{ p.href }}" style="display:flex;flex-direction:column;gap:14px;background:#fff;border:1px solid #DAD3C6;border-radius:14px;padding:28px;color:inherit;transition:transform .2s ease" style-hover="transform:translateY(-2px);color:inherit">
           <div style="font:500 11px/1.3 Inter,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6B6456">{{ p.date }}</div>
           <h3 style="margin:0;font:400 18px/1.35 Newsreader,Georgia,serif;color:#12212E;text-wrap:pretty">{{ p.title }}</h3>
           <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:12px">
@@ -340,25 +392,23 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
   </div>
 </section>
 
-<section data-vfx="1" id="contacto" data-screen-label="CTA y contacto" style="max-width:1480px;margin:0 auto;padding:clamp(72px,9vw,128px) var(--gx)">
-  <div data-stagger style="border-radius:3px;overflow:hidden;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));background:#EFEBE2">
-    <div style="padding:clamp(26px,5vw,48px);display:flex;flex-direction:column;gap:20px">
-      <h2 style="margin:0;font:400 clamp(23px,3.9vw,32px)/1.22 Newsreader,Georgia,serif;color:#12212E;text-wrap:balance">¿Listo para llevar tu negocio al siguiente nivel?</h2>
-      <p style="margin:0;font:400 16px/1.6 Inter,system-ui,sans-serif;color:#5A5649">Te asesoramos profesionalmente para encontrar la mejor solución logística de acuerdo a tus necesidades particulares.</p>
-      <div style="display:flex;flex-direction:column;gap:18px;align-items:flex-start">
-        <div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="message-square-text" style="width:22px;height:22px;color:#215B94;flex-shrink:0;margin-top:2px"></i><p style="margin:0;font:400 15px/1.6 Inter,system-ui,sans-serif;color:#5A5649">Escríbenos por WhatsApp con <strong style="color:#12212E">origen, destino y tipo de carga</strong> y te preparamos la cotización.</p></div>
-        <a href="https://wa.me/525610980231?text=Hola%20MADAVAN%2C%20quiero%20cotizar%20un%20env%C3%ADo.%20" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 28px;border-radius:2px;background:#25D366;color:#fff;font:500 16px/1 Inter,system-ui,sans-serif;box-shadow:0 8px 20px rgba(37,211,102,.28)" style-hover="background:#1DB556;color:#fff"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true" style="display:block;flex-shrink:0"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.08-.12-.27-.2-.57-.35M12.05 21.78h-.01c-1.77 0-3.5-.48-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.43 9.89-9.88 9.89m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42Z"/></svg>Cotiza por WhatsApp</a>
-        <div style="display:flex;flex-wrap:wrap;gap:8px 18px;font:400 15.5px/1.72 Inter,system-ui,sans-serif;color:#5A5649"><span style="display:flex;align-items:center;gap:8px"><i data-lucide="phone" style="width:16px;height:16px;color:#215B94"></i>+52 56 1098 0231</span><span style="display:flex;align-items:center;gap:8px"><i data-lucide="clock" style="width:16px;height:16px;color:#215B94"></i>Lunes a viernes, 8:00 a 18:00 hrs</span></div>
+<section data-vfx="1" id="contacto" data-screen-label="CTA y contacto" style="padding:clamp(28px,4vw,48px) 14px">
+  <div data-r="ctapanel" style="position:relative;border-radius:28px;overflow:hidden;background:linear-gradient(96deg,#2F6FAE 0%,#215B94 34%,#17426B 100%);padding:clamp(44px,6vw,92px) var(--gx);text-align:center">
+    <div style="position:relative;max-width:720px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:20px">
+      <h2 style="margin:0;font:400 clamp(26px,4.4vw,40px)/1.18 Newsreader,Georgia,serif;letter-spacing:-.015em;color:#fff;text-wrap:balance">¿Listo para llevar tu carga al siguiente nivel?</h2>
+      <p style="margin:0;font:400 clamp(16px,2.2vw,17px)/1.65 Inter,system-ui,sans-serif;color:rgba(255,255,255,.90);text-wrap:pretty">Mándanos origen, destino y tipo de carga, y te preparamos la cotización. Te asesoramos para encontrar la mejor solución logística para tu operación.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:6px">
+        <a href="https://wa.me/525610980231?text=Hola%20MADAVAN%2C%20quiero%20cotizar%20un%20env%C3%ADo.%20" target="_blank" rel="noopener" data-vfx-btn="1" style="display:inline-flex;align-items:center;gap:10px;padding:17px 32px;border-radius:500px;background:#12212E;color:#fff;font:500 16px/1 Inter,system-ui,sans-serif" style-hover="background:#000;color:#fff"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true" style="display:block;flex-shrink:0"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.08-.12-.27-.2-.57-.35M12.05 21.78h-.01c-1.77 0-3.5-.48-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.43 9.89-9.88 9.89m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42Z"/></svg>Cotiza por WhatsApp</a>
+        <a href="mailto:aduana@madavan.com.mx" style="display:inline-flex;align-items:center;gap:10px;padding:15.5px 30px;border-radius:500px;background:transparent;border:1px solid rgba(255,255,255,.5);color:#fff;font:500 16px/1 Inter,system-ui,sans-serif" style-hover="background:rgba(255,255,255,.12);color:#fff">Escríbenos por correo</a>
       </div>
-    </div>
-    <div style="position:relative;min-height:360px;background:#EFEBE2 url('assets/ilu-contacto.svg?v=c10cb347') center/cover no-repeat">
-      <div style="position:absolute;inset:0;background:linear-gradient(90deg,#EFEBE2 0%,rgba(232,243,252,0) 30%)"></div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px 24px;margin-top:10px;font:400 15px/1.6 Inter,system-ui,sans-serif;color:rgba(255,255,255,.82)"><span style="display:flex;align-items:center;gap:8px"><i data-lucide="phone" style="width:16px;height:16px"></i>+52 56 1098 0231</span><span style="display:flex;align-items:center;gap:8px"><i data-lucide="clock" style="width:16px;height:16px"></i>Lunes a viernes, 8:00 a 18:00 hrs</span></div>
     </div>
   </div>
 </section>
 
-<footer style="background:#12212E;color:#fff">
-  <div style="max-width:1480px;margin:0 auto;padding:clamp(64px,8vw,104px) var(--gx) clamp(44px,6vw,64px);display:flex;flex-direction:column;gap:clamp(30px,5vw,48px)">
+<footer style="padding:0 14px 14px">
+  <div style="border-radius:28px;overflow:hidden;background:#12212E;color:#fff">
+  <div style="max-width:1320px;margin:0 auto;padding:clamp(40px,6vw,76px) var(--gx) clamp(30px,4vw,44px);display:flex;flex-direction:column;gap:clamp(30px,5vw,48px)">
     <div style="display:flex;align-items:center;gap:32px;flex-wrap:wrap">
       <div style="display:flex;flex-direction:column;gap:2px">
         <span style="font:400 clamp(22px,5vw,28px)/1.1 Newsreader,Georgia,serif;letter-spacing:.01em;color:#fff">MADAVAN</span>
@@ -399,30 +449,32 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
       </div>
     </div>
   </div>
-  <div style="background:#fff">
-    <div style="max-width:1480px;margin:0 auto;padding:18px var(--gx);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:400 12px/1.4 Inter,system-ui,sans-serif;color:#6B6456">
+  <div style="border-top:1px solid rgba(255,255,255,.14)">
+    <div style="max-width:1320px;margin:0 auto;padding:18px var(--gx);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:400 12px/1.4 Inter,system-ui,sans-serif;color:rgba(255,255,255,.60)">
       <span>© MADAVAN Multilogística Internacional SA de CV. Todos los derechos reservados.</span>
-      <span style="display:flex;gap:10px"><a href="https://madavan.com.mx/politica-de-privacidad/" style="color:#6B6456">Aviso de privacidad</a>|<a href="https://madavan.com.mx/terminos-y-condiciones/" style="color:#6B6456">Términos y condiciones</a></span>
+      <span style="display:flex;gap:10px"><a href="https://madavan.com.mx/politica-de-privacidad/" style="color:rgba(255,255,255,.60)">Aviso de privacidad</a>|<a href="https://madavan.com.mx/terminos-y-condiciones/" style="color:rgba(255,255,255,.60)">Términos y condiciones</a></span>
     </div>
+  </div>
   </div>
 </footer>
 
-<a data-r="waflot" href="https://wa.me/525610980231?text=Hola%20MADAVAN%2C%20quiero%20cotizar%20un%20env%C3%ADo.%20" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" style="position:fixed;right:22px;bottom:22px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 28px rgba(6,46,87,.28)" style-hover="background:#1DB556;color:#fff"><svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor" aria-hidden="true" style="display:block;flex-shrink:0"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.08-.12-.27-.2-.57-.35M12.05 21.78h-.01c-1.77 0-3.5-.48-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.43 9.89-9.88 9.89m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42Z"/></svg></a>
+<a data-r="waflot" href="https://wa.me/525610980231?text=Hola%20MADAVAN%2C%20quiero%20cotizar%20un%20env%C3%ADo.%20" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" style="position:fixed;right:22px;bottom:22px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 28px rgba(18,33,46,.26)" style-hover="background:#1DB556;color:#fff"><svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor" aria-hidden="true" style="display:block;flex-shrink:0"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.08-.12-.27-.2-.57-.35M12.05 21.78h-.01c-1.77 0-3.5-.48-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.43 9.89-9.88 9.89m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42Z"/></svg></a>
 
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { dd: false, w: window.innerWidth, menuOpen: false };
+  state = { dd: false, w: window.innerWidth, menuOpen: false, tab: 0 };
   componentDidMount() {
     this.icons();
     this.vfx();
+    this.sombra();
     this.video();
     this.onResize = () => this.setState({ w: window.innerWidth, menuOpen: window.innerWidth >= 1024 ? false : this.state.menuOpen });
     window.addEventListener('resize', this.onResize);
   }
-  componentWillUnmount() { if (this._obs) this._obs.disconnect(); if (this._rescate) clearTimeout(this._rescate); window.removeEventListener('resize', this.onResize); }
-  componentDidUpdate() { this.icons(); this.vfx(); this.video(); }
+  componentWillUnmount() { if (this._sombra) window.removeEventListener('scroll', this._sombra); if (this._obs) this._obs.disconnect(); if (this._rescate) clearTimeout(this._rescate); window.removeEventListener('resize', this.onResize); }
+  componentDidUpdate() { this.icons(); this.vfx(); this.sombra(); this.video(); }
   /* React no aplica `muted` como atributo y sin él ningún navegador reproduce
      solo. Se fija por propiedad, que es la única forma fiable. */
   video() {
@@ -438,6 +490,19 @@ class Component extends DCLogic {
 
   /* Entrada al aparecer en pantalla. Se marca el elemento una sola vez y no se
      vuelve a tocar: si React re-renderiza, lo ya revelado se queda revelado. */
+  /* La cabecera sólo levanta sombra cuando la página ya se movió: en reposo
+     es una línea, como en la referencia. */
+  sombra() {
+    if (this._sombra) return;
+    const cab = document.querySelector('[data-r=cab]');
+    if (!cab) return;
+    this._sombra = () => {
+      if (window.scrollY > 8) cab.setAttribute('data-fijo', '1');
+      else cab.removeAttribute('data-fijo');
+    };
+    window.addEventListener('scroll', this._sombra, { passive: true });
+    this._sombra();
+  }
   vfx() {
     /* Red de seguridad: pase lo que pase, a los 2.5 s todo queda visible.
        El contenido nunca puede quedarse en blanco por culpa de un efecto. */
@@ -476,24 +541,48 @@ class Component extends DCLogic {
     // solo, aunque entre como background-image. Cada ruta va escrita entera
     // porque build.py la reescribe para /en/ y le añade el ?v= de caché.
     const tapiz = `center/cover no-repeat, ${ph}`;
+    const cinta = [
+      { icon: 'ship', cifra: '+300 t', pie: 'Capacidad de izamiento en buques' },
+      { icon: 'truck', cifra: '350 t', pie: 'Grúas para carga sobredimensionada' },
+      { icon: 'network', cifra: '5', pie: 'Continentes en nuestra red de agentes' },
+      { icon: 'anchor', cifra: '13', pie: 'Puntos de despacho aduanal' },
+      { icon: 'globe', cifra: 'Alcance global', pie: 'Operamos sin fronteras' },
+      { icon: 'shield-check', cifra: 'Confianza', pie: 'En cada entrega' },
+      { icon: 'settings', cifra: 'A la medida', pie: 'Soluciones por industria' },
+      { icon: 'clock', cifra: '8 a 18 h', pie: 'Lunes a viernes, atención directa' }
+    ];
+    const tab = this.state.tab || 0;
     const services = [
-      { title: 'Transporte Marítimo', icon: 'ship', href: 'transporte-maritimo.html', bg: `url('assets/ilu-maritimo-card.svg?v=328b36a3') ${tapiz}`,
+      { title: 'Transporte Marítimo', corto: 'Marítimo', largo: 'Contratos con las principales líneas navieras y las mejores alternativas para contratar y coordinar embarques, desde un metro cúbico hasta buques con capacidad de izamiento de más de 300 toneladas.', icon: 'ship', href: 'transporte-maritimo.html', bg: `url('assets/ilu-maritimo-card.svg?v=328b36a3') ${tapiz}`,
         desc: 'Contenedores, carga consolidada y granel con las principales navieras.' },
-      { title: 'Transporte Aéreo', icon: 'plane', href: 'transporte-aereo.html', bg: `url('assets/ilu-aereo-card.svg?v=40f279ec') ${tapiz}`,
+      { title: 'Transporte Aéreo', corto: 'Aéreo', largo: 'Enviamos con las principales aerolíneas de carga y de pasajeros del mundo y de México, con salidas diarias, aeropuerto a aeropuerto o puerta a puerta, y tarifas altamente competitivas.', icon: 'plane', href: 'transporte-aereo.html', bg: `url('assets/ilu-aereo-card.svg?v=40f279ec') ${tapiz}`,
         desc: 'Consolidado y puerta a puerta, con vuelos de fletamento.' },
-      { title: 'Transporte Terrestre', icon: 'truck', href: 'transporte-terrestre.html', bg: `url('assets/ilu-terrestre-card.svg?v=6dd6f9c2') ${tapiz}`,
+      { title: 'Transporte Terrestre', corto: 'Terrestre', largo: 'Cajas de 48 y 53 pies completas o consolidadas, transporte especializado para carga proyecto e intermodal ferroviario en toda América del Norte.', icon: 'truck', href: 'transporte-terrestre.html', bg: `url('assets/ilu-terrestre-card.svg?v=6dd6f9c2') ${tapiz}`,
         desc: 'FTL y LTL en cajas de 48 y 53 pies, más intermodal ferroviario.' },
-      { title: 'Carga Sobredimensionada', icon: 'container', href: 'carga-sobredimensionada.html', bg: `url('assets/ilu-sobredimensionada-card.svg?v=03fc5656') ${tapiz}`,
+      { title: 'Carga Sobredimensionada', corto: 'Sobredimensionada', largo: 'Movimiento especializado de piezas con sobredimensión y extrapeso por mar y tierra: lowboy, flat rack, camas bajas, modulares y fletamento de buques multipropósitos.', icon: 'container', href: 'carga-sobredimensionada.html', bg: `url('assets/ilu-sobredimensionada-card.svg?v=03fc5656') ${tapiz}`,
         desc: 'Lowboy, flat rack y camas bajas; fletamento de buques multipropósito.' },
-      { title: 'Mercancía Peligrosa HAZMAT', icon: 'triangle-alert', href: 'mercancia-peligrosa-hazmat.html', bg: `url('assets/ilu-hazmat-card.svg?v=0a4c68fa') ${tapiz}`,
+      { title: 'Mercancía Peligrosa HAZMAT', corto: 'HAZMAT', largo: 'Somos especialistas en la elaboración de la DGD (Dangerous Goods Declaration) para las 9 clases del Código IMDG, y coordinamos el transporte de tu mercancía peligrosa por mar, aire y tierra.', icon: 'triangle-alert', href: 'mercancia-peligrosa-hazmat.html', bg: `url('assets/ilu-hazmat-card.svg?v=0a4c68fa') ${tapiz}`,
         desc: 'Manejo y dictamen certificados: DGD, Código IMDG e IMO.' },
-      { title: 'Seguro de Mercancías y Carga', icon: 'shield-check', href: 'seguro-de-carga.html', bg: `url('assets/ilu-seguro-card.svg?v=b101e365') ${tapiz}`,
+      { title: 'Seguro de Mercancías y Carga', corto: 'Seguro', largo: 'Elaboramos contratos de pólizas de seguro nacionales e internacionales según tus solicitudes y requerimientos, para cubrir los riesgos del traslado de tus mercancías, bienes y cargas.', icon: 'shield-check', href: 'seguro-de-carga.html', bg: `url('assets/ilu-seguro-card.svg?v=b101e365') ${tapiz}`,
         desc: 'Pólizas nacionales e internacionales para el traslado de su mercancía.' },
-      { title: 'Cursos Supply Chain', icon: 'graduation-cap', href: 'cursos/', bg: `url('assets/ilu-cursos-card.svg?v=d610d400') ${tapiz}`,
+      { title: 'Cursos Supply Chain', corto: 'Cursos', largo: 'Capacitación en comercio exterior, logística, HAZMAT y aduana, impartida por especialistas en activo y con constancia al terminar.', icon: 'graduation-cap', href: 'cursos/', bg: `url('assets/ilu-cursos-card.svg?v=d610d400') ${tapiz}`,
         desc: 'Capacitación en comercio exterior, logística, HAZMAT y aduana.' }
     ];
     return {
       services,
+      /* La marquesina necesita la pista duplicada: la animación recorre -50%
+         y vuelve al origen sin que se note el corte. */
+      cinta: cinta.concat(cinta),
+      svcTabs: services.map((s, i) => ({
+        corto: s.corto, on: i === tab ? '1' : '0', sel: () => this.setState({ tab: i })
+      })),
+      svcActivo: services[tab],
+      valores: [
+        { icon: 'shield-check', title: 'Confianza', desc: 'Relaciones sólidas y transparentes' },
+        { icon: 'bar-chart-3', title: 'Eficiencia', desc: 'Procesos ágiles que generan resultados' },
+        { icon: 'sprout', title: 'Sostenibilidad', desc: 'Soluciones responsables para el mañana' },
+        { icon: 'globe', title: 'Alcance global', desc: 'Oportunidades en todo el mundo' }
+      ],
       footerServices: services.slice(0, 6),
       ports: ['Ciudad de México', 'Nuevo Laredo', 'Tampico', 'Altamira', 'Veracruz', 'Coatzacoalcos', 'Guaymas', 'Manzanillo', 'Salina Cruz', 'Guadalajara', 'Monterrey', 'Querétaro', 'Lázaro Cárdenas'],
       mission: [
