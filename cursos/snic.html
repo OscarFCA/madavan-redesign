@@ -30,9 +30,9 @@ a:hover{color:#09588F}
 svg.lucide{stroke-width:1.75}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 /* ---- Responsive (móvil · tablet · escritorio) ---- */
-:root{--gx:56px}
-@media (min-width:1500px){:root{--gx:72px}}
-@media (min-width:1800px){:root{--gx:88px}}
+:root{--gx:30px}
+@media (min-width:1500px){:root{--gx:40px}}
+@media (min-width:1800px){:root{--gx:48px}}
 @media (max-width:1180px){:root{--gx:44px}}
 @media (max-width:1023px){:root{--gx:32px}}
 @media (max-width:560px){:root{--gx:20px}}
@@ -93,7 +93,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 /* Marquesina del hero. La pista va duplicada en el marcado, por eso -50%
    cierra el ciclo sin salto. Se detiene si el visitante la señala. */
 @keyframes madCinta{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-[data-r=cinta]{animation:madCinta 42s linear infinite}
+[data-r=cinta]{animation:madCinta 30s linear infinite}
 [data-r=cintacaja]:hover [data-r=cinta]{animation-play-state:paused}
 [data-r=cintacaja]{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 3%,#000 97%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 3%,#000 97%,transparent 100%)}
 @media (prefers-reduced-motion:reduce){[data-r=cinta]{animation:none}}
@@ -105,7 +105,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 [data-tab][data-sel="1"]:hover{color:#fff!important}
 
 /* Tarjetas: planas en reposo, levantadas y con sombra al pasar el cursor. */
-[data-vfx-card]:hover{box-shadow:0 8px 24px rgba(1,28,54,.10)}
+[data-vfx-card]:hover{box-shadow:0 8px 24px rgba(1,28,54,.08)}
 
 /* Hero de portada. El bloque responsivo anterior reservaba 266px bajo el
    texto para una ilustración que este hero ya no lleva, y aclaraba el velo a
@@ -129,7 +129,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 /* Entrada al aparecer en pantalla. Discreto a propósito: el sitio vende
    logística, no efectos. Sin JS el contenido se ve igual, nunca se oculta. */
 [data-vfx]{opacity:0;transform:translateY(18px);
-  transition:opacity .62s cubic-bezier(.22,.61,.36,1),transform .62s cubic-bezier(.22,.61,.36,1)}
+  transition:opacity .62s cubic-bezier(.22,1,.36,1),transform .62s cubic-bezier(.22,1,.36,1)}
 [data-vfx][data-visto]{opacity:1;transform:none}
 [data-vfx="2"]{transition-delay:.09s}
 [data-vfx="3"]{transition-delay:.18s}
@@ -140,7 +140,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
    El contenedor es quien recibe `data-visto`; los hijos sólo heredan el
    momento y se escalonan con nth-child, sin una línea de JS por tarjeta. */
 [data-stagger] > *{opacity:0;transform:translateY(16px);
-  transition:opacity .6s cubic-bezier(.22,.61,.36,1),transform .6s cubic-bezier(.22,.61,.36,1)}
+  transition:opacity 1s cubic-bezier(.22,1,.36,1),transform 1s cubic-bezier(.22,1,.36,1)}
 [data-stagger][data-visto] > *{opacity:1;transform:none}
 [data-stagger][data-visto] > *:nth-child(2){transition-delay:0.07s}
 [data-stagger][data-visto] > *:nth-child(3){transition-delay:0.14s}
@@ -156,18 +156,18 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 @media (prefers-reduced-motion:reduce){[data-stagger] > *{opacity:1!important;transform:none!important;transition:none!important}}
 
 /* Tarjetas: se levantan y su foto respira al pasar el cursor */
-[data-vfx-card]{transition:transform .26s cubic-bezier(.22,.61,.36,1),box-shadow .26s ease}
+[data-vfx-card]{transition:transform .26s cubic-bezier(.22,1,.36,1),box-shadow .26s ease}
 [data-vfx-card]:hover{transform:translateY(-5px)}
-[data-vfx-card] [data-vfx-img]{transition:transform .55s cubic-bezier(.22,.61,.36,1)}
+[data-vfx-card] [data-vfx-img]{transition:transform .55s cubic-bezier(.22,1,.36,1)}
 [data-vfx-card]:hover [data-vfx-img]{transform:scale(1.045)}
-[data-vfx-card] [data-vfx-arrow]{transition:transform .26s cubic-bezier(.22,.61,.36,1)}
+[data-vfx-card] [data-vfx-arrow]{transition:transform .26s cubic-bezier(.22,1,.36,1)}
 [data-vfx-card]:hover [data-vfx-arrow]{transform:translateX(4px)}
 
 /* Botón primario: un destello cruza una sola vez al pasar el cursor */
 [data-vfx-btn]{position:relative;overflow:hidden;isolation:isolate}
 [data-vfx-btn]::after{content:"";position:absolute;inset:0;z-index:-1;
   background:linear-gradient(110deg,transparent 28%,rgba(255,255,255,.28) 50%,transparent 72%);
-  transform:translateX(-120%);transition:transform .62s cubic-bezier(.3,.7,.4,1)}
+  transform:translateX(-120%);transition:transform .62s cubic-bezier(.22,1,.36,1)}
 [data-vfx-btn]:hover::after{transform:translateX(120%)}
 
 /* Las ilustraciones del hero se animan por dentro del propio SVG:
@@ -175,7 +175,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 
 /* Las cifras entran con su icono */
 @keyframes madPulso{0%{transform:scale(.82);opacity:0}60%{transform:scale(1.06)}100%{transform:scale(1);opacity:1}}
-[data-visto] [data-vfx-stat] svg{animation:madPulso .55s cubic-bezier(.22,.61,.36,1) both}
+[data-visto] [data-vfx-stat] svg{animation:madPulso .55s cubic-bezier(.22,1,.36,1) both}
 
 /* Nada de esto se mueve si el visitante pidió menos movimiento */
 @media (prefers-reduced-motion:reduce){
@@ -194,17 +194,17 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 <div style="min-height:100vh;background:#fff">
 
 <header data-r="cab" style="position:sticky;top:0;z-index:40;background:#fff;border-bottom:1px solid #DCE6F0">
-  <div style="max-width:1320px;margin:0 auto;padding:12px var(--gx);min-height:72px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px">
+  <div style="max-width:1200px;margin:0 auto;padding:12px var(--gx);min-height:72px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px">
     <a href="../" style="display:flex;align-items:center;flex-shrink:0"><img src="../assets/madavan-logo.png?v=6329367f" alt="MADAVAN Multilogística Internacional" data-r="logo" style="height:48px;width:auto;display:block"></a>
-    <nav data-r="navdesk" style="display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;font:600 15px/1 Montserrat,sans-serif;white-space:nowrap">
+    <nav data-r="navdesk" style="display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;font:700 16px/1 Montserrat,sans-serif;white-space:nowrap">
       <a href="../" style="color:#011C36;padding:8px 0;border-bottom:2px solid transparent" style-hover="border-bottom-color:#0B72BE">Inicio</a>
       <div onMouseEnter="{{ openDd }}" onMouseLeave="{{ closeDd }}" style="position:relative">
         <a href="../#servicios" onClick="{{ toggleDd }}" style="color:#011C36;font-weight:600;padding:8px 0;border-bottom:2px solid #011C36;display:inline-flex;align-items:center;gap:6px">Logística <span style="font-size:10px;color:#0B72BE">▼</span></a>
         <sc-if value="{{ ddOpen }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;top:100%;left:-20px;padding-top:12px;z-index:30">
-            <div style="min-width:310px;background:#fff;border:1px solid #DCE6F0;border-radius:14px;box-shadow:0 16px 40px rgba(1,28,54,.14);padding:8px;display:flex;flex-direction:column;gap:2px">
+            <div style="min-width:310px;background:#fff;border:1px solid #DCE6F0;border-radius:8px;box-shadow:0 16px 32px -12px rgba(1,28,54,.28);padding:8px;display:flex;flex-direction:column;gap:2px">
               <sc-for list="{{ svcMenu }}" as="it" hint-placeholder-count="7">
-                <a href="{{ it.href }}" style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;color:#011C36;font:600 14px/1.3 Montserrat,sans-serif;white-space:nowrap" style-hover="background:#EEF5FB;color:#011C36"><span style="width:32px;height:32px;border-radius:50%;background:#EEF5FB;color:#0B72BE;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="{{ it.icon }}" style="width:16px;height:16px"></i></span>{{ it.title }}</a>
+                <a href="{{ it.href }}" style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:8px;color:#011C36;font:600 14px/1.3 Montserrat,sans-serif;white-space:nowrap" style-hover="background:#EEF5FB;color:#011C36"><span style="width:32px;height:32px;border-radius:50%;background:#0B72BE;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="{{ it.icon }}" style="width:16px;height:16px"></i></span>{{ it.title }}</a>
               </sc-for>
             </div>
           </div>
@@ -217,23 +217,23 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
     </nav>
     <div data-r="navact" style="display:flex;align-items:center;gap:12px">
       <div style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #DCE6F0;border-radius:500px;padding:3px"><i data-lucide="globe" style="width:16px;height:16px;color:#0B72BE;margin-left:6px"></i><a data-r="lang-es" href="#" style="padding:7px 15px;border-radius:500px;background:#011C36;color:#fff;font:600 13px/1 Montserrat,sans-serif">ES</a><a data-r="lang-en" href="#" style="padding:7px 15px;border-radius:500px;color:#011C36;font:600 13px/1 Montserrat,sans-serif">EN</a></div>
-      <a href="../#contacto" data-vfx-btn="1" style="display:inline-flex;align-items:center;gap:10px;padding:13px 26px;border-radius:500px;background:#0B72BE;color:#fff;font:600 15px/1 Montserrat,sans-serif;white-space:nowrap" style-hover="background:#09588F;color:#fff">Solicita una cotización <span>→</span></a>
+      <a href="../#contacto" data-vfx-btn="1" style="display:inline-flex;align-items:center;gap:10px;padding:13px 26px;border-radius:500px;background:#0B72BE;color:#fff;font:700 16px/1 Montserrat,sans-serif;white-space:nowrap" style-hover="background:#09588F;color:#fff">Solicita una cotización <span>→</span></a>
     </div>
-    <button data-r="burger" type="button" aria-label="Abrir menú" aria-expanded="{{ menuOpen }}" onClick="{{ toggleMenu }}" style="display:none;align-items:center;justify-content:center;width:46px;height:46px;flex-shrink:0;border:1px solid #DCE6F0;border-radius:14px;background:#fff;color:#011C36;cursor:pointer"><sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:block"><path d="M6 6 L18 18 M18 6 L6 18"></path></svg></sc-if><sc-if value="{{ menuClosed }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:block"><path d="M3 6h18 M3 12h18 M3 18h18"></path></svg></sc-if></button>
+    <button data-r="burger" type="button" aria-label="Abrir menú" aria-expanded="{{ menuOpen }}" onClick="{{ toggleMenu }}" style="display:none;align-items:center;justify-content:center;width:46px;height:46px;flex-shrink:0;border:1px solid #DCE6F0;border-radius:8px;background:#fff;color:#011C36;cursor:pointer"><sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:block"><path d="M6 6 L18 18 M18 6 L6 18"></path></svg></sc-if><sc-if value="{{ menuClosed }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:block"><path d="M3 6h18 M3 12h18 M3 18h18"></path></svg></sc-if></button>
   </div>
   <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
-    <div data-r="mobnav" style="position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid #DCE6F0;box-shadow:0 18px 40px rgba(1,28,54,.16);max-height:calc(100vh - 72px);overflow-y:auto;padding:8px var(--gx) 24px;display:flex;flex-direction:column">
+    <div data-r="mobnav" style="position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid #DCE6F0;box-shadow:0 16px 32px -12px rgba(1,28,54,.28);max-height:calc(100vh - 72px);overflow-y:auto;padding:8px var(--gx) 24px;display:flex;flex-direction:column">
       <a href="../" onClick="{{ closeMenu }}" style="padding:14px 2px;border-bottom:1px solid #EEF5FB;font:600 16px/1.3 Montserrat,sans-serif;color:#011C36;display:block">Inicio</a>
       <div style="padding:18px 2px 8px;font:600 11px/1 Montserrat,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#5A6B7D">Logística</div>
       <sc-for list="{{ svcMenu }}" as="it" hint-placeholder-count="6">
-        <a href="{{ it.href }}" onClick="{{ closeMenu }}" style="display:flex;align-items:center;gap:12px;padding:11px 2px;border-bottom:1px solid #EEF5FB;font:600 15px/1.35 Montserrat,sans-serif;color:#011C36"><span style="width:34px;height:34px;border-radius:50%;background:#EEF5FB;color:#0B72BE;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="{{ it.icon }}" style="width:17px;height:17px"></i></span>{{ it.title }}</a>
+        <a href="{{ it.href }}" onClick="{{ closeMenu }}" style="display:flex;align-items:center;gap:12px;padding:11px 2px;border-bottom:1px solid #EEF5FB;font:600 15px/1.35 Montserrat,sans-serif;color:#011C36"><span style="width:34px;height:34px;border-radius:50%;background:#0B72BE;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="{{ it.icon }}" style="width:17px;height:17px"></i></span>{{ it.title }}</a>
       </sc-for>
       <a href="../#cobertura" onClick="{{ closeMenu }}" style="padding:14px 2px;border-bottom:1px solid #EEF5FB;font:600 16px/1.3 Montserrat,sans-serif;color:#011C36;display:block;margin-top:6px">Cobertura</a>
       <a href="./" onClick="{{ closeMenu }}" style="padding:14px 2px;border-bottom:1px solid #EEF5FB;font:600 16px/1.3 Montserrat,sans-serif;color:#011C36;display:block">Cursos</a>
       <a href="../#contacto" onClick="{{ closeMenu }}" style="padding:14px 2px;border-bottom:1px solid #EEF5FB;font:600 16px/1.3 Montserrat,sans-serif;color:#011C36;display:block;border-bottom:0">Contacto</a>
       <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px">
         <div style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #DCE6F0;border-radius:500px;padding:3px"><i data-lucide="globe" style="width:16px;height:16px;color:#0B72BE;margin-left:6px"></i><a data-r="lang-es" href="#" style="padding:7px 15px;border-radius:500px;background:#011C36;color:#fff;font:600 13px/1 Montserrat,sans-serif">ES</a><a data-r="lang-en" href="#" style="padding:7px 15px;border-radius:500px;color:#011C36;font:600 13px/1 Montserrat,sans-serif">EN</a></div>
-        <a href="../#contacto" onClick="{{ closeMenu }}" style="flex:1 1 200px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 26px;border-radius:500px;background:#0B72BE;color:#fff;font:600 15px/1 Montserrat,sans-serif" style-hover="background:#09588F;color:#fff">Solicita una cotización <span>→</span></a>
+        <a href="../#contacto" onClick="{{ closeMenu }}" style="flex:1 1 200px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 26px;border-radius:500px;background:#0B72BE;color:#fff;font:700 16px/1 Montserrat,sans-serif" style-hover="background:#09588F;color:#fff">Solicita una cotización <span>→</span></a>
       </div>
     </div>
   </sc-if>
@@ -242,11 +242,11 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 <section data-vfx="1" data-screen-label="Hero" style="position:relative;overflow:hidden;background:#fff">
 <div data-r="heroilu" style="position:absolute;top:0;right:0;bottom:0;width:52%;background:#EEF5FB url('../assets/ilu-cursos.svg?v=c7fdfd91') center/cover no-repeat"></div>
 <div data-r="heroscrimilu" style="position:absolute;inset:0;background:linear-gradient(90deg,#FFFFFF 0%,#FFFFFF 44%,rgba(255,255,255,0) 68%)"></div>
-<div data-r="herobody" style="position:relative;max-width:1320px;margin:0 auto;padding:clamp(24px,4vw,40px) var(--gx) clamp(48px,8vw,88px)">
+<div data-r="herobody" style="position:relative;max-width:1200px;margin:0 auto;padding:clamp(24px,4vw,40px) var(--gx) clamp(48px,8vw,88px)">
 <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;font:400 13px/1.6 Lato,sans-serif;color:#5A6B7D;margin-bottom:40px"><a href=".././" style="color:#5A6B7D" style-hover="color:#0B72BE">Inicio</a><span>/</span><a href="./" style="color:#5A6B7D" style-hover="color:#0B72BE">Cursos</a><span>/</span><span style="color:#011C36;font-weight:700">SNIC</span></div>
 <div style="max-width:660px;display:flex;flex-direction:column;gap:22px">
 <div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#011C36"><span style="width:24px;height:3px;background:#0B72BE;border-radius:500px"></span>Cumplimiento normativo</div>
-<h1 style="margin:0;font:700 clamp(30px,5.6vw,52px)/1.1 Montserrat,sans-serif;letter-spacing:-.02em;color:#011C36;text-wrap:balance">El Reglamento 2026 cambió las reglas de conformidad de tu planta.</h1>
+<h1 style="margin:0;font:700 clamp(30px,5.6vw,52px)/1.1 Montserrat,sans-serif;letter-spacing:-.03em;color:#011C36;text-wrap:balance">El Reglamento 2026 cambió las reglas de conformidad de tu planta.</h1>
 <p style="margin:0;font:400 clamp(16px,2.3vw,18px)/1.6 Lato,sans-serif;color:#44566B;text-wrap:pretty">Entiende el SNIC, la acreditación de EMA y la evaluación de la conformidad antes de que una auditoría te encuentre sin preparar.</p>
 <p style="margin:0;font:400 16px/1.7 Lato,sans-serif;color:#44566B;text-wrap:pretty">Traducimos el lenguaje del Diario Oficial de la Federación a decisiones operativas concretas para tu planta, sin relleno teórico ni información desactualizada.</p>
 <div style="display:flex;flex-wrap:wrap;gap:8px">
@@ -254,99 +254,99 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 <span style="padding:7px 16px;border-radius:500px;background:#EEF5FB;color:#011C36;font:600 13px/1 Montserrat,sans-serif">Certificado incluido</span>
 </div>
 <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
-<a href="https://wa.me/525610980231?text=Hola%20MADAVAN%2C%20me%20interesa%20el%20Curso%20SNIC%20%E2%80%94%20Sistema%20Nacional%20de%20Infraestructura%20de%20la%20Calidad.%20" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:17px 34px;border-radius:500px;background:#0B72BE;color:#fff;font:600 17px/1 Montserrat,sans-serif;box-shadow:0 8px 20px rgba(37,211,102,.28)" style-hover="background:#09588F;color:#fff">Quiero este curso <span>&#8594;</span></a>
+<a href="https://wa.me/525610980231?text=Hola%20MADAVAN%2C%20me%20interesa%20el%20Curso%20SNIC%20%E2%80%94%20Sistema%20Nacional%20de%20Infraestructura%20de%20la%20Calidad.%20" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:19px 46px;border-radius:500px;background:#0B72BE;color:#fff;font:600 17px/1 Montserrat,sans-serif;box-shadow:0 8px 20px rgba(37,211,102,.28)" style-hover="background:#09588F;color:#fff">Quiero este curso <span>&#8594;</span></a>
 </div></div></div></section>
-<section data-vfx="1" data-screen-label="Problema" style="background:#EEF5FB;border-radius:28px;margin:14px"><div style="max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,128px) var(--gx)">
+<section data-vfx="1" data-screen-label="Problema" style="background:#EEF5FB;border-radius:20px;margin:14px"><div style="max-width:1200px;margin:0 auto;padding:clamp(48px,6vw,88px) var(--gx)">
 <div style="display:flex;flex-direction:column;gap:20px;max-width:900px">
-<h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.01em;color:#011C36;text-wrap:balance">SNIC, EMA, OEC, SISMENEC: demasiadas siglas y poca claridad</h2>
+<h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.03em;color:#011C36;text-wrap:balance">SNIC, EMA, OEC, SISMENEC: demasiadas siglas y poca claridad</h2>
 <p style="margin:0;font:400 16px/1.7 Lato,sans-serif;color:#44566B;text-wrap:pretty">La Ley de Infraestructura de la Calidad de 2020 y su Reglamento, vigente desde el 7 de septiembre de 2026, sustituyeron al antiguo SISMENEC y trajeron obligaciones nuevas para las plantas de manufactura.</p>
 <p style="margin:0;font:400 16px/1.7 Lato,sans-serif;color:#44566B;text-wrap:pretty">Si coordinas certificaciones, pruebas de laboratorio o inspecciones de tus productos, el cambio te afecta directamente: plataforma PLATIICA, plazos de transición de 36 meses y documentación que hay que preparar desde ahora.</p>
 </div></div></section>
-<section data-vfx="1" data-screen-label="Temario" style="max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,128px) var(--gx)">
+<section data-vfx="1" data-screen-label="Temario" style="max-width:1200px;margin:0 auto;padding:clamp(48px,6vw,88px) var(--gx)">
 <div style="display:flex;flex-direction:column;gap:28px">
 <div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#011C36"><span style="width:24px;height:3px;background:#0B72BE;border-radius:500px"></span>Temario</div>
-<h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.01em;color:#011C36;text-wrap:balance">Módulo por módulo.</h2>
+<h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.03em;color:#011C36;text-wrap:balance">Módulo por módulo.</h2>
 <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:20px">
-<div style="background:#fff;border:1px solid #DCE6F0;border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:14px;box-shadow:0 4px 16px rgba(1,28,54,.05)">
-<div style="display:flex;align-items:center;gap:12px"><span style="width:34px;height:34px;border-radius:14px;background:#011C36;color:#fff;display:flex;align-items:center;justify-content:center;font:700 14px/1 Montserrat,sans-serif;flex-shrink:0">01</span><h3 style="margin:0;font:600 17px/1.35 Montserrat,sans-serif;color:#011C36">Marco legal del SNIC</h3></div>
+<div style="background:#fff;border:1px solid #DCE6F0;border-radius:8px;padding:26px;display:flex;flex-direction:column;gap:14px;box-shadow:0 4px 16px rgba(1,28,54,.05)">
+<div style="display:flex;align-items:center;gap:12px"><span style="width:34px;height:34px;border-radius:8px;background:#011C36;color:#fff;display:flex;align-items:center;justify-content:center;font:700 14px/1 Montserrat,sans-serif;flex-shrink:0">01</span><h3 style="margin:0;font:600 17px/1.35 Montserrat,sans-serif;color:#011C36">Marco legal del SNIC</h3></div>
 <div style="display:flex;flex-direction:column;gap:9px">
-<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:5px;height:5px;border-radius:500px;background:#0B72BE;flex-shrink:0;margin-top:9px"></span><span style="font:400 15.5px/1.72 Lato,sans-serif;color:#44566B">Por qué la LIC (2020) y su Reglamento (2026) sustituyeron al SISMENEC.</span></div>
-<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:5px;height:5px;border-radius:500px;background:#0B72BE;flex-shrink:0;margin-top:9px"></span><span style="font:400 15.5px/1.72 Lato,sans-serif;color:#44566B">Qué obligaciones nuevas trae para tu planta.</span></div>
+<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:5px;height:5px;border-radius:500px;background:#0B72BE;flex-shrink:0;margin-top:9px"></span><span style="font:400 16px/1.75 Lato,sans-serif;color:#44566B">Por qué la LIC (2020) y su Reglamento (2026) sustituyeron al SISMENEC.</span></div>
+<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:5px;height:5px;border-radius:500px;background:#0B72BE;flex-shrink:0;margin-top:9px"></span><span style="font:400 16px/1.75 Lato,sans-serif;color:#44566B">Qué obligaciones nuevas trae para tu planta.</span></div>
 </div></div>
-<div style="background:#fff;border:1px solid #DCE6F0;border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:14px;box-shadow:0 4px 16px rgba(1,28,54,.05)">
-<div style="display:flex;align-items:center;gap:12px"><span style="width:34px;height:34px;border-radius:14px;background:#011C36;color:#fff;display:flex;align-items:center;justify-content:center;font:700 14px/1 Montserrat,sans-serif;flex-shrink:0">02</span><h3 style="margin:0;font:600 17px/1.35 Montserrat,sans-serif;color:#011C36">Los pilares del SNIC</h3></div>
+<div style="background:#fff;border:1px solid #DCE6F0;border-radius:8px;padding:26px;display:flex;flex-direction:column;gap:14px;box-shadow:0 4px 16px rgba(1,28,54,.05)">
+<div style="display:flex;align-items:center;gap:12px"><span style="width:34px;height:34px;border-radius:8px;background:#011C36;color:#fff;display:flex;align-items:center;justify-content:center;font:700 14px/1 Montserrat,sans-serif;flex-shrink:0">02</span><h3 style="margin:0;font:600 17px/1.35 Montserrat,sans-serif;color:#011C36">Los pilares del SNIC</h3></div>
 <div style="display:flex;flex-direction:column;gap:9px">
-<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:5px;height:5px;border-radius:500px;background:#0B72BE;flex-shrink:0;margin-top:9px"></span><span style="font:400 15.5px/1.72 Lato,sans-serif;color:#44566B">Cómo se articulan normalización, metrología, evaluación de la conformidad y vigilancia en un solo sistema.</span></div>
+<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:5px;height:5px;border-radius:500px;background:#0B72BE;flex-shrink:0;margin-top:9px"></span><span style="font:400 16px/1.75 Lato,sans-serif;color:#44566B">Cómo se articulan normalización, metrología, evaluación de la conformidad y vigilancia en un solo sistema.</span></div>
 </div></div>
-<div style="background:#fff;border:1px solid #DCE6F0;border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:14px;box-shadow:0 4px 16px rgba(1,28,54,.05)">
-<div style="display:flex;align-items:center;gap:12px"><span style="width:34px;height:34px;border-radius:14px;background:#011C36;color:#fff;display:flex;align-items:center;justify-content:center;font:700 14px/1 Montserrat,sans-serif;flex-shrink:0">03</span><h3 style="margin:0;font:600 17px/1.35 Montserrat,sans-serif;color:#011C36">El rol de EMA</h3></div>
+<div style="background:#fff;border:1px solid #DCE6F0;border-radius:8px;padding:26px;display:flex;flex-direction:column;gap:14px;box-shadow:0 4px 16px rgba(1,28,54,.05)">
+<div style="display:flex;align-items:center;gap:12px"><span style="width:34px;height:34px;border-radius:8px;background:#011C36;color:#fff;display:flex;align-items:center;justify-content:center;font:700 14px/1 Montserrat,sans-serif;flex-shrink:0">03</span><h3 style="margin:0;font:600 17px/1.35 Montserrat,sans-serif;color:#011C36">El rol de EMA</h3></div>
 <div style="display:flex;flex-direction:column;gap:9px">
-<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:5px;height:5px;border-radius:500px;background:#0B72BE;flex-shrink:0;margin-top:9px"></span><span style="font:400 15.5px/1.72 Lato,sans-serif;color:#44566B">Qué acredita EMA y qué NO hace.</span></div>
-<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:5px;height:5px;border-radius:500px;background:#0B72BE;flex-shrink:0;margin-top:9px"></span><span style="font:400 15.5px/1.72 Lato,sans-serif;color:#44566B">Cómo afecta a los laboratorios y organismos que evalúan tus productos.</span></div>
+<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:5px;height:5px;border-radius:500px;background:#0B72BE;flex-shrink:0;margin-top:9px"></span><span style="font:400 16px/1.75 Lato,sans-serif;color:#44566B">Qué acredita EMA y qué NO hace.</span></div>
+<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:5px;height:5px;border-radius:500px;background:#0B72BE;flex-shrink:0;margin-top:9px"></span><span style="font:400 16px/1.75 Lato,sans-serif;color:#44566B">Cómo afecta a los laboratorios y organismos que evalúan tus productos.</span></div>
 </div></div>
-<div style="background:#fff;border:1px solid #DCE6F0;border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:14px;box-shadow:0 4px 16px rgba(1,28,54,.05)">
-<div style="display:flex;align-items:center;gap:12px"><span style="width:34px;height:34px;border-radius:14px;background:#011C36;color:#fff;display:flex;align-items:center;justify-content:center;font:700 14px/1 Montserrat,sans-serif;flex-shrink:0">04</span><h3 style="margin:0;font:600 17px/1.35 Montserrat,sans-serif;color:#011C36">NOM y evaluación de la conformidad en planta</h3></div>
+<div style="background:#fff;border:1px solid #DCE6F0;border-radius:8px;padding:26px;display:flex;flex-direction:column;gap:14px;box-shadow:0 4px 16px rgba(1,28,54,.05)">
+<div style="display:flex;align-items:center;gap:12px"><span style="width:34px;height:34px;border-radius:8px;background:#011C36;color:#fff;display:flex;align-items:center;justify-content:center;font:700 14px/1 Montserrat,sans-serif;flex-shrink:0">04</span><h3 style="margin:0;font:600 17px/1.35 Montserrat,sans-serif;color:#011C36">NOM y evaluación de la conformidad en planta</h3></div>
 <div style="display:flex;flex-direction:column;gap:9px">
-<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:5px;height:5px;border-radius:500px;background:#0B72BE;flex-shrink:0;margin-top:9px"></span><span style="font:400 15.5px/1.72 Lato,sans-serif;color:#44566B">De la norma obligatoria a la demostración de cumplimiento.</span></div>
-<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:5px;height:5px;border-radius:500px;background:#0B72BE;flex-shrink:0;margin-top:9px"></span><span style="font:400 15.5px/1.72 Lato,sans-serif;color:#44566B">Muestreo, prueba, inspección y certificación.</span></div>
+<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:5px;height:5px;border-radius:500px;background:#0B72BE;flex-shrink:0;margin-top:9px"></span><span style="font:400 16px/1.75 Lato,sans-serif;color:#44566B">De la norma obligatoria a la demostración de cumplimiento.</span></div>
+<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:5px;height:5px;border-radius:500px;background:#0B72BE;flex-shrink:0;margin-top:9px"></span><span style="font:400 16px/1.75 Lato,sans-serif;color:#44566B">Muestreo, prueba, inspección y certificación.</span></div>
 </div></div>
-<div style="background:#fff;border:1px solid #DCE6F0;border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:14px;box-shadow:0 4px 16px rgba(1,28,54,.05)">
-<div style="display:flex;align-items:center;gap:12px"><span style="width:34px;height:34px;border-radius:14px;background:#011C36;color:#fff;display:flex;align-items:center;justify-content:center;font:700 14px/1 Montserrat,sans-serif;flex-shrink:0">05</span><h3 style="margin:0;font:600 17px/1.35 Montserrat,sans-serif;color:#011C36">Qué cambia con el Reglamento 2026</h3></div>
+<div style="background:#fff;border:1px solid #DCE6F0;border-radius:8px;padding:26px;display:flex;flex-direction:column;gap:14px;box-shadow:0 4px 16px rgba(1,28,54,.05)">
+<div style="display:flex;align-items:center;gap:12px"><span style="width:34px;height:34px;border-radius:8px;background:#011C36;color:#fff;display:flex;align-items:center;justify-content:center;font:700 14px/1 Montserrat,sans-serif;flex-shrink:0">05</span><h3 style="margin:0;font:600 17px/1.35 Montserrat,sans-serif;color:#011C36">Qué cambia con el Reglamento 2026</h3></div>
 <div style="display:flex;flex-direction:column;gap:9px">
-<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:5px;height:5px;border-radius:500px;background:#0B72BE;flex-shrink:0;margin-top:9px"></span><span style="font:400 15.5px/1.72 Lato,sans-serif;color:#44566B">La plataforma PLATIICA.</span></div>
-<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:5px;height:5px;border-radius:500px;background:#0B72BE;flex-shrink:0;margin-top:9px"></span><span style="font:400 15.5px/1.72 Lato,sans-serif;color:#44566B">Los nuevos plazos de transición de 36 meses.</span></div>
-<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:5px;height:5px;border-radius:500px;background:#0B72BE;flex-shrink:0;margin-top:9px"></span><span style="font:400 15.5px/1.72 Lato,sans-serif;color:#44566B">Cómo preparar tu documentación.</span></div>
+<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:5px;height:5px;border-radius:500px;background:#0B72BE;flex-shrink:0;margin-top:9px"></span><span style="font:400 16px/1.75 Lato,sans-serif;color:#44566B">La plataforma PLATIICA.</span></div>
+<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:5px;height:5px;border-radius:500px;background:#0B72BE;flex-shrink:0;margin-top:9px"></span><span style="font:400 16px/1.75 Lato,sans-serif;color:#44566B">Los nuevos plazos de transición de 36 meses.</span></div>
+<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:5px;height:5px;border-radius:500px;background:#0B72BE;flex-shrink:0;margin-top:9px"></span><span style="font:400 16px/1.75 Lato,sans-serif;color:#44566B">Cómo preparar tu documentación.</span></div>
 </div></div>
-<div style="background:#fff;border:1px solid #DCE6F0;border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:14px;box-shadow:0 4px 16px rgba(1,28,54,.05)">
-<div style="display:flex;align-items:center;gap:12px"><span style="width:34px;height:34px;border-radius:14px;background:#011C36;color:#fff;display:flex;align-items:center;justify-content:center;font:700 14px/1 Montserrat,sans-serif;flex-shrink:0">06</span><h3 style="margin:0;font:600 17px/1.35 Montserrat,sans-serif;color:#011C36">Caso práctico: auditoría de conformidad</h3></div>
+<div style="background:#fff;border:1px solid #DCE6F0;border-radius:8px;padding:26px;display:flex;flex-direction:column;gap:14px;box-shadow:0 4px 16px rgba(1,28,54,.05)">
+<div style="display:flex;align-items:center;gap:12px"><span style="width:34px;height:34px;border-radius:8px;background:#011C36;color:#fff;display:flex;align-items:center;justify-content:center;font:700 14px/1 Montserrat,sans-serif;flex-shrink:0">06</span><h3 style="margin:0;font:600 17px/1.35 Montserrat,sans-serif;color:#011C36">Caso práctico: auditoría de conformidad</h3></div>
 <div style="display:flex;flex-direction:column;gap:9px">
-<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:5px;height:5px;border-radius:500px;background:#0B72BE;flex-shrink:0;margin-top:9px"></span><span style="font:400 15.5px/1.72 Lato,sans-serif;color:#44566B">Aplicación completa a un caso real de manufactura, de principio a fin.</span></div>
+<div style="display:flex;gap:10px;align-items:flex-start"><span style="width:5px;height:5px;border-radius:500px;background:#0B72BE;flex-shrink:0;margin-top:9px"></span><span style="font:400 16px/1.75 Lato,sans-serif;color:#44566B">Aplicación completa a un caso real de manufactura, de principio a fin.</span></div>
 </div></div>
 </div></div></section>
-<section data-vfx="1" data-screen-label="Para quién" style="max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,128px) var(--gx)">
+<section data-vfx="1" data-screen-label="Para quién" style="max-width:1200px;margin:0 auto;padding:clamp(48px,6vw,88px) var(--gx)">
 <div style="display:flex;flex-direction:column;gap:24px">
 <div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#011C36"><span style="width:24px;height:3px;background:#0B72BE;border-radius:500px"></span>Para quién es</div>
-<h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.01em;color:#011C36;text-wrap:balance">A quién le sirve<span style="display:block;color:#011C36">este curso.</span></h2>
+<h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.03em;color:#011C36;text-wrap:balance">A quién le sirve<span style="display:block;color:#011C36">este curso.</span></h2>
 <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:14px 32px"><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#0B72BE;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#44566B">Responsables de calidad, aseguramiento de calidad o cumplimiento normativo en plantas de manufactura.</span></div><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#0B72BE;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#44566B">Quienes coordinan o supervisan certificaciones, pruebas de laboratorio o inspecciones de producto.</span></div><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#0B72BE;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#44566B">Equipos que deben prepararse para el nuevo Reglamento de la LIC.</span></div><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#0B72BE;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#44566B">Quien necesita claridad total sobre SNIC, EMA, OEC, SISMENEC y Autoridad Normalizadora.</span></div><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#0B72BE;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#44566B">Directores de procesos industriales que quieren anticiparse a auditorías.</span></div></div>
 </div></section>
-<section data-vfx="1" data-screen-label="Instructor" style="background:#EEF5FB;border-radius:28px;margin:14px"><div style="max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,128px) var(--gx)">
+<section data-vfx="1" data-screen-label="Instructor" style="background:#EEF5FB;border-radius:20px;margin:14px"><div style="max-width:1200px;margin:0 auto;padding:clamp(48px,6vw,88px) var(--gx)">
 <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:36px clamp(26px,5vw,64px);align-items:start">
 <div style="display:flex;flex-direction:column;gap:18px">
 <div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#011C36"><span style="width:24px;height:3px;background:#0B72BE;border-radius:500px"></span>Tu instructor</div>
-<img src="../assets/juan-marcos-aguirre.webp?v=b9f8c755" alt="Juan Marcos Aguirre Leyva, director general de MADAVAN" style="width:clamp(132px,19vw,172px);height:clamp(132px,19vw,172px);border-radius:14px;flex-shrink:0;box-shadow:0 10px 26px rgba(1,28,54,.16);object-fit:cover;display:block">
-<h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.01em;color:#011C36;text-wrap:balance">Juan Marcos Aguirre Leyva</h2>
+<img src="../assets/juan-marcos-aguirre.webp?v=b9f8c755" alt="Juan Marcos Aguirre Leyva, director general de MADAVAN" style="width:clamp(132px,19vw,172px);height:clamp(132px,19vw,172px);border-radius:8px;flex-shrink:0;box-shadow:0 10px 26px rgba(1,28,54,.16);object-fit:cover;display:block">
+<h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.03em;color:#011C36;text-wrap:balance">Juan Marcos Aguirre Leyva</h2>
 <div style="font:600 14px/1.5 Montserrat,sans-serif;color:#0B72BE">Director General de MADAVAN Multilogística Internacional S.A. de C.V.</div>
 </div>
 <div style="display:flex;flex-direction:column;gap:16px">
 <p style="margin:0;font:400 16px/1.7 Lato,sans-serif;color:#44566B;text-wrap:pretty">Más de 20 años como consultor, asesor, capacitador y conferencista en transporte marítimo, aéreo, terrestre y multimodal, comercio exterior, aduanas, freight forwarding y supply chain. Ha capacitado a empresas en México y Latinoamérica en operaciones que van de carga general a carga de proyecto, sobredimensionada y materiales peligrosos.</p>
 <div style="display:flex;gap:12px;align-items:flex-start;padding-top:16px;border-top:1px solid #DCE6F0"><i data-lucide="award" style="width:22px;height:22px;color:#0B72BE;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#011C36">Experto en logística certificado por la ONU, ICAO y FIATA para el manejo de mercancías peligrosas HAZMAT.</span></div>
 </div></div></div></section>
-<section data-vfx="1" data-screen-label="Academia" style="max-width:1320px;margin:0 auto;padding:0 var(--gx) clamp(48px,8vw,88px)">
+<section data-vfx="1" data-screen-label="Academia" style="max-width:1200px;margin:0 auto;padding:0 var(--gx) clamp(48px,8vw,88px)">
 <div style="display:flex;flex-direction:column;gap:18px;max-width:860px">
 <div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#011C36"><span style="width:24px;height:3px;background:#0B72BE;border-radius:500px"></span>Por qué Academia MADAVAN</div>
 <p style="margin:0;font:400 16px/1.7 Lato,sans-serif;color:#44566B;text-wrap:pretty">Academia MADAVAN es la plataforma de capacitación de MADAVAN Multilogística Internacional. Más de dos décadas operando comercio exterior, aduanas y logística internacional en México y Latinoamérica. No enseñamos teoría de manual: enseñamos el criterio que usamos todos los días para mover carga.</p>
 </div></section>
-<section data-vfx="1" data-screen-label="Cierre" style="max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,128px) var(--gx)">
-<div style="border-radius:14px;background:#EEF5FB;padding:clamp(28px,5vw,52px);display:flex;flex-direction:column;gap:18px;align-items:flex-start">
-<h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.01em;color:#011C36;text-wrap:balance">Anticípate al requerimiento de conformidad</h2>
+<section data-vfx="1" data-screen-label="Cierre" style="max-width:1200px;margin:0 auto;padding:clamp(48px,6vw,88px) var(--gx)">
+<div style="border-radius:8px;background:#EEF5FB;padding:clamp(28px,5vw,52px);display:flex;flex-direction:column;gap:18px;align-items:flex-start">
+<h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.03em;color:#011C36;text-wrap:balance">Anticípate al requerimiento de conformidad</h2>
 <p style="margin:0;font:400 16px/1.7 Lato,sans-serif;color:#44566B;text-wrap:pretty">Preparar la documentación antes de la auditoría cuesta una fracción de lo que cuesta resolverla a destiempo.</p>
-<div style="margin-top:6px"><a href="https://wa.me/525610980231?text=Hola%20MADAVAN%2C%20me%20interesa%20el%20Curso%20SNIC%20%E2%80%94%20Sistema%20Nacional%20de%20Infraestructura%20de%20la%20Calidad.%20" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:17px 34px;border-radius:500px;background:#0B72BE;color:#fff;font:600 17px/1 Montserrat,sans-serif;box-shadow:0 8px 20px rgba(37,211,102,.28)" style-hover="background:#09588F;color:#fff">Quiero este curso <span>&#8594;</span></a></div>
+<div style="margin-top:6px"><a href="https://wa.me/525610980231?text=Hola%20MADAVAN%2C%20me%20interesa%20el%20Curso%20SNIC%20%E2%80%94%20Sistema%20Nacional%20de%20Infraestructura%20de%20la%20Calidad.%20" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:19px 46px;border-radius:500px;background:#0B72BE;color:#fff;font:600 17px/1 Montserrat,sans-serif;box-shadow:0 8px 20px rgba(37,211,102,.28)" style-hover="background:#09588F;color:#fff">Quiero este curso <span>&#8594;</span></a></div>
 </div></section>
-<section data-vfx="1" data-screen-label="Otros cursos" style="background:#EEF5FB;border-radius:28px;margin:14px"><div style="max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,128px) var(--gx)">
+<section data-vfx="1" data-screen-label="Otros cursos" style="background:#EEF5FB;border-radius:20px;margin:14px"><div style="max-width:1200px;margin:0 auto;padding:clamp(48px,6vw,88px) var(--gx)">
 <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:28px">
-<div style="display:flex;flex-direction:column;gap:14px"><div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#011C36"><span style="width:24px;height:3px;background:#0B72BE;border-radius:500px"></span>Sigue aprendiendo</div><h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.01em;color:#011C36;text-wrap:balance">Otros cursos.</h2></div>
+<div style="display:flex;flex-direction:column;gap:14px"><div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#011C36"><span style="width:24px;height:3px;background:#0B72BE;border-radius:500px"></span>Sigue aprendiendo</div><h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.03em;color:#011C36;text-wrap:balance">Otros cursos.</h2></div>
 <a href="./" style="font:600 14px/1 Montserrat,sans-serif;color:#0B72BE;padding-bottom:6px;border-bottom:2px solid #0B72BE">Ver todos los cursos →</a>
 </div>
 <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:16px">
-<a href="incoterms-2020.html" style="display:flex;align-items:center;gap:14px;background:#fff;border:1px solid #DCE6F0;border-radius:14px;padding:18px 20px;color:inherit" style-hover="transform:translateY(-2px);color:inherit"><span style="width:40px;height:40px;border-radius:14px;background:#EEF5FB;color:#0B72BE;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="file-signature" style="width:20px;height:20px"></i></span><span style="font:600 15px/1.35 Montserrat,sans-serif;color:#011C36">Incoterms 2020</span></a>
-<a href="break-bulk-cargo.html" style="display:flex;align-items:center;gap:14px;background:#fff;border:1px solid #DCE6F0;border-radius:14px;padding:18px 20px;color:inherit" style-hover="transform:translateY(-2px);color:inherit"><span style="width:40px;height:40px;border-radius:14px;background:#EEF5FB;color:#0B72BE;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="container" style="width:20px;height:20px"></i></span><span style="font:600 15px/1.35 Montserrat,sans-serif;color:#011C36">Break Bulk Cargo</span></a>
-<a href="hazmat.html" style="display:flex;align-items:center;gap:14px;background:#fff;border:1px solid #DCE6F0;border-radius:14px;padding:18px 20px;color:inherit" style-hover="transform:translateY(-2px);color:inherit"><span style="width:40px;height:40px;border-radius:14px;background:#EEF5FB;color:#0B72BE;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="triangle-alert" style="width:20px;height:20px"></i></span><span style="font:600 15px/1.35 Montserrat,sans-serif;color:#011C36">HAZMAT</span></a>
-<a href="importacion.html" style="display:flex;align-items:center;gap:14px;background:#fff;border:1px solid #DCE6F0;border-radius:14px;padding:18px 20px;color:inherit" style-hover="transform:translateY(-2px);color:inherit"><span style="width:40px;height:40px;border-radius:14px;background:#EEF5FB;color:#0B72BE;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="package-open" style="width:20px;height:20px"></i></span><span style="font:600 15px/1.35 Montserrat,sans-serif;color:#011C36">Importación</span></a>
+<a href="incoterms-2020.html" style="display:flex;align-items:center;gap:14px;background:#fff;border:1px solid #DCE6F0;border-radius:8px;padding:18px 20px;color:inherit" style-hover="transform:translateY(-2px);color:inherit"><span style="width:40px;height:40px;border-radius:8px;background:#EEF5FB;color:#0B72BE;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="file-signature" style="width:20px;height:20px"></i></span><span style="font:600 15px/1.35 Montserrat,sans-serif;color:#011C36">Incoterms 2020</span></a>
+<a href="break-bulk-cargo.html" style="display:flex;align-items:center;gap:14px;background:#fff;border:1px solid #DCE6F0;border-radius:8px;padding:18px 20px;color:inherit" style-hover="transform:translateY(-2px);color:inherit"><span style="width:40px;height:40px;border-radius:8px;background:#EEF5FB;color:#0B72BE;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="container" style="width:20px;height:20px"></i></span><span style="font:600 15px/1.35 Montserrat,sans-serif;color:#011C36">Break Bulk Cargo</span></a>
+<a href="hazmat.html" style="display:flex;align-items:center;gap:14px;background:#fff;border:1px solid #DCE6F0;border-radius:8px;padding:18px 20px;color:inherit" style-hover="transform:translateY(-2px);color:inherit"><span style="width:40px;height:40px;border-radius:8px;background:#EEF5FB;color:#0B72BE;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="triangle-alert" style="width:20px;height:20px"></i></span><span style="font:600 15px/1.35 Montserrat,sans-serif;color:#011C36">HAZMAT</span></a>
+<a href="importacion.html" style="display:flex;align-items:center;gap:14px;background:#fff;border:1px solid #DCE6F0;border-radius:8px;padding:18px 20px;color:inherit" style-hover="transform:translateY(-2px);color:inherit"><span style="width:40px;height:40px;border-radius:8px;background:#EEF5FB;color:#0B72BE;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="package-open" style="width:20px;height:20px"></i></span><span style="font:600 15px/1.35 Montserrat,sans-serif;color:#011C36">Importación</span></a>
 </div></div></section>
 
 <footer style="padding:0 14px 14px">
-  <div style="border-radius:28px;overflow:hidden;background:#011C36;color:#fff">
-  <div style="max-width:1320px;margin:0 auto;padding:clamp(40px,6vw,76px) var(--gx) clamp(30px,4vw,44px);display:flex;flex-direction:column;gap:clamp(30px,5vw,48px)">
+  <div style="border-radius:30px;overflow:hidden;background:#011C36;color:#fff">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(40px,6vw,76px) var(--gx) clamp(30px,4vw,44px);display:flex;flex-direction:column;gap:clamp(30px,5vw,48px)">
     <div style="display:flex;align-items:center;gap:32px;flex-wrap:wrap">
       <div style="display:flex;flex-direction:column;gap:2px">
         <span style="font:600 clamp(22px,5vw,28px)/1.1 Montserrat,sans-serif;letter-spacing:.01em;color:#fff">MADAVAN</span>
@@ -388,7 +388,7 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
     </div>
   </div>
   <div style="border-top:1px solid rgba(255,255,255,.14)">
-    <div style="max-width:1320px;margin:0 auto;padding:18px var(--gx);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:400 12px/1.4 Lato,sans-serif;color:rgba(255,255,255,.60)">
+    <div style="max-width:1200px;margin:0 auto;padding:18px var(--gx);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:400 12px/1.4 Lato,sans-serif;color:rgba(255,255,255,.60)">
       <span>© MADAVAN Multilogística Internacional SA de CV. Todos los derechos reservados.</span>
       <span style="display:flex;gap:10px"><a href="https://madavan.com.mx/politica-de-privacidad/" style="color:rgba(255,255,255,.60)">Aviso de privacidad</a>|<a href="https://madavan.com.mx/terminos-y-condiciones/" style="color:rgba(255,255,255,.60)">Términos y condiciones</a></span>
     </div>
