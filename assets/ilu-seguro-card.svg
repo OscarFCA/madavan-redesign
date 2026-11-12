@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 150 800 400" width="800" height="400" style="background:#EFEBE2" role="img" aria-label="Escudo protegiendo la carga">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 150 800 400" width="800" height="400" style="background:#EEF5FB" role="img" aria-label="Escudo protegiendo la carga">
 <style>
 @keyframes late{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
 @keyframes traza{to{stroke-dashoffset:0}}
@@ -8,21 +8,21 @@
 .chispa{animation:flota 5.5s ease-in-out infinite}
 .c1{animation-delay:-1.4s}.c2{animation-delay:-2.8s}.c3{animation-delay:-4.1s}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
-<rect width="800" height="600" fill="#EFEBE2"/>
-<circle cx="400" cy="300" r="232" fill="#E4DFD3"/>
-<path d="M400 128 L616 206 V352 C616 452 528 516 400 556 C272 516 184 452 184 352 V206 Z" fill="#12212E"/>
-<path d="M400 168 L578 232 V352 C578 428 508 482 400 516 C292 482 222 428 222 352 V232 Z" fill="none" stroke="#6E6558" stroke-width="5" opacity=".45"/>
+<rect width="800" height="600" fill="#EEF5FB"/>
+<circle cx="400" cy="300" r="232" fill="#DEEAF5"/>
+<path d="M400 128 L616 206 V352 C616 452 528 516 400 556 C272 516 184 452 184 352 V206 Z" fill="#011C36"/>
+<path d="M400 168 L578 232 V352 C578 428 508 482 400 516 C292 482 222 428 222 352 V232 Z" fill="none" stroke="#5A6B7D" stroke-width="5" opacity=".45"/>
 <g transform="translate(400 330)">
-<path d="M-92 -44 L0 -84 L92 -44 L0 -4 Z" fill="#6E6558"/>
-<path d="M-92 -44 V62 L0 102 V-4 Z" fill="#EFEBE2"/>
-<path d="M92 -44 V62 L0 102 V-4 Z" fill="#D3CCBE"/>
-<path d="M-92 -44 L0 -4 L92 -44" fill="none" stroke="#12212E" stroke-width="5" stroke-linejoin="round"/>
-<path d="M0 -4 V102" stroke="#12212E" stroke-width="5"/>
+<path d="M-92 -44 L0 -84 L92 -44 L0 -4 Z" fill="#5A6B7D"/>
+<path d="M-92 -44 V62 L0 102 V-4 Z" fill="#EEF5FB"/>
+<path d="M92 -44 V62 L0 102 V-4 Z" fill="#DCE6F0"/>
+<path d="M-92 -44 L0 -4 L92 -44" fill="none" stroke="#011C36" stroke-width="5" stroke-linejoin="round"/>
+<path d="M0 -4 V102" stroke="#011C36" stroke-width="5"/>
 </g>
-<circle id="sello" cx="546" cy="432" r="52" fill="#215B94" style="transform-origin:546px 432px"/>
-<path id="palomita" d="M522 432 L540 452 L574 412" fill="none" stroke="#EFEBE2" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="78" stroke-dashoffset="78"/>
-<circle class="chispa c0" cx="176" cy="160" r="9" fill="#6E6558" opacity=".8"/>
-<circle class="chispa c1" cx="646" cy="152" r="7" fill="#6E6558" opacity=".8"/>
-<circle class="chispa c2" cx="132" cy="420" r="7" fill="#6E6558" opacity=".8"/>
-<circle class="chispa c3" cx="684" cy="486" r="9" fill="#6E6558" opacity=".8"/>
+<circle id="sello" cx="546" cy="432" r="52" fill="#0486DC" style="transform-origin:546px 432px"/>
+<path id="palomita" d="M522 432 L540 452 L574 412" fill="none" stroke="#EEF5FB" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="78" stroke-dashoffset="78"/>
+<circle class="chispa c0" cx="176" cy="160" r="9" fill="#5A6B7D" opacity=".8"/>
+<circle class="chispa c1" cx="646" cy="152" r="7" fill="#5A6B7D" opacity=".8"/>
+<circle class="chispa c2" cx="132" cy="420" r="7" fill="#5A6B7D" opacity=".8"/>
+<circle class="chispa c3" cx="684" cy="486" r="9" fill="#5A6B7D" opacity=".8"/>
 </svg>
