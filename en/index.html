@@ -350,6 +350,14 @@ blockquote{font-weight:300!important;letter-spacing:-.025em!important}
 [data-r=cab][data-fijo]{background:rgba(255,255,255,.95)!important;border-bottom:1px solid var(--linea)!important}
 [data-r=navdesk] > a,[data-r=navdesk] > div > a{font:400 13px/1 var(--mono)!important;letter-spacing:.07em!important;text-transform:uppercase}
 [data-r=navdesk] > div > a span{font-size:8px!important}
+/* Menú desplegable de Logística: igual en todas las páginas. La cabecera
+   oscura de la portada pintaba de verde/blanco todo lo que hubiera dentro de
+   la navegación, incluido el desplegable; `:not(#\#)` le gana a esa regla. */
+[data-r=navdesk] [data-vfx-card]:not(#\#){color:#011C36!important;font:400 15px/1.3 Montserrat,sans-serif!important;letter-spacing:-.005em!important;text-transform:none!important}
+[data-r=navdesk] [data-vfx-card]:not(#\#):hover{background:#EEF2F6!important;color:#0B72BE!important}
+[data-r=navdesk] [data-vfx-card] span:not(#\#){background:none!important;color:inherit!important}
+[data-r=navdesk] [data-vfx-card] > span:first-child:not(#\#){background:#0B72BE!important;color:#fff!important}
+[data-r=cab][data-oscuro]:not([data-fijo]) [data-r=navdesk] > div > a span:not(#\#){color:#fff!important}
 [data-r^=lang-]{background:transparent!important;color:#011C36!important;font:500 12px/1 var(--mono)!important;letter-spacing:.06em}
 [data-r^=lang-][data-on]{background:#011C36!important;color:#fff!important}
 [data-r=cab][data-oscuro]:not([data-fijo]) [data-r^=lang-]{color:#fff!important}
