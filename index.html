@@ -395,6 +395,11 @@ section[data-screen-label]:not([data-screen-label^=Hero]):not([data-tema=oscuro]
 @media (max-width:899px){[data-r=herodato]:nth-child(n+3){border-top:1px solid rgba(255,255,255,.2)}}
 [data-r=herodato] b{font:300 clamp(26px,3vw,40px)/1 Montserrat,sans-serif;letter-spacing:-.03em;color:#fff}
 [data-r=herodato] span{font:400 11px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.72)}
+@media (max-width:899px){[data-r=heroimg]:not(#\#){background-image:url('assets/hero-puerto-movil.webp?v=6d79844e')!important;background-position:center!important}}
+/* En móvil el texto cubre casi todo el hero: un velo parejo apagaba el video.
+   Más ligero arriba y al centro, denso sólo al pie, donde van las cifras. */
+@media (max-width:899px){[data-t=hero] [data-r=heroscrim]:not(#\#){background:linear-gradient(180deg,rgba(1,28,54,.32) 0%,rgba(1,28,54,.50) 30%,rgba(1,28,54,.56) 62%,rgba(1,28,54,.88) 100%)!important}
+  [data-t=hero] h1,[data-t=hero] p{text-shadow:0 1px 18px rgba(1,28,54,.45)}}
 [data-r=vidpausa]{position:absolute;right:var(--gx);top:clamp(120px,12vw,150px);width:40px;height:40px;display:flex;align-items:center;justify-content:center;
   background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.35);color:#fff;cursor:pointer;z-index:2;transition:background .15s var(--ease)}
 [data-r=vidpausa]:hover{background:rgba(255,255,255,.18)}
@@ -855,7 +860,10 @@ class Component extends DCLogic {
     v.muted = true; v.loop = true; v.playsInline = true; v.defaultMuted = true;
     v.dataset.listo = '1';
     const src = v.querySelector('source[data-src]');
-    if (src) { src.src = src.dataset.src; src.removeAttribute('data-src'); v.load(); }
+    /* En pantalla estrecha va el corte vertical, que pesa la mitad. */
+    const movil = window.innerWidth < 900;
+    if (movil && v.poster) v.poster = v.poster.replace('hero-puerto.webp', 'hero-puerto-movil.webp');
+    if (src) { src.src = movil ? src.dataset.src.replace('hero-puerto.mp4', 'hero-puerto-movil.mp4') : src.dataset.src; src.removeAttribute('data-src'); v.load(); }
     const intento = v.play();
     if (intento && intento.catch) intento.catch(() => { /* queda el póster */ });
   }
@@ -1068,7 +1076,7 @@ class Component extends DCLogic {
         { title: 'Mercancía Peligrosa HAZMAT', icon: 'triangle-alert', href: 'mercancia-peligrosa-hazmat.html' },
         { title: 'Seguro de Mercancías y Carga', icon: 'shield-check', href: 'seguro-de-carga.html' }
       ],
-      heroVideo: this.state.w >= 900 && !window.matchMedia('(prefers-reduced-motion:reduce)').matches,
+      heroVideo: !window.matchMedia('(prefers-reduced-motion:reduce)').matches && !((navigator.connection || {}).saveData),
       menuOpen: this.state.menuOpen,
       menuClosed: !this.state.menuOpen,
       toggleMenu: () => this.setState({ menuOpen: !this.state.menuOpen, dd: false }),
