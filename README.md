@@ -77,11 +77,13 @@ Si un texto no está en el diccionario, el build lo reporta en pantalla.
 ## Publicar cambios
 
 Este repo es la salida del build. La fuente editable está en
-`Hel3na/documentos/Madavan Home Redesign/*.dc.html`; para regenerar:
+`Hel3na/documentos/Madavan/*.dc.html`; para regenerar:
 
 ```bash
 python3 ilustraciones.py   # sólo si cambian los dibujos
 python3 cursos_gen.py      # sólo si cambia el catálogo de cursos
+python3 sistema.py && python3 estilo.py && python3 forma.py   # capas de diseño previas
+python3 tecnico.py         # sistema «Técnico»: SIEMPRE el último antes del build
 python3 build.py           # escribe deploy/, deploy/en/ y deploy/cursos/
 cd deploy && git add -A && git commit -m "..." && git push
 ```

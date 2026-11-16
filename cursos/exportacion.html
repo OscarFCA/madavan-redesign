@@ -12,15 +12,15 @@
 <meta property="og:locale" content="es_MX">
 <meta property="og:title" content="Curso de Exportación | Academia MADAVAN">
 <meta property="og:description" content="Conviértete en especialista en exportación en 4 horas, con el criterio técnico que exige operar en mercados internacionales.">
-<meta property="og:image" content="../assets/madavan-logo.png?v=3170e800">
-<link rel="icon" type="image/png" href="../assets/madavan-logo.png?v=3170e800">
+<meta property="og:image" content="../assets/madavan-logo.png?v=f82d0a1c">
+<link rel="icon" type="image/png" href="../assets/madavan-logo.png?v=f82d0a1c">
 <script src="../support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=Lato:wght@300;400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@0.453.0/dist/umd/lucide.min.js"></script>
 <style>
 body{margin:0;background:#FFFFFF;color:#011C36;font-family:'Lato','Segoe UI',Arial,sans-serif;-webkit-font-smoothing:antialiased}
@@ -141,8 +141,11 @@ a:hover [data-vfx-arrow],button:hover [data-vfx-arrow]{transform:translateX(4px)
 /* Coreografía del hero, como en la referencia: la imagen entra desde la
    derecha y el bloque de texto escalona detrás. */
 @keyframes madEntra{from{opacity:0;transform:translate3d(9%,0,0)}to{opacity:1;transform:none}}
+/* `backwards` y no `both`: con `both` la animación se queda dueña del
+   transform al terminar y el parallax no tenía dónde escribir. Así la
+   entrada manda mientras dura y después suelta el control. */
 [data-r=heropanel] [data-r=heroimg],[data-r=heropanelilu] [data-r=heroilu]{
-  animation:madEntra 1.6s cubic-bezier(.22,1,.36,1) both}
+  animation:madEntra 1.6s cubic-bezier(.22,1,.36,1) backwards}
 [data-r=herobody] [data-stagger] > *{opacity:0;transform:translate3d(0,14px,0);
   animation:madSube .8s cubic-bezier(.22,1,.36,1) both}
 @keyframes madSube{to{opacity:1;transform:none}}
@@ -151,6 +154,57 @@ a:hover [data-vfx-arrow],button:hover [data-vfx-arrow]{transform:translateX(4px)
 [data-r=herobody] [data-stagger] > *:nth-child(3){animation-delay:.42s}
 [data-r=herobody] [data-stagger] > *:nth-child(4){animation-delay:.54s}
 [data-r=herobody] [data-stagger] > *:nth-child(5){animation-delay:.66s}
+
+/* ── Recorrido ──────────────────────────────────────────────────────────
+   Tres perfiles de movimiento, decididos por el aparato y no por la ventana:
+     completo  ratón, máquina holgada  → todo
+     ligero    táctil, pocos núcleos, poca memoria o ahorro de datos
+               → sin parallax ni brillo, entradas más cortas
+     quieto    prefers-reduced-motion  → nada se mueve
+   Cuelgan de <html data-motor>, así que una sola comprobación al cargar
+   decide por toda la página y el CSS no tiene que preguntar nada. */
+
+/* Barra de lectura: dice cuánto queda sin ocupar sitio. */
+[data-r=progreso]{position:fixed;top:0;left:0;height:3px;z-index:60;width:100%;
+  transform:scaleX(var(--leido,0));transform-origin:0 50%;
+  background:linear-gradient(90deg,#0486DC,#6FC2F5);pointer-events:none;
+  transition:opacity .3s ease}
+[data-motor=quieto] [data-r=progreso]{display:none}
+
+/* El fondo del hero se queda un poco atrás al deslizar. Sólo con ratón: en
+   táctil el repintado por fotograma no compensa lo que aporta. */
+[data-motor=completo] [data-r=heroimg]{will-change:transform}
+[data-motor=completo] [data-r=heropanel] [data-r=heroimg]{
+  transform:translate3d(0,calc(var(--avance,0) * 46px),0) scale(1.06)}
+
+/* Las columnas entran desde su lado, no todas desde abajo. */
+[data-motor=completo] [data-vfx-lado=izq]{transform:translate3d(-26px,10px,0)}
+[data-motor=completo] [data-vfx-lado=der]{transform:translate3d(26px,10px,0)}
+[data-motor=completo] [data-vfx-lado][data-visto]{transform:none}
+[data-vfx-lado]{opacity:0;transition:opacity .9s cubic-bezier(.22,1,.36,1),
+  transform .9s cubic-bezier(.22,1,.36,1)}
+[data-vfx-lado][data-visto]{opacity:1;transform:none}
+
+/* En el perfil ligero todo es más corto y nada se desplaza de lado. */
+[data-motor=ligero] [data-vfx],[data-motor=ligero] [data-stagger] > *,
+[data-motor=ligero] [data-vfx-lado]{transition-duration:.45s!important}
+[data-motor=ligero] [data-vfx-lado]{transform:translate3d(0,12px,0)}
+[data-motor=ligero] [data-stagger][data-visto] > *{transition-delay:0s!important}
+[data-motor=ligero] [data-vfx-btn]::after{display:none}
+[data-motor=ligero] [data-r=cinta]{animation-duration:60s}
+[data-motor=ligero] [data-r=heroimg],[data-motor=ligero] [data-r=heroilu]{animation:none!important}
+
+/* Nada se mueve si el visitante lo pidió. */
+[data-motor=quieto] *{animation:none!important;transition:none!important}
+[data-motor=quieto] [data-vfx],[data-motor=quieto] [data-stagger] > *,
+[data-motor=quieto] [data-vfx-lado]{opacity:1!important;transform:none!important}
+
+/* El navegador no pinta lo que todavía no se ve. Sólo en el perfil ligero,
+   que es donde el ahorro de pintado se nota: en escritorio deja las
+   secciones fuera de pantalla sin pintar, y eso sale en blanco en una
+   captura de página completa y al imprimir. */
+[data-motor=ligero] section[data-screen-label]{content-visibility:auto;contain-intrinsic-size:auto 680px}
+@media print{section[data-screen-label]{content-visibility:visible!important}}
 
 /* Con la pestaña en segundo plano no se anima nada: la marquesina giraba
    gastando batería para nadie. */
@@ -241,6 +295,234 @@ a:hover [data-vfx-arrow],button:hover [data-vfx-arrow]{transform:translateX(4px)
 /* utilidades */
 @media (max-width:760px){[data-r=nowrap]{white-space:normal!important}
   [data-r=fdiv]{display:none!important}}
+/* ⟦tecnico⟧ */
+/* Sistema «Técnico» (tecnico.py). Va al final de la hoja: gana a todo lo
+   anterior, y con !important también a los estilos inline. */
+:root{--mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;--linea:#DCE6F0;--ease:cubic-bezier(.4,0,.2,1)}
+
+/* ── Forma: esquinas rectas, sin sombras ─────────────────────────────── */
+/* `:not(#\#)` sube la especificidad a la de un id: así gana también a las
+   reglas con !important de capas anteriores ([data-r=heropanel]{…!important}). */
+*:not(#\#),*:not(#\#)::before,*:not(#\#)::after{border-radius:0!important;box-shadow:none!important}
+[data-r=waflot]:not(#\#),img[src*="juan-marcos"]:not(#\#),[data-redondo]:not(#\#){border-radius:50%!important}
+[data-vfx-btn]::after{display:none!important}
+[data-vfx-card]{transition:border-color .15s var(--ease),background-color .15s var(--ease)!important}
+[data-vfx-card]:hover{transform:none!important}
+
+/* ── Tipografía: el impacto viene del tamaño, nunca de la negrita ─────── */
+h1{font-weight:300!important;letter-spacing:-.04em!important;line-height:1.05!important}
+h2{font-weight:300!important;letter-spacing:-.032em!important;line-height:1.1!important}
+h3{font-weight:500!important;letter-spacing:-.012em!important}
+h1 span,h2 span{color:inherit!important}
+blockquote{font-weight:300!important;letter-spacing:-.025em!important}
+[data-t=ojo],[data-t=ojopill]{font-family:var(--mono)!important;font-weight:400!important;letter-spacing:.08em!important;text-transform:uppercase}
+[data-t=ojopill]{border:0!important;padding:0!important;background:none!important;display:inline-flex!important;align-items:center;gap:10px}
+[data-t=ojopill]::before{content:"";width:7px;height:7px;background:#4FAC3F;flex-shrink:0}
+[data-t=chip]{font-family:var(--mono)!important;font-weight:400!important;font-size:12px!important;letter-spacing:.05em!important;text-transform:uppercase;background:#EEF2F6!important;border:0!important}
+[data-t=sello]{font-family:var(--mono)!important;font-weight:500!important;letter-spacing:.08em!important;text-transform:uppercase}
+[data-t=tab]{font-family:var(--mono)!important;font-weight:400!important;font-size:13px!important;letter-spacing:.06em!important;text-transform:uppercase}
+
+/* ── Botones: rectos, mono en mayúsculas, siempre con flecha ──────────── */
+[data-t=btn]{font-family:var(--mono)!important;font-weight:500!important;font-size:13px!important;
+  letter-spacing:.07em!important;text-transform:uppercase;line-height:1.2!important;min-height:48px;
+  padding:0 20px!important;display:inline-flex!important;align-items:center;justify-content:center;gap:12px!important;
+  transition:background-color .15s var(--ease),color .15s var(--ease),border-color .15s var(--ease)!important}
+[data-t=btn][data-tono=azul],[data-t=btn][data-tono=tinta]{background:#0B72BE!important;color:#fff!important;border:0!important}
+[data-t=btn][data-tono=azul]:hover,[data-t=btn][data-tono=tinta]:hover{background:#09588F!important;color:#fff!important}
+[data-t=btn][data-tono=linea]{background:transparent!important;border:1px solid currentColor!important}
+[data-t=btn][data-tono=blanco]{background:#fff!important;color:#011C36!important;border:0!important}
+[data-t=btn][data-tono=blanco]:hover{background:#E6EEF6!important}
+[data-t=btn]:not(:has(svg,i,span))::before{content:"\2192";order:2;transition:transform .15s var(--ease)}
+[data-t=btn]:hover::before,[data-t=btn]:hover [data-vfx-arrow]{transform:translateX(3px)}
+[data-t=btn] [data-vfx-arrow]{display:inline-block;transition:transform .15s var(--ease)}
+
+/* ── Cabecera: ticker + menú mono ──────────────────────────────────────── */
+[data-r=ticker]{background:#011C36;overflow:hidden;height:32px;transition:height .28s var(--ease);border-bottom:1px solid rgba(255,255,255,.08)}
+[data-r=cab][data-fijo] [data-r=ticker]{height:0;border-bottom-width:0}
+[data-r=tickpista]{display:flex;width:max-content;height:32px;align-items:center;animation:madTick 70s linear infinite}
+[data-r=tickpista] span{display:inline-flex;align-items:center;gap:22px;padding-right:22px;white-space:nowrap;
+  font:400 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.78)}
+[data-r=tickpista] span::before{content:"";width:5px;height:5px;background:#4FAC3F;flex-shrink:0}
+@keyframes madTick{to{transform:translateX(-50%)}}
+[data-motor=quieto] [data-r=tickpista],[data-oculto] [data-r=tickpista]{animation-play-state:paused}
+[data-r=cab][data-fijo]{background:rgba(255,255,255,.95)!important;border-bottom:1px solid var(--linea)!important}
+[data-r=navdesk] > a,[data-r=navdesk] > div > a{font:400 13px/1 var(--mono)!important;letter-spacing:.07em!important;text-transform:uppercase}
+[data-r=navdesk] > div > a span{font-size:8px!important}
+[data-r^=lang-]{background:transparent!important;color:#011C36!important;font:500 12px/1 var(--mono)!important;letter-spacing:.06em}
+[data-r^=lang-][data-on]{background:#011C36!important;color:#fff!important}
+[data-r=cab][data-oscuro]:not([data-fijo]) [data-r^=lang-]{color:#fff!important}
+[data-r=cab][data-oscuro]:not([data-fijo]) [data-r^=lang-][data-on]{background:#fff!important;color:#011C36!important}
+[data-r=mobnav] > a{font:400 14px/1.3 var(--mono)!important;letter-spacing:.06em;text-transform:uppercase}
+
+/* ── Secciones: a sangre, cosidas con una línea de 1 px ────────────────── */
+section[data-screen-label]:not([data-screen-label^=Hero]):not([data-tema=oscuro]):not([data-r=cierre]):not([data-screen-label=Blog]){border-top:1px solid var(--linea)}
+/* El ticker suma 32 px a la cabecera fija: el hero interior baja lo mismo.
+   Con un borde transparente el fondo del hero sigue por debajo del ticker. */
+[data-r=heropanelilu]{margin:0!important;border:0!important;border-top:32px solid transparent!important;border-bottom:1px solid var(--linea)!important}
+[data-r=heropanelilu] [data-r=herobody]{padding-top:clamp(112px,12vw,160px)!important}
+
+/* ── Retícula editorial: etiqueta a la izquierda, idea a la derecha ────── */
+[data-r=caja]{max-width:1320px;margin:0 auto;padding:clamp(88px,11vw,164px) var(--gx) clamp(72px,8vw,112px)}
+[data-r=ed]{display:grid;grid-template-columns:minmax(0,1fr);gap:18px 24px;align-items:start}
+@media (min-width:900px){[data-r=ed]{grid-template-columns:minmax(0,4fr) minmax(0,8fr)}}
+[data-r=ed] + *{margin-top:clamp(48px,6vw,80px)}
+[data-r=edcuerpo]{display:flex;flex-direction:column;gap:22px;max-width:820px}
+[data-r=edcuerpo] h2{margin:0;font:300 clamp(34px,4.6vw,56px)/1.08 Montserrat,sans-serif!important;color:#011C36}
+[data-r=edcuerpo] p{margin:0;font:400 clamp(16px,1.5vw,19px)/1.6 Lato,sans-serif;color:#44566B;max-width:640px;text-wrap:pretty}
+[data-r=sec] [data-t=ojo]{font-size:13px;color:#5A6B7D}
+[data-r=sec] [data-r=ed] > [data-t=ojo]{display:inline-flex;align-items:center;gap:10px;padding-top:10px}
+[data-r=sec] [data-r=ed] > [data-t=ojo]::before{content:"";width:7px;height:7px;background:#4FAC3F}
+[data-r=acciones]{display:flex;flex-wrap:wrap;gap:12px}
+
+/* ── Hero de la portada: a sangre, velo y datos al pie ─────────────────── */
+[data-t=hero]{min-height:min(100vh,940px);display:flex;flex-direction:column}
+[data-t=hero] [data-r=herobody]{flex:1 1 auto;width:100%;box-sizing:border-box}
+[data-r=herodatos]{position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid rgba(255,255,255,.2);margin-top:clamp(56px,8vw,96px)}
+@media (min-width:900px){[data-r=herodatos]{grid-template-columns:repeat(4,minmax(0,1fr))}}
+[data-r=herodato]{padding:22px var(--gx) 26px;display:flex;flex-direction:column;gap:10px;border-left:1px solid rgba(255,255,255,.2)}
+[data-r=herodato]:first-child,[data-r=herodato]:nth-child(3){border-left:0}
+@media (min-width:900px){[data-r=herodato]:nth-child(3){border-left:1px solid rgba(255,255,255,.2)}}
+@media (max-width:899px){[data-r=herodato]:nth-child(n+3){border-top:1px solid rgba(255,255,255,.2)}}
+[data-r=herodato] b{font:300 clamp(26px,3vw,40px)/1 Montserrat,sans-serif;letter-spacing:-.03em;color:#fff}
+[data-r=herodato] span{font:400 11px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.72)}
+[data-r=vidpausa]{position:absolute;right:var(--gx);top:clamp(120px,12vw,150px);width:40px;height:40px;display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.35);color:#fff;cursor:pointer;z-index:2;transition:background .15s var(--ease)}
+[data-r=vidpausa]:hover{background:rgba(255,255,255,.18)}
+
+/* ── Acordeón de servicios con barra de progreso ───────────────────────── */
+[data-r=seq]{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(32px,4vw,56px);align-items:start}
+@media (min-width:980px){[data-r=seq]{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}}
+[data-r=seqitem]{position:relative;border-top:1px solid var(--linea)}
+[data-r=seqitem]:last-child{border-bottom:1px solid var(--linea)}
+[data-r=seqbarra]{position:absolute;left:0;top:-1px;height:2px;width:100%;background:#0B72BE;transform:scaleX(0);transform-origin:left}
+[data-r=seqitem][data-sel="1"] [data-r=seqbarra]{animation:madAvance 8s linear forwards}
+[data-r=seq][data-pausa="1"] [data-r=seqbarra],[data-oculto] [data-r=seqbarra]{animation-play-state:paused}
+@keyframes madAvance{to{transform:scaleX(1)}}
+[data-motor=quieto] [data-r=seqitem][data-sel="1"] [data-r=seqbarra]{animation:none;transform:scaleX(1)}
+[data-r=seqboton]{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:baseline;gap:18px;padding:20px 0;cursor:pointer;color:#7C8A99;transition:color .15s var(--ease)}
+[data-r=seqboton]:hover,[data-r=seqitem][data-sel="1"] [data-r=seqboton]{color:#011C36}
+[data-r=seqboton]:focus-visible{outline:2px solid #0B72BE;outline-offset:4px}
+[data-r=seqnum]{font:400 12px/1 var(--mono);letter-spacing:.08em;flex-shrink:0;width:26px}
+[data-r=seqtit]{font:300 clamp(22px,2.3vw,30px)/1.15 Montserrat,sans-serif;letter-spacing:-.02em}
+[data-r=seqcuerpo]{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s var(--ease)}
+[data-r=seqitem][data-sel="1"] [data-r=seqcuerpo]{grid-template-rows:1fr}
+[data-r=seqcuerpo] > div{overflow:hidden;min-height:0;padding-left:44px}
+[data-r=seqcuerpo] p{margin:0 0 18px;font:400 16px/1.65 Lato,sans-serif;color:#44566B;max-width:520px}
+[data-r=seqcuerpo] a{margin-bottom:24px;color:#0B72BE}
+[data-r=seqvista]{position:relative;background:linear-gradient(180deg,#011C36 0%,#0486DC 100%);padding:clamp(18px,2.6vw,36px);display:flex;flex-direction:column;gap:clamp(14px,2vw,22px)}
+@media (min-width:980px){[data-r=seqvista]{position:sticky;top:120px}}
+[data-r=seqfoto]{aspect-ratio:16/10;background-size:cover!important;background-position:center!important;animation:madFoto .6s var(--ease)}
+[data-giro=b] [data-r=seqfoto]{animation-name:madFotoB}
+@keyframes madFoto{from{opacity:.25}to{opacity:1}}
+@keyframes madFotoB{from{opacity:.25}to{opacity:1}}
+[data-r=seqficha]{background:#fff;padding:18px 20px 20px;display:flex;flex-direction:column;gap:14px}
+[data-r=fichacab]{display:flex;justify-content:space-between;align-items:center;gap:12px;font:400 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#5A6B7D}
+[data-r=fichatit]{font:400 clamp(18px,1.8vw,22px)/1.2 Montserrat,sans-serif;letter-spacing:-.015em;color:#011C36}
+[data-r=ruta]{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding-top:16px}
+[data-r=ruta]::before{content:"";position:absolute;left:4px;right:4px;top:4px;height:1px;background:var(--linea)}
+[data-r=rutafill]{position:absolute;left:4px;right:4px;top:3px;height:3px;background:linear-gradient(90deg,#0B72BE,#4FAC3F);transform:scaleX(0);transform-origin:left;animation:madRuta 8s linear forwards}
+[data-giro=b] [data-r=rutafill]{animation-name:madRutaB}
+@keyframes madRuta{to{transform:scaleX(1)}}
+@keyframes madRutaB{to{transform:scaleX(1)}}
+[data-r=seq][data-pausa="1"] [data-r=rutafill],[data-oculto] [data-r=rutafill]{animation-play-state:paused}
+[data-motor=quieto] [data-r=rutafill]{animation:none;transform:scaleX(1)}
+[data-r=ruta] span{position:relative;font:400 10.5px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#5A6B7D;padding-top:8px}
+[data-r=ruta] span::before{content:"";position:absolute;left:0;top:-16px;width:9px;height:9px;background:#fff;border:1px solid #0B72BE}
+[data-r=ruta] span:last-child{text-align:right}
+[data-r=ruta] span:last-child::before{left:auto;right:0}
+[data-r=seqpausa]{position:absolute;right:clamp(18px,2.6vw,36px);top:clamp(18px,2.6vw,36px);margin:10px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(1,28,54,.55);border:1px solid rgba(255,255,255,.4);color:#fff;cursor:pointer}
+
+/* ── Cifras héroe (bento) ──────────────────────────────────────────────── */
+[data-r=bento]{display:grid;grid-auto-flow:dense;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--linea);border:1px solid var(--linea)}
+@media (max-width:639px){[data-r=bfoto]{grid-column:span 2;min-height:200px!important}
+  [data-r=cifra]{min-height:168px!important;padding:18px!important;gap:20px!important}
+  [data-r=num]{font-size:clamp(40px,12.5vw,64px)!important}
+  [data-r=cifra] [data-t=ojo]{font-size:10.5px!important}}
+@media (min-width:1000px){[data-r=bento]{grid-template-columns:repeat(3,minmax(0,1fr))}}
+[data-r=cifra]{background:#fff;min-height:clamp(220px,24vw,300px);padding:clamp(22px,2.4vw,32px);display:flex;flex-direction:column;justify-content:space-between;gap:28px}
+[data-r=num]{font:200 clamp(64px,8.4vw,116px)/.92 Montserrat,sans-serif;letter-spacing:-.05em;color:#011C36}
+[data-r=cifra] [data-t=ojo]{font-size:12px;line-height:1.45;color:#5A6B7D;max-width:260px}
+[data-r=bfoto]{min-height:clamp(220px,24vw,300px);background-size:cover!important;background-position:center!important}
+[data-r=navieras]{margin-top:clamp(48px,6vw,72px);display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:center}
+@media (min-width:900px){[data-r=navieras]{grid-template-columns:minmax(0,4fr) minmax(0,8fr)}}
+[data-r=marq]{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+[data-r=marqpista]{display:flex;width:max-content;animation:madTick 48s linear infinite}
+[data-r=marqpista] span{font:300 clamp(22px,2.2vw,30px)/1 Montserrat,sans-serif;letter-spacing:-.02em;color:#011C36;padding:0 clamp(22px,2.6vw,40px);white-space:nowrap}
+[data-r=marq]:hover [data-r=marqpista],[data-motor=quieto] [data-r=marqpista],[data-oculto] [data-r=marqpista]{animation-play-state:paused}
+
+/* ── Capítulo oscuro: cobertura con mapa de puntos ─────────────────────── */
+[data-tema=oscuro]{background:#011C36;color:#fff}
+[data-tema=oscuro] [data-r=edcuerpo] h2{color:#fff}
+[data-tema=oscuro] [data-r=edcuerpo] p{color:rgba(255,255,255,.82)}
+[data-tema=oscuro] [data-r=ed] > [data-t=ojo]{color:#6FC2F5}
+[data-r=mapa]{aspect-ratio:3600/1340;background:url('assets/mapa-puntos.svg?v=a76f3f79') center/contain no-repeat;margin-left:calc(var(--gx) * -1);margin-right:calc(var(--gx) * -1)}
+@media (max-width:700px){[data-r=mapa]{aspect-ratio:1/1;background-size:auto 100%;background-position:19% center}}
+[data-r=leyenda]{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:18px}
+[data-r=leyenda] span{display:inline-flex;align-items:center;gap:10px;font:400 11px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+[data-r=leyenda] i{width:9px;height:9px;flex-shrink:0}
+[data-r=hechos]{display:grid;grid-template-columns:minmax(0,1fr);gap:0 24px;margin-top:clamp(40px,5vw,64px)}
+@media (min-width:900px){[data-r=hechos]{grid-template-columns:repeat(3,minmax(0,1fr))}}
+[data-r=hecho]{border-top:1px solid rgba(255,255,255,.18);padding:20px 0 24px;display:flex;flex-direction:column;gap:14px}
+[data-r=hecho] p{margin:0;font:400 15.5px/1.6 Lato,sans-serif;color:rgba(255,255,255,.78)}
+[data-r=hecho] strong{color:#fff;font-weight:700}
+[data-r=puertos]{display:grid;grid-template-columns:minmax(0,1fr);gap:16px 24px;margin-top:clamp(28px,4vw,48px);border-top:1px solid rgba(255,255,255,.18);padding-top:24px;align-items:start}
+@media (min-width:900px){[data-r=puertos]{grid-template-columns:minmax(0,4fr) minmax(0,8fr)}}
+[data-r=puertos] > [data-t=ojo]{font-size:12px;color:#6FC2F5}
+[data-r=puertos] [data-t=chip]{background:rgba(255,255,255,.08)!important;color:#fff;padding:8px 12px;font-size:11.5px!important}
+
+/* ── Valores: cuatro columnas con regla arriba ─────────────────────────── */
+[data-r=cols4]{display:grid;grid-template-columns:minmax(0,1fr);gap:0 24px}
+@media (min-width:640px){[data-r=cols4]{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1000px){[data-r=cols4]{grid-template-columns:repeat(4,minmax(0,1fr))}}
+[data-r=col]{border-top:1px solid #011C36;padding:20px 0 32px;display:flex;flex-direction:column;gap:14px}
+[data-r=col] h3{margin:0;font:400 22px/1.2 Montserrat,sans-serif!important;color:#011C36}
+[data-r=col] p{margin:0;font:400 15.5px/1.6 Lato,sans-serif;color:#44566B}
+
+/* ── Misión: cita y un índice numerado ─────────────────────────────────── */
+[data-r=cita]{margin:0;font:300 clamp(28px,3.6vw,46px)/1.18 Montserrat,sans-serif;color:#011C36;text-wrap:balance}
+[data-r=cita]::before{content:"\201C"}
+[data-r=cita]::after{content:"\201D"}
+[data-r=firma]{display:flex;flex-direction:column;gap:6px}
+[data-r=firma] [data-t=ojo]{color:#0B72BE;font-size:12px}
+[data-r=firma] span:last-child{font:400 14px/1.4 Lato,sans-serif;color:#5A6B7D}
+[data-r=indice]{list-style:none;margin:0;padding:0;border-bottom:1px solid var(--linea)}
+[data-r=indice] li{display:grid;grid-template-columns:56px minmax(0,1fr);gap:12px;align-items:baseline;border-top:1px solid var(--linea);padding:20px 0}
+[data-r=inum]{font:400 12px/1 var(--mono);letter-spacing:.08em;color:#0B72BE}
+[data-r=itxt]{font:300 clamp(18px,1.7vw,22px)/1.4 Montserrat,sans-serif;letter-spacing:-.01em;color:#011C36}
+
+/* ── Cierre: degradado tramado que desemboca en el pie ─────────────────── */
+[data-r=cierre]{position:relative;overflow:hidden;background:linear-gradient(180deg,#5FB6EE 0%,#0486DC 22%,#0A5C9C 46%,#073A68 70%,#011C36 100%);color:#fff;isolation:isolate}
+[data-r=cierre]::before{content:"";position:absolute;inset:0;z-index:-1;background:url('assets/trama.svg?v=f3713e4e') 0 0/160px 160px repeat;
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.6) 45%,transparent 85%);mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.6) 45%,transparent 85%)}
+[data-r=cierrecaja]{max-width:860px;margin:0 auto;padding:clamp(170px,20vw,260px) var(--gx) clamp(110px,12vw,160px);display:flex;flex-direction:column;align-items:center;gap:24px;text-align:center}
+[data-r=cierrecaja] [data-t=ojo]{font-size:12px;color:rgba(255,255,255,.85)}
+[data-r=cierrecaja] h2{margin:0;font:300 clamp(36px,5.4vw,68px)/1.06 Montserrat,sans-serif!important;color:#fff;text-wrap:balance}
+[data-r=cierrecaja] p{margin:0;font:400 clamp(16px,1.6vw,19px)/1.6 Lato,sans-serif;color:rgba(255,255,255,.86);max-width:600px;text-wrap:pretty}
+[data-r=cierrecaja] [data-r=acciones]{justify-content:center;margin-top:8px}
+[data-r=contactos]{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px;font:400 12px/1.6 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+[data-r=contactos] span{display:inline-flex;align-items:center;gap:8px}
+
+/* ── Pie: marino a sangre, títulos mono y el wordmark grande ───────────── */
+footer{padding:0!important}
+footer > div{background:#011C36!important}
+footer [data-t=ojo]{font-size:12px!important;color:#6FC2F5!important}
+footer [data-r=social]{border-radius:0!important}
+[data-r=wordmark]{max-width:1320px;margin:0 auto;padding:0 var(--gx);font:200 clamp(64px,17vw,250px)/.8 Montserrat,sans-serif;letter-spacing:-.06em;color:rgba(255,255,255,.92);white-space:nowrap;overflow:hidden;user-select:none}
+
+/* ── Sin animaciones (ANIMACIONES = False) ─────────────────────────────── */
+[data-vfx]:not(#\#),[data-stagger]:not(#\#) > *,[data-vfx-lado]:not(#\#),[data-stagger]:not(#\#){opacity:1!important;transform:none!important;animation:none!important}
+[data-r=heroimg]:not(#\#){transform:none!important}
+[data-r=progreso],[data-r=seqpausa]{display:none!important}
+[data-r=heropanelilu]:not(#\#){border-top-width:0!important}
+[data-t=btn]:hover::before,[data-t=btn]:hover [data-vfx-arrow]{transform:none!important}
+[data-r=marq]{-webkit-mask-image:none;mask-image:none}
+[data-r=marqpista]{flex-wrap:wrap;width:auto;row-gap:14px;animation:none}
+[data-r=marqpista] span{padding:0 clamp(18px,2.4vw,36px) 0 0}
+
+/* Foto de la modalidad en el hero: cubre, no se encaja como la ilustración. */
+[data-r=heroilu]:not(#\#){background-size:cover!important;background-position:center!important}
+@media (min-width:901px){[data-r=heroscrimilu]:not(#\#){background:linear-gradient(90deg,#fff 0%,#fff 46%,rgba(255,255,255,0) 68%)!important}}
+/* ⟦/tecnico⟧ */
 </style>
 <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
 
@@ -248,9 +530,10 @@ a:hover [data-vfx-arrow],button:hover [data-vfx-arrow]{transform:translateX(4px)
 
 <div style="min-height:100vh;background:#fff">
 
+<div data-r="progreso" aria-hidden="true"></div>
 <header data-r="cab" style="position:sticky;top:0;z-index:40;background:#fff;border-bottom:1px solid #DCE6F0">
   <div style="max-width:1200px;margin:0 auto;padding:12px var(--gx);min-height:72px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px">
-    <a href="../" style="display:flex;align-items:center;flex-shrink:0"><img src="../assets/madavan-logo.png?v=3170e800" alt="MADAVAN Multilogística Internacional" data-r="logo" style="height:48px;width:auto;display:block"></a>
+    <a href="../" style="display:flex;align-items:center;flex-shrink:0"><img src="../assets/madavan-logo.png?v=f82d0a1c" alt="MADAVAN Multilogística Internacional" data-r="logo" style="height:48px;width:auto;display:block"></a>
     <nav data-r="navdesk" style="display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;font:700 16px/1 Montserrat,sans-serif;white-space:nowrap">
       <a href="../" style="color:#011C36;padding:8px 0;border-bottom:2px solid transparent" style-hover="border-bottom-color:#0B72BE">Inicio</a>
       <div onMouseEnter="{{ openDd }}" onMouseLeave="{{ closeDd }}" style="position:relative">
@@ -271,15 +554,15 @@ a:hover [data-vfx-arrow],button:hover [data-vfx-arrow]{transform:translateX(4px)
       <a href="../#contacto" style="color:#011C36;padding:8px 0;border-bottom:2px solid transparent" style-hover="border-bottom-color:#0B72BE">Contacto</a>
     </nav>
     <div data-r="navact" style="display:flex;align-items:center;gap:12px">
-      <div style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #DCE6F0;border-radius:500px;padding:3px"><i data-lucide="globe" style="width:16px;height:16px;color:#0B72BE;margin-left:6px"></i><a data-vfx-btn="1" data-r="lang-es" href="#" style="padding:7px 15px;border-radius:500px;background:#011C36;color:#fff;font:600 13px/1 Montserrat,sans-serif">ES</a><a data-r="lang-en" href="#" style="padding:7px 15px;border-radius:500px;color:#011C36;font:600 13px/1 Montserrat,sans-serif">EN</a></div>
-      <a href="../#contacto" data-vfx-btn="1" style="display:inline-flex;align-items:center;gap:10px;padding:13px 26px;border-radius:500px;background:#0B72BE;color:#fff;font:700 16px/1 Montserrat,sans-serif;white-space:nowrap" style-hover="background:#09588F;color:#fff">Solicita una cotización <span data-vfx-arrow>→</span></a>
+      <div style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #DCE6F0;border-radius:500px;padding:3px"><i data-lucide="globe" style="width:16px;height:16px;color:#0B72BE;margin-left:6px"></i><a data-vfx-btn="1" data-r="lang-es" data-on="1" href="./" style="padding:7px 15px;border-radius:500px;background:#011C36;color:#fff;font:600 13px/1 Montserrat,sans-serif">ES</a><a data-r="lang-en" href="../en/" style="padding:7px 15px;border-radius:500px;color:#011C36;font:600 13px/1 Montserrat,sans-serif">EN</a></div>
+      <a data-t="btn" data-tono="azul" href="../#contacto" data-vfx-btn="1"  style="display:inline-flex;align-items:center;gap:10px;padding:13px 26px;border-radius:500px;background:#0B72BE;color:#fff;font:700 16px/1 Montserrat,sans-serif;white-space:nowrap" style-hover="background:#09588F;color:#fff">Solicita una cotización <span data-vfx-arrow>→</span></a>
     </div>
     <button data-r="burger" type="button" aria-label="Abrir menú" aria-expanded="{{ menuOpen }}" onClick="{{ toggleMenu }}" style="display:none;align-items:center;justify-content:center;width:46px;height:46px;flex-shrink:0;border:1px solid #DCE6F0;border-radius:8px;background:#fff;color:#011C36;cursor:pointer"><sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:block"><path d="M6 6 L18 18 M18 6 L6 18"></path></svg></sc-if><sc-if value="{{ menuClosed }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:block"><path d="M3 6h18 M3 12h18 M3 18h18"></path></svg></sc-if></button>
   </div>
   <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
     <div data-r="mobnav" style="position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid #DCE6F0;box-shadow:0 16px 32px -12px rgba(1,28,54,.28);max-height:calc(100vh - 72px);overflow-y:auto;padding:8px var(--gx) 24px;display:flex;flex-direction:column">
       <a href="../" onClick="{{ closeMenu }}" style="padding:14px 2px;border-bottom:1px solid #EEF5FB;font:600 16px/1.3 Montserrat,sans-serif;color:#011C36;display:block">Inicio</a>
-      <div style="padding:18px 2px 8px;font:600 11px/1 Montserrat,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#5A6B7D">Logística</div>
+      <div data-t="ojo"  style="padding:18px 2px 8px;font:600 11px/1 Montserrat,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#5A6B7D">Logística</div>
       <sc-for list="{{ svcMenu }}" as="it" hint-placeholder-count="6">
         <a href="{{ it.href }}" onClick="{{ closeMenu }}" style="display:flex;align-items:center;gap:12px;padding:11px 2px;border-bottom:1px solid #EEF5FB;font:600 15px/1.35 Montserrat,sans-serif;color:#011C36"><span style="width:34px;height:34px;border-radius:50%;background:#0B72BE;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="{{ it.icon }}" style="width:17px;height:17px"></i></span>{{ it.title }}</a>
       </sc-for>
@@ -287,33 +570,33 @@ a:hover [data-vfx-arrow],button:hover [data-vfx-arrow]{transform:translateX(4px)
       <a href="./" onClick="{{ closeMenu }}" style="padding:14px 2px;border-bottom:1px solid #EEF5FB;font:600 16px/1.3 Montserrat,sans-serif;color:#011C36;display:block">Cursos</a>
       <a href="../#contacto" onClick="{{ closeMenu }}" style="padding:14px 2px;border-bottom:1px solid #EEF5FB;font:600 16px/1.3 Montserrat,sans-serif;color:#011C36;display:block;border-bottom:0">Contacto</a>
       <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px">
-        <div style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #DCE6F0;border-radius:500px;padding:3px"><i data-lucide="globe" style="width:16px;height:16px;color:#0B72BE;margin-left:6px"></i><a data-vfx-btn="1" data-r="lang-es" href="#" style="padding:7px 15px;border-radius:500px;background:#011C36;color:#fff;font:600 13px/1 Montserrat,sans-serif">ES</a><a data-r="lang-en" href="#" style="padding:7px 15px;border-radius:500px;color:#011C36;font:600 13px/1 Montserrat,sans-serif">EN</a></div>
-        <a data-vfx-btn="1" href="../#contacto" onClick="{{ closeMenu }}" style="flex:1 1 200px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 26px;border-radius:500px;background:#0B72BE;color:#fff;font:700 16px/1 Montserrat,sans-serif" style-hover="background:#09588F;color:#fff">Solicita una cotización <span data-vfx-arrow>→</span></a>
+        <div style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #DCE6F0;border-radius:500px;padding:3px"><i data-lucide="globe" style="width:16px;height:16px;color:#0B72BE;margin-left:6px"></i><a data-vfx-btn="1" data-r="lang-es" data-on="1" href="./" style="padding:7px 15px;border-radius:500px;background:#011C36;color:#fff;font:600 13px/1 Montserrat,sans-serif">ES</a><a data-r="lang-en" href="../en/" style="padding:7px 15px;border-radius:500px;color:#011C36;font:600 13px/1 Montserrat,sans-serif">EN</a></div>
+        <a data-t="btn" data-tono="azul" data-vfx-btn="1" href="../#contacto" onClick="{{ closeMenu }}"  style="flex:1 1 200px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 26px;border-radius:500px;background:#0B72BE;color:#fff;font:700 16px/1 Montserrat,sans-serif" style-hover="background:#09588F;color:#fff">Solicita una cotización <span data-vfx-arrow>→</span></a>
       </div>
     </div>
   </sc-if>
 </header>
 
-<section data-vfx="1" data-screen-label="Hero" style="position:relative;overflow:hidden;background:#fff;border:1px solid #E4ECF4;border-radius:28px;margin:14px" data-r="heropanelilu">
-<div data-r="heroilu" style="position:absolute;top:0;right:0;bottom:0;width:52%;background:#EEF5FB url('../assets/ilu-cursos.svg?v=c7fdfd91') center/cover no-repeat"></div>
+<section data-vfx="1" data-screen-label="Hero" style="position:relative;overflow:hidden;background:#fff;border:1px solid #E4ECF4;border-radius:20px;margin:0 14px 14px" data-r="heropanelilu">
+<div data-r="heroilu" style="position:absolute;top:0;right:0;bottom:0;width:52%;background:#EEF5FB url('../assets/foto-cursos.webp?v=62068ebb') center/cover no-repeat"></div>
 <div data-r="heroscrimilu" style="position:absolute;inset:0;background:linear-gradient(90deg,#FFFFFF 0%,#FFFFFF 44%,rgba(255,255,255,0) 68%)"></div>
 <div data-r="herobody" style="position:relative;max-width:1200px;margin:0 auto;padding:clamp(120px,13vw,168px) var(--gx) clamp(48px,8vw,88px)">
 <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;font:400 13px/1.6 Lato,sans-serif;color:#5A6B7D;margin-bottom:40px"><a href=".././" style="color:#5A6B7D" style-hover="color:#0B72BE">Inicio</a><span>/</span><a href="./" style="color:#5A6B7D" style-hover="color:#0B72BE">Cursos</a><span>/</span><span style="color:#011C36;font-weight:700">Exportación</span></div>
 <div data-stagger style="max-width:660px;display:flex;flex-direction:column;gap:22px">
-<div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#011C36"><span style="width:24px;height:3px;background:#0B72BE;border-radius:500px"></span>Comercio exterior</div>
+<div data-t="ojo"  style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#011C36"><span style="width:24px;height:3px;background:#0B72BE;border-radius:500px"></span>Comercio exterior</div>
 <h1 style="margin:0;font:700 clamp(30px,5.6vw,52px)/1.1 Montserrat,sans-serif;letter-spacing:-.03em;color:#011C36;text-wrap:balance">Cómo exportar desde cero, paso a paso.</h1>
 <p style="margin:0;font:400 clamp(16px,2.3vw,18px)/1.6 Lato,sans-serif;color:#44566B;text-wrap:pretty">Conviértete en especialista en exportación en 4 horas, con el criterio técnico que exige operar en mercados internacionales.</p>
 <p style="margin:0;font:400 16px/1.7 Lato,sans-serif;color:#44566B;text-wrap:pretty">Para empresas y profesionales que ya exportan —o están por hacerlo— y necesitan dejar de improvisar en clasificación arancelaria, documentación y estrategia de mercados.</p>
 <div style="display:flex;flex-wrap:wrap;gap:8px">
-<span style="padding:7px 16px;border-radius:500px;background:#EEF5FB;color:#011C36;font:600 13px/1 Montserrat,sans-serif">4 horas</span>
-<span style="padding:7px 16px;border-radius:500px;background:#EEF5FB;color:#011C36;font:600 13px/1 Montserrat,sans-serif">100% online</span>
-<span style="padding:7px 16px;border-radius:500px;background:#EEF5FB;color:#011C36;font:600 13px/1 Montserrat,sans-serif">Certificado incluido</span>
+<span data-t="chip"  style="padding:7px 16px;border-radius:500px;background:#EEF5FB;color:#011C36;font:600 13px/1 Montserrat,sans-serif">4 horas</span>
+<span data-t="chip"  style="padding:7px 16px;border-radius:500px;background:#EEF5FB;color:#011C36;font:600 13px/1 Montserrat,sans-serif">100% online</span>
+<span data-t="chip"  style="padding:7px 16px;border-radius:500px;background:#EEF5FB;color:#011C36;font:600 13px/1 Montserrat,sans-serif">Certificado incluido</span>
 </div>
 <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
-<a data-vfx-btn="1" href="https://wa.me/525610980231?text=Hola%20MADAVAN%2C%20me%20interesa%20el%20Curso%20de%20Exportaci%C3%B3n%20%28%245%2C500%20MXN%20%2B%20IVA%29.%20" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:19px 46px;border-radius:500px;background:#0B72BE;color:#fff;font:600 17px/1 Montserrat,sans-serif;box-shadow:0 8px 20px rgba(37,211,102,.28)" style-hover="background:#09588F;color:#fff">Quiero este curso <span>&#8594;</span></a>
+<a data-t="btn" data-tono="azul" data-vfx-btn="1" href="https://wa.me/525610980231?text=Hola%20MADAVAN%2C%20me%20interesa%20el%20Curso%20de%20Exportaci%C3%B3n%20%28%245%2C500%20MXN%20%2B%20IVA%29.%20" target="_blank" rel="noopener"  style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:19px 46px;border-radius:500px;background:#0B72BE;color:#fff;font:600 17px/1 Montserrat,sans-serif;box-shadow:0 8px 20px rgba(37,211,102,.28)" style-hover="background:#09588F;color:#fff">Quiero este curso <span>&#8594;</span></a>
 <span style="font:600 clamp(19px,2.6vw,22px)/1 Montserrat,sans-serif;color:#011C36">$5,500 MXN + IVA</span>
 </div></div></div></section>
-<section data-vfx="1" data-screen-label="Problema" style="background:#EEF5FB;border-radius:20px;margin:14px"><div style="max-width:1200px;margin:0 auto;padding:clamp(48px,6vw,88px) var(--gx)">
+<section data-vfx="1" data-screen-label="Problema" style="background:#EEF5FB;border-radius:20px;margin:0"><div style="max-width:1200px;margin:0 auto;padding:clamp(48px,6vw,88px) var(--gx)">
 <div style="display:flex;flex-direction:column;gap:20px;max-width:900px">
 <h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.03em;color:#011C36;text-wrap:balance">El problema que nadie dice en voz alta</h2>
 <p style="margin:0;font:400 16px/1.7 Lato,sans-serif;color:#44566B;text-wrap:pretty">Exportar sin dominio técnico no se nota al principio. Se nota cuando un cliente internacional cancela un pedido por un error de clasificación arancelaria, cuando un embarque se retiene en destino por documentación incompleta, o cuando pierdes margen porque nunca calculaste bien el Incoterm correcto.</p>
@@ -325,22 +608,22 @@ a:hover [data-vfx-arrow],button:hover [data-vfx-arrow]{transform:translateX(4px)
 <p style="margin:0;font:400 16px/1.7 Lato,sans-serif;color:#44566B;text-wrap:pretty">Está diseñado para quienes ya están —o están a punto de estar— frente a un cliente internacional real: clasificación arancelaria aplicada, cumplimiento aduanero, selección estratégica de mercados y estructura de operación.</p>
 <p style="margin:0;font:400 16px/1.7 Lato,sans-serif;color:#44566B;text-wrap:pretty">En 4 horas obtienes el nivel de criterio que normalmente se construye después de varios embarques con errores costosos.</p>
 </div></section>
-<section data-vfx="1" data-screen-label="Beneficios" style="background:#EEF5FB;border-radius:20px;margin:14px"><div style="max-width:1200px;margin:0 auto;padding:clamp(48px,6vw,88px) var(--gx)">
+<section data-vfx="1" data-screen-label="Beneficios" style="background:#EEF5FB;border-radius:20px;margin:0"><div style="max-width:1200px;margin:0 auto;padding:clamp(48px,6vw,88px) var(--gx)">
 <div style="display:flex;flex-direction:column;gap:24px">
-<div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#011C36"><span style="width:24px;height:3px;background:#0B72BE;border-radius:500px"></span>Lo que obtienes</div>
+<div data-t="ojo"  style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#011C36"><span style="width:24px;height:3px;background:#0B72BE;border-radius:500px"></span>Lo que obtienes</div>
 <h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.03em;color:#011C36;text-wrap:balance">Lo que te llevas<span style="display:block;color:#011C36">del curso.</span></h2>
 <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:14px 32px"><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#0B72BE;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#44566B">Certificación como especialista en exportación.</span></div><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#0B72BE;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#44566B">Formato intensivo de 4 horas.</span></div><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#0B72BE;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#44566B">Clasificación arancelaria aplicada para exportación.</span></div><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#0B72BE;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#44566B">Selección de Incoterms según destino, modalidad de transporte y riesgo comercial.</span></div><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#0B72BE;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#44566B">Estrategia para identificar y priorizar mercados con mayor potencial real.</span></div><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#0B72BE;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#44566B">Documentación y cumplimiento que evita retenciones y rechazos en destino.</span></div></div>
 </div></div></section>
 <section data-vfx="1" data-screen-label="Para quién" style="max-width:1200px;margin:0 auto;padding:clamp(48px,6vw,88px) var(--gx)">
 <div style="display:flex;flex-direction:column;gap:24px">
-<div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#011C36"><span style="width:24px;height:3px;background:#0B72BE;border-radius:500px"></span>Para quién es</div>
+<div data-t="ojo"  style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#011C36"><span style="width:24px;height:3px;background:#0B72BE;border-radius:500px"></span>Para quién es</div>
 <h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.03em;color:#011C36;text-wrap:balance">A quién le sirve<span style="display:block;color:#011C36">este curso.</span></h2>
 <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:14px 32px"><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#0B72BE;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#44566B">Dueños y directores de PyMEs que ya exportan y necesitan formalizar el proceso.</span></div><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#0B72BE;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#44566B">Empresas que están por dar el salto a mercados internacionales.</span></div><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#0B72BE;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#44566B">Coordinadores y gerentes de comercio exterior.</span></div><div style="display:flex;gap:12px;align-items:flex-start"><i data-lucide="check" style="width:21px;height:21px;color:#0B72BE;flex-shrink:0;margin-top:2px"></i><span style="font:400 15px/1.6 Lato,sans-serif;color:#44566B">Equipos comerciales que negocian con clientes internacionales.</span></div></div>
 </div></section>
-<section data-vfx="1" data-screen-label="Instructor" style="background:#EEF5FB;border-radius:20px;margin:14px"><div style="max-width:1200px;margin:0 auto;padding:clamp(48px,6vw,88px) var(--gx)">
+<section data-vfx="1" data-screen-label="Instructor" style="background:#EEF5FB;border-radius:20px;margin:0"><div style="max-width:1200px;margin:0 auto;padding:clamp(48px,6vw,88px) var(--gx)">
 <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:36px clamp(26px,5vw,64px);align-items:start">
 <div style="display:flex;flex-direction:column;gap:18px">
-<div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#011C36"><span style="width:24px;height:3px;background:#0B72BE;border-radius:500px"></span>Tu instructor</div>
+<div data-t="ojo"  style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#011C36"><span style="width:24px;height:3px;background:#0B72BE;border-radius:500px"></span>Tu instructor</div>
 <img src="../assets/juan-marcos-aguirre.webp?v=b9f8c755" alt="Juan Marcos Aguirre Leyva, director general de MADAVAN" style="width:clamp(132px,19vw,172px);height:clamp(132px,19vw,172px);border-radius:8px;flex-shrink:0;box-shadow:0 10px 26px rgba(1,28,54,.16);object-fit:cover;display:block">
 <h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.03em;color:#011C36;text-wrap:balance">Juan Marcos Aguirre Leyva</h2>
 <div style="font:600 14px/1.5 Montserrat,sans-serif;color:#0B72BE">Director General de MADAVAN Multilogística Internacional S.A. de C.V.</div>
@@ -352,26 +635,26 @@ a:hover [data-vfx-arrow],button:hover [data-vfx-arrow]{transform:translateX(4px)
 <section data-vfx="1" data-screen-label="Inversión" style="max-width:1200px;margin:0 auto;padding:clamp(48px,6vw,88px) var(--gx)">
 <div data-stagger style="border-radius:8px;background:#011C36;color:#fff;padding:clamp(28px,5vw,52px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:32px clamp(26px,5vw,56px);align-items:center">
 <div style="display:flex;flex-direction:column;gap:16px">
-<div style="font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#0486DC">Inversión</div>
+<div data-t="ojo"  style="font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#0486DC">Inversión</div>
 <div style="font:700 clamp(30px,5.4vw,44px)/1 Montserrat,sans-serif">$5,500 MXN + IVA</div>
 <div style="font:400 16px/1.75 Lato,sans-serif;color:rgba(255,255,255,.8)">Pago único · Sin mensualidades · Métodos de pago seguros</div>
-<div style="margin-top:6px"><a data-vfx-btn="1" href="https://wa.me/525610980231?text=Hola%20MADAVAN%2C%20me%20interesa%20el%20Curso%20de%20Exportaci%C3%B3n%20%28%245%2C500%20MXN%20%2B%20IVA%29.%20" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:19px 46px;border-radius:500px;background:#0B72BE;color:#fff;font:600 17px/1 Montserrat,sans-serif;box-shadow:0 8px 20px rgba(37,211,102,.28)" style-hover="background:#09588F;color:#fff">Quiero este curso <span>&#8594;</span></a></div>
+<div style="margin-top:6px"><a data-t="btn" data-tono="azul" data-vfx-btn="1" href="https://wa.me/525610980231?text=Hola%20MADAVAN%2C%20me%20interesa%20el%20Curso%20de%20Exportaci%C3%B3n%20%28%245%2C500%20MXN%20%2B%20IVA%29.%20" target="_blank" rel="noopener"  style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:19px 46px;border-radius:500px;background:#0B72BE;color:#fff;font:600 17px/1 Montserrat,sans-serif;box-shadow:0 8px 20px rgba(37,211,102,.28)" style-hover="background:#09588F;color:#fff">Quiero este curso <span>&#8594;</span></a></div>
 </div>
 </div></section>
 <section data-vfx="1" data-screen-label="Academia" style="max-width:1200px;margin:0 auto;padding:0 var(--gx) clamp(48px,8vw,88px)">
 <div style="display:flex;flex-direction:column;gap:18px;max-width:860px">
-<div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#011C36"><span style="width:24px;height:3px;background:#0B72BE;border-radius:500px"></span>Por qué Academia MADAVAN</div>
+<div data-t="ojo"  style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#011C36"><span style="width:24px;height:3px;background:#0B72BE;border-radius:500px"></span>Por qué Academia MADAVAN</div>
 <p style="margin:0;font:400 16px/1.7 Lato,sans-serif;color:#44566B;text-wrap:pretty">Academia MADAVAN es la plataforma de capacitación de MADAVAN Multilogística Internacional. Más de dos décadas operando comercio exterior, aduanas y logística internacional en México y Latinoamérica. No enseñamos teoría de manual: enseñamos el criterio que usamos todos los días para mover carga.</p>
 </div></section>
 <section data-vfx="1" data-screen-label="Cierre" style="max-width:1200px;margin:0 auto;padding:clamp(48px,6vw,88px) var(--gx)">
 <div style="border-radius:8px;background:#EEF5FB;padding:clamp(28px,5vw,52px);display:flex;flex-direction:column;gap:18px;align-items:flex-start">
 <h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.03em;color:#011C36;text-wrap:balance">La brecha más barata y más rápida de cerrar</h2>
 <p style="margin:0;font:400 16px/1.7 Lato,sans-serif;color:#44566B;text-wrap:pretty">Si tu empresa exporta o planea exportar y no tiene un especialista certificado en el tema, esta es la forma de resolverlo en una tarde.</p>
-<div style="margin-top:6px"><a data-vfx-btn="1" href="https://wa.me/525610980231?text=Hola%20MADAVAN%2C%20me%20interesa%20el%20Curso%20de%20Exportaci%C3%B3n%20%28%245%2C500%20MXN%20%2B%20IVA%29.%20" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:19px 46px;border-radius:500px;background:#0B72BE;color:#fff;font:600 17px/1 Montserrat,sans-serif;box-shadow:0 8px 20px rgba(37,211,102,.28)" style-hover="background:#09588F;color:#fff">Quiero este curso <span>&#8594;</span></a></div>
+<div style="margin-top:6px"><a data-t="btn" data-tono="azul" data-vfx-btn="1" href="https://wa.me/525610980231?text=Hola%20MADAVAN%2C%20me%20interesa%20el%20Curso%20de%20Exportaci%C3%B3n%20%28%245%2C500%20MXN%20%2B%20IVA%29.%20" target="_blank" rel="noopener"  style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:19px 46px;border-radius:500px;background:#0B72BE;color:#fff;font:600 17px/1 Montserrat,sans-serif;box-shadow:0 8px 20px rgba(37,211,102,.28)" style-hover="background:#09588F;color:#fff">Quiero este curso <span>&#8594;</span></a></div>
 </div></section>
-<section data-vfx="1" data-screen-label="Otros cursos" style="background:#EEF5FB;border-radius:20px;margin:14px"><div style="max-width:1200px;margin:0 auto;padding:clamp(48px,6vw,88px) var(--gx)">
+<section data-vfx="1" data-screen-label="Otros cursos" style="background:#EEF5FB;border-radius:20px;margin:0"><div style="max-width:1200px;margin:0 auto;padding:clamp(48px,6vw,88px) var(--gx)">
 <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:28px">
-<div style="display:flex;flex-direction:column;gap:14px"><div style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#011C36"><span style="width:24px;height:3px;background:#0B72BE;border-radius:500px"></span>Sigue aprendiendo</div><h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.03em;color:#011C36;text-wrap:balance">Otros cursos.</h2></div>
+<div style="display:flex;flex-direction:column;gap:14px"><div data-t="ojo"  style="display:inline-flex;align-items:center;gap:10px;font:600 12px/1.2 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#011C36"><span style="width:24px;height:3px;background:#0B72BE;border-radius:500px"></span>Sigue aprendiendo</div><h2 style="margin:0;font:600 clamp(24px,4vw,34px)/1.25 Montserrat,sans-serif;letter-spacing:-.03em;color:#011C36;text-wrap:balance">Otros cursos.</h2></div>
 <a href="./" style="font:600 14px/1 Montserrat,sans-serif;color:#0B72BE;padding-bottom:6px;border-bottom:2px solid #0B72BE">Ver todos los cursos →</a>
 </div>
 <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:16px">
@@ -394,27 +677,27 @@ a:hover [data-vfx-arrow],button:hover [data-vfx-arrow]{transform:translateX(4px)
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:32px">
       <div style="display:flex;flex-direction:column;gap:12px">
-        <div style="font:600 13px/1 Montserrat,sans-serif;color:#fff;margin-bottom:4px">Enlaces rápidos</div>
+        <div data-t="ojo" style="font:600 13px/1 Montserrat,sans-serif;color:#fff;margin-bottom:4px">Enlaces rápidos</div>
         <a href="../" style="font:400 13px/1.4 Lato,sans-serif;color:rgba(255,255,255,.8)" style-hover="color:#fff">Inicio</a>
         <a href="../#blog" style="display:none;font:400 13px/1.4 Lato,sans-serif;color:rgba(255,255,255,.8)" style-hover="color:#fff">Blog – Logística</a>
         <a href="./" style="font:400 13px/1.4 Lato,sans-serif;color:rgba(255,255,255,.8)" style-hover="color:#fff">Cursos</a>
         <a href="../#contacto" style="font:400 13px/1.4 Lato,sans-serif;color:rgba(255,255,255,.8)" style-hover="color:#fff">Contacto</a>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px">
-        <div style="font:600 13px/1 Montserrat,sans-serif;color:#fff;margin-bottom:4px">Servicios</div>
+        <div data-t="ojo" style="font:600 13px/1 Montserrat,sans-serif;color:#fff;margin-bottom:4px">Servicios</div>
         <sc-for list="{{ footerServices }}" as="f" hint-placeholder-count="6">
           <a href="{{ f.href }}" style="font:400 13px/1.4 Lato,sans-serif;color:rgba(255,255,255,.8)" style-hover="color:#fff">{{ f.title }}</a>
         </sc-for>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px">
-        <div style="font:600 13px/1 Montserrat,sans-serif;color:#fff;margin-bottom:4px">Contacto</div>
+        <div data-t="ojo" style="font:600 13px/1 Montserrat,sans-serif;color:#fff;margin-bottom:4px">Contacto</div>
         <div style="display:flex;gap:10px;font:400 13px/1.5 Lato,sans-serif;color:rgba(255,255,255,.8)"><i data-lucide="map-pin" style="width:16px;height:16px;flex-shrink:0;margin-top:2px"></i><span>Corporativo Santa Fe, Av Sta Fe 505, Piso 1 Mezzanine 2B, Santa Fe, Cuajimalpa, CDMX 05348</span></div>
         <div style="display:flex;gap:10px;font:400 13px/1.5 Lato,sans-serif;color:rgba(255,255,255,.8)"><i data-lucide="phone" style="width:16px;height:16px;flex-shrink:0;margin-top:2px"></i><span>52 55 6549-8475 / 6835-1511<br>7098-3126 / 7160-1244</span></div>
         <div style="display:flex;gap:10px;font:400 13px/1.5 Lato,sans-serif;color:rgba(255,255,255,.8)"><i data-lucide="mail" style="width:16px;height:16px;flex-shrink:0;margin-top:2px"></i><a href="mailto:aduana@madavan.com.mx" style="color:rgba(255,255,255,.8)" style-hover="color:#fff">aduana@madavan.com.mx</a></div>
         <div style="display:flex;gap:10px;font:400 13px/1.5 Lato,sans-serif;color:rgba(255,255,255,.8)"><i data-lucide="clock" style="width:16px;height:16px;flex-shrink:0;margin-top:2px"></i><span>Lunes a viernes: 8:00 a 18:00 hrs</span></div>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px">
-        <div style="font:600 13px/1 Montserrat,sans-serif;color:#fff;margin-bottom:4px">Síguenos</div>
+        <div data-t="ojo" style="font:600 13px/1 Montserrat,sans-serif;color:#fff;margin-bottom:4px">Síguenos</div>
         <div style="display:flex;gap:12px">
           <a href="https://www.linkedin.com/in/juan-marcos-aguirre-leyva-0399401a/" aria-label="LinkedIn" style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;color:#fff" style-hover="background:rgba(255,255,255,.1);color:#fff"><i data-lucide="linkedin" style="width:16px;height:16px"></i></a>
           <a href="https://www.facebook.com/MADAVANMultilogistica/" aria-label="Facebook" style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;color:#fff" style-hover="background:rgba(255,255,255,.1);color:#fff"><i data-lucide="facebook" style="width:16px;height:16px"></i></a>
@@ -424,6 +707,7 @@ a:hover [data-vfx-arrow],button:hover [data-vfx-arrow]{transform:translateX(4px)
       </div>
     </div>
   </div>
+  <div data-r="wordmark" aria-hidden="true">MADAVAN</div>
   <div style="border-top:1px solid rgba(255,255,255,.14)">
     <div style="max-width:1200px;margin:0 auto;padding:18px var(--gx);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:400 12px/1.4 Lato,sans-serif;color:rgba(255,255,255,.60)">
       <span>© MADAVAN Multilogística Internacional SA de CV. Todos los derechos reservados.</span>
@@ -442,40 +726,68 @@ class Component extends DCLogic {
   componentDidMount() {
     this.icons();
     this.vfx();
-    this.sombra();
+    this.recorrido();
     this.hotmart();
     this.onResize = () => this.setState({ w: window.innerWidth, menuOpen: window.innerWidth >= 1024 ? false : this.state.menuOpen });
     window.addEventListener('resize', this.onResize);
   }
   componentWillUnmount() { window.removeEventListener('resize', this.onResize); if (this._hmEspera) clearInterval(this._hmEspera); if (this._obs) this._obs.disconnect(); if (this._rescate) clearTimeout(this._rescate); }
-  componentDidUpdate() { this.icons(); this.vfx(); this.sombra(); this.hotmart(); }
+  componentDidUpdate() { this.icons(); this.vfx(); this.recorrido(); this.hotmart(); }
   /* Entrada al aparecer en pantalla, con red de seguridad: pase lo que pase,
      a los 2.5 s todo queda visible. El contenido nunca se queda en blanco. */
-  /* La cabecera sólo levanta sombra cuando la página ya se movió: en reposo
-     es una línea, como en la referencia. */
-  sombra() {
-    if (this._sombra) return;
+  /* Un perfil de movimiento para todo el documento, decidido una vez al
+     cargar. Se mira el aparato, no el ancho de la ventana: una ventana
+     estrecha en un escritorio potente aguanta todo, y una tableta ancha con
+     cuatro núcleos no. */
+  perfil() {
+    return 'quieto'; /* tecnico.py: ANIMACIONES = False */
+    if (window.matchMedia('(prefers-reduced-motion:reduce)').matches) return 'quieto';
+    const red = navigator.connection || {};
+    const flojo = (navigator.hardwareConcurrency || 8) <= 4
+      || (navigator.deviceMemory || 8) <= 4
+      || red.saveData === true
+      || /^(slow-)?2g$|^3g$/.test(red.effectiveType || '')
+      || !window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+    return flojo ? 'ligero' : 'completo';
+  }
+
+  /* Cabecera, barra de lectura y parallax: los tres viven del mismo scroll,
+     así que comparten un solo oyente y un solo fotograma. Escuchar tres
+     veces el scroll es la forma más fácil de hacer que una página raspe. */
+  recorrido() {
+    if (this._recorrido) return;
+    const raiz = document.documentElement;
+    raiz.setAttribute('data-motor', this.perfil());
     const cab = document.querySelector('[data-r=cab]');
-    if (!cab) return;
-    this._sombra = () => {
-      if (window.scrollY > 8) cab.setAttribute('data-fijo', '1');
-      else cab.removeAttribute('data-fijo');
+    const barra = document.querySelector('[data-r=progreso]');
+    const hero = document.querySelector('[data-r=heropanel]');
+    let pedido = false;
+    const pintar = () => {
+      pedido = false;
+      const y = window.scrollY;
+      if (cab) { if (y > 8) cab.setAttribute('data-fijo', '1'); else cab.removeAttribute('data-fijo'); }
+      if (barra) {
+        const alto = document.documentElement.scrollHeight - window.innerHeight;
+        barra.style.setProperty('--leido', alto > 0 ? Math.min(1, y / alto).toFixed(4) : 0);
+      }
+      if (hero && raiz.getAttribute('data-motor') === 'completo') {
+        const h = hero.offsetHeight || 1;
+        hero.style.setProperty('--avance', Math.max(0, Math.min(1, y / h)).toFixed(4));
+      }
     };
-    window.addEventListener('scroll', this._sombra, { passive: true });
-    this._sombra();
-    /* Con la pestaña escondida no hay a quién animar. */
-    this._oculto = () => document.documentElement.toggleAttribute('data-oculto', document.hidden);
-    document.addEventListener('visibilitychange', this._oculto);
-    this._oculto();
+    this._recorrido = () => { if (!pedido) { pedido = true; requestAnimationFrame(pintar); } };
+    window.addEventListener('scroll', this._recorrido, { passive: true });
+    window.addEventListener('resize', this._recorrido, { passive: true });
+    pintar();
   }
   vfx() {
     if (!this._rescate) {
       this._rescate = setTimeout(() => {
-        document.querySelectorAll('[data-vfx]:not([data-visto]),[data-stagger]:not([data-visto])')
+        document.querySelectorAll('[data-vfx]:not([data-visto]),[data-stagger]:not([data-visto]),[data-vfx-lado]:not([data-visto])')
                 .forEach((e) => e.setAttribute('data-visto', '1'));
       }, 2500);
     }
-    const nuevos = document.querySelectorAll('[data-vfx]:not([data-visto]):not([data-vfx-obs]),[data-stagger]:not([data-visto]):not([data-vfx-obs])');
+    const nuevos = document.querySelectorAll('[data-vfx]:not([data-visto]):not([data-vfx-obs]),[data-stagger]:not([data-visto]):not([data-vfx-obs]),[data-vfx-lado]:not([data-visto]):not([data-vfx-obs])');
     if (!nuevos.length) return;
     if (!('IntersectionObserver' in window)) {
       nuevos.forEach((e) => e.setAttribute('data-visto', '1'));
